@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
-    <title>Tabela de Resultados</title>
+    <title>Scoreboard</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
+
 <body>
-    
-    <p> <a href = "jogo.html"> Jogo </a> </p>
-    <p> <a href = "index.html"> Página Inicial </a> </p>
+  <!--NAVBAR-->
+  <nav class="navbar">
+    <ul class="nav-links">
+        <!-- Para o móvel -->
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+        <!--Items-->
+        <div class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="info.html">Info</a></li>
+            <li><a href="jogo.html">Jogo</a></li>
+            <li><a href="score.html">Scoreboard</a></li>
+            <li class="services">
+                <!-- DROPDOWN EXEMPLO -->
+                <a href="/">Dropdown Exemplo</a>
+                <ul class="dropdown">
+                    <li><a href="/">Dropdown 1 </a></li>
+                    <li><a href="/">Dropdown 2</a></li>
+                    <li><a href="/">Dropdown 2</a></li>
+                    <li><a href="/">Dropdown 3</a></li>
+                    <li><a href="/">Dropdown 4</a></li>
+                </ul>
+            </li>
+            <li><a href="login.html">Login</a></li>
+        </div>
+    </ul>
+</nav>
+<!--FIM NAVBAR-->
+
+<p>Scoreboard</p>
 
 </body>
+
 </html>

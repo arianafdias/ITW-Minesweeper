@@ -1,0 +1,155 @@
+/*Defaults*/
+:root {
+    /* Main Color Pallete https://colorhunt.co/palette/222831393e4600adb5eeeeee*/
+    --black: #222831;
+    --grey: #393E46;
+    --blue: #00ADB5;
+    --white: #EEEEEE;
+    font-family: 'Cursive', cursive;
+    color: var(--white);
+  }
+
+
+
+ button {
+    background-color: var(--blue);
+    border: none;
+    color: var(--white);
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 4px;
+    cursor: pointer;
+    border-radius: 8px;
+ 
+}
+
+body {
+    background-color: var(--black
+    );
+}
+
+.nav .login-container {
+    float: right;
+    justify-content: right;
+  }
+* /* Isto cola a NavBar aos cantos */
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   }
+  
+   a {
+    text-decoration: none;
+   }
+   li {
+    list-style: none;
+   }
+/* NAVBAR STYLING */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: var(--blue);
+    color: #fff;
+   }
+   .login-container {
+    float: right;
+  }
+   .nav-links a {
+    color: #fff;
+   }
+   
+   /* NAVBAR MENU */
+   .menu {
+    display: flex;
+    gap: 1em;
+    font-size: 18px;
+   }
+   .menu li:hover {
+    background-color: var(--grey);
+    border-radius: 5px;
+    transition: 0.3s ease;
+   }
+   .menu li {
+    padding: 5px 14px;
+   }
+   /* DROPDOWN MENU */
+   .services {
+    position: relative; 
+   }
+   .dropdown {
+    background-color: var(--grey);
+    padding: 1em 0;
+    position: absolute; /*WITH RESPECT TO PARENT*/
+    display: none;
+    border-radius: 8px;
+    top: 35px;
+   }
+   .dropdown li + li {
+    margin-top: 10px;
+   }
+   .dropdown li {
+    padding: 0.5em 1em;
+    width: 8em;
+    text-align: center;
+   }
+   .dropdown li:hover {
+    background-color: var(--grey);
+   }
+   .services:hover .dropdown {
+    display: block;
+   }
+/*Fazer a NavBar responsiva*/
+/* Para expandir os items */
+input[type=checkbox]{
+    display: none;
+   } 
+   /*HAMBURGER MENU (PARA TELÉMÓVEIS)*/
+   .hamburger {
+    display: none;
+    font-size: 24px;
+    user-select: none;
+   }
+   /* EXPANDIR MENU */
+   @media (max-width: 769px) {
+   .menu { 
+    display:none;
+    position: absolute;
+    background-color:var(--blue);
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: 16px 0;
+   }
+   .menu li:hover {
+    display: inline-block;
+    background-color:#4c9e9e;
+    transition: 0.3s ease;
+   }
+   .menu li + li {
+    margin-top: 12px;
+   }
+   input[type=checkbox]:checked ~ .menu{
+    display: block;
+   }
+   .hamburger {
+    display: block;
+   }
+   .dropdown {
+    left: 50%;
+    top: 30px;
+    transform: translateX(35%);
+   }
+   .dropdown li:hover {
+    background-color: #4c9e9e;
+   }
+   }
+
+
+
+  
