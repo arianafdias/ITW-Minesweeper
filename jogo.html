@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Jogo</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+  
 </head>
 
 <body>
@@ -39,70 +40,69 @@
 
     <br>
 
-    <div class="container2">
-       
-        <div style="position:relative;display:block=block;" >
-             <div class="value">0</div>
-             <div style="position:relative;display: flex;" >
-                <input type="range" min="0" max="10" step="1" value="0"> 
-                
+    <div class="SpaceAround">
+
+        <div class="RangeAndLabel">
+            <div class="value" id="lblOne">8</div>
+            <div class="RangeSlider">
+                <input id="FirstRange" type="range" min="0" max="20" step="1" value="8">
                 <script>
-            var elem = document.querySelector('input[type="range"]');
+                    var range = document.getElementById("FirstRange");
+                    var output = document.getElementById("lblOne");
+                    output.innerHTML = range.value;
 
-            var rangeValue = function () {
-                var newValue = elem.value;
-                var target = document.querySelector('.value');
-                target.innerHTML = newValue;
-            }
-
-            elem.addEventListener("input", rangeValue); 
-        </script>
-            </div>
-            <div style="position:relative;display: flex;" >
-               
-            
-            <p>Test</p>
+                    range.oninput = function() {
+                        output.innerHTML = this.value;
+                    }
+                </script>
             </div>
         </div>
 
-        <div style="position:relative;display:block=block;" >
-            <div class="value">0</div>
-            <div style="position:relative;display: flex;" >
-               <input type="range" min="0" max="10" step="1" value="0"> 
-               <script>
-           var elem = document.querySelector('input[type="range"]');
+        <div class="RangeAndLabel">
+            <div class="value" id="lblTwo">8</div>
+            <div class="RangeSlider">
+                <input id="SecondRange" type="range" min="0" max="20" step="1" value="8">
+                <script>
+                    var range2 = document.getElementById("SecondRange");
+                    var output2 = document.getElementById("lblTwo");
+                    output2.innerHTML = range2.value;
 
-           var rangeValue = function () {
-               var newValue = elem.value;
-               var target = document.querySelector('.value');
-               target.innerHTML = newValue;
-           }
+                    range2.oninput = function() {
+                        output2.innerHTML = this.value;
+                    }
+                </script>
+            </div>
 
-           elem.addEventListener("input", rangeValue); 
-       </script>
-           </div>
-       </div>
+        </div>
 
-       <div style="position:relative;display:block=block;" >
-        <div class="value">0</div>
-        <div style="position:relative;display: flex;" >
-           <input type="range" min="0" max="10" step="1" value="0"> 
-           <script>
-       var elem = document.querySelector('input[type="range"]');
+        <div class="RangeAndLabel">
+            <div class="value" id="lblThree">10</div>
+            <div class="RangeSlider">
+                <input id="ThirdRange" type="range" min="0" max="20" step="1" value="10">
+                <script>
+                    var range3 = document.getElementById("ThirdRange");
+                    var output3 = document.getElementById("lblThree");
+                    output3.innerHTML = range3.value;
 
-       var rangeValue = function () {
-           var newValue = elem.value;
-           var target = document.querySelector('.value');
-           target.innerHTML = newValue;
-       }
-
-       elem.addEventListener("input", rangeValue); 
-   </script>
-       </div>
-   </div>
+                    range3.oninput = function() {
+                        output3.innerHTML = this.value;
+                    }
+                </script>
+            </div>
+        </div>
     </div>
-
-
+<br>
+    <div class="SpaceAround">
+        <!--Centered text div-->
+        <div class="label">
+            Altura do Campo
+        </div>
+        <div class="label">
+            Largura do campo
+        </div>
+        <div class="label">
+            Número de bombas
+        </div>
 </body>
 
 </html>
