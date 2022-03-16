@@ -1,0 +1,9 @@
+:root {
+    /* Main Color Pallete https://colorhunt.co/palette/222831393e4600adb5eeeeee*/
+    --background: #222831;
+    --secondaryBackground: #393E46;
+    --primaryColor: #00ADB5;
+    --contrastColor: #EEEEEE;
+    font-family: 'Cursive', cursive;
+    color: var(--contrastColor);
+    }

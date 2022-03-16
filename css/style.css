@@ -1,20 +1,10 @@
-/*Defaults*/
-:root {
-    /* Main Color Pallete https://colorhunt.co/palette/222831393e4600adb5eeeeee*/
-    --black: #222831;
-    --grey: #393E46;
-    --blue: #00ADB5;
-    --white: #EEEEEE;
-    font-family: 'Cursive', cursive;
-    color: var(--white);
-  }
-
-
+/*Constants*/
+@import "constants.css";
 
  button {
-    background-color: var(--blue);
+    background-color: var(--primaryColor);
     border: none;
-    color: var(--white);
+    color: var(--contrastColor);
     padding: 10px 25px;
     text-align: center;
     text-decoration: none;
@@ -30,7 +20,7 @@
  cursor:url(https://i.imgur.com/psJxi2y.png), auto;
 }
 body {
-    background-color: var(--black
+    background-color: var(--background
     );
 }
 
@@ -57,7 +47,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: var(--blue);
+    background-color: var(--primaryColor);
     color: #fff;
    }
    .login-container {
@@ -74,7 +64,7 @@ body {
     font-size: 18px;
    }
    .menu li:hover {
-    background-color: var(--grey);
+    background-color: var(--secondaryBackground);
     border-radius: 5px;
     transition: 0.3s ease;
    }
@@ -86,7 +76,7 @@ body {
     position: relative; 
    }
    .dropdown {
-    background-color: var(--grey);
+    background-color: var(--secondaryBackground);
     padding: 1em 0;
     position: absolute; /*WITH RESPECT TO PARENT*/
     display: none;
@@ -102,7 +92,7 @@ body {
     text-align: center;
    }
    .dropdown li:hover {
-    background-color: var(--grey);
+    background-color: var(--secondaryBackground);
    }
    .services:hover .dropdown {
     display: block;
@@ -123,7 +113,7 @@ input[type=checkbox]{
    .menu { 
     display:none;
     position: absolute;
-    background-color:var(--blue);
+    background-color:var(--primaryColor);
     right: 0;
     left: 0;
     text-align: center;
@@ -187,7 +177,7 @@ input[type="range"] {
 }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  background-color: var(--blue);
+  background-color: var(--primaryColor);
   width: 30px;
   height: 30px;
   border-radius: 50%;
