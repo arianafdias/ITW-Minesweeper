@@ -4,6 +4,6 @@
     --secondaryBackground: #393E46;
     --primaryColor: #00ADB5;
     --contrastColor: #EEEEEE;
-    font-family: 'Times New Roman', cursive;
+    font-family: 'Helvetica', sans-serif;
     color: var(--contrastColor);
     }
