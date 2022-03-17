@@ -1,6 +1,16 @@
 /*Constants*/
 @import "constants.css";
 
+.InfoPage {
+  margin: 1em;
+  text-align: center;
+}
+.InfoPage p{
+  
+  padding: 0.4em;
+  
+}
+
  button {
     background-color: var(--primaryColor);
     border: none;
@@ -22,6 +32,7 @@
 body {
     background-color: var(--background
     );
+    overflow-x:hidden; 
 }
 
 .nav .login-container {

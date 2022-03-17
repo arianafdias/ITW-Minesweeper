@@ -4,7 +4,7 @@
 .LoginBox {
         background-color: #FFFFFF;
         width: 400px;
-        height: max-content+50px;
+        height: max-content;
         margin: 7em auto;
         border-radius: 1.5em;
         box-shadow: 0px 11px 35px 2px var(--primaryColor);

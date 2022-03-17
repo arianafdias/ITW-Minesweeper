@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
-
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-
-
     <meta charset="UTF-8">
     <title>Informações</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+<style>
+
+.card {   background-color: dodgerblue;
+padding: 1rem;color: white;
+  padding: 1rem;
+  height: 3em;
+ }
+ .cards {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+}
+@media (min-width: 600px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 900px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
 
 </head>
-
 <body>
-    <!--NAVBAR-->
+    
+   
+
     <nav class="navbar">
         <ul class="nav-links">
             <!-- Para o móvel -->
@@ -39,26 +59,40 @@
             </div>
         </ul>
     </nav>
-    <!--FIM NAVBAR-->
-
-    <p> <b> Regras: </b> </p>
-    <p> O tabuleiro é dividido em células, com as minas distribuídas aleatoriamente. Clicar em uma célula que não tem nenhuma mina revela um número, este número é a quantidade de células vizinhas que contêm uma mina. Usando essas informações, determina as
-        células que são seguras e as que contêm minas. As células suspeitas de estarem minadas podem ser marcadas com uma bandeira usando o botão direito do rato.</p>
-    <p> <b> Como ganhar: </b> </p>
-    <p> Para vencer, tens que abrir todas as células que não contêm minas.</p>
-    <br> 
-    <p> Estás pronto? </p>
     <br>
-    <!--Botão para jogar -->
-    <div style="text-align:center">
-        <button class="button test" onclick="window.location.href='jogo.html'">Jogar</button>
+    <div class="InfoPage"  >
+        <p> <b> Regras: </b> </p> 
+   <br>
+   <p> O tabuleiro é dividido em células, com as minas distribuídas aleatoriamente.  Clicar em uma célula que não tem nenhuma mina revela um número, este número é a quantidade de células vizinhas que contêm uma mina. Usando essas informações, determina as células que são seguras e as que contêm minas. As células suspeitas de estarem minadas podem ser marcadas com uma bandeira usando o botão direito do rato. <b>Para vencer, tens que abrir todas as células que não contêm minas.</b></p>
+   
+<br> 
+<b>Dicas:</b> 
+
+    <b>Estás pronto?</b> 
+    </div>  
+
+
+    <div class="cards">
+
+    <div class="card"><img src="https://via.placeholder.com/150"> <br>Test testestestegtsssss </div>
+    <div class="card"><img src="https://via.placeholder.com/150">  </div>
+    <div class="card"><img src="https://via.placeholder.com/150">  </div>
+    <div class="card"><img src="https://via.placeholder.com/150">  </div>
+    <div class="card"><img src="https://via.placeholder.com/150">  </div>
+    <div class="card"><img src="https://via.placeholder.com/150">  </div>
+    <div class="card"><img src="https://via.placeholder.com/150">  </div>
+  
+
     </div>
 
-<audio src="assets/audio/01. BG Cave.mp3" controls>
+  
+   <!--Botão para jogar -->
+    <div style="text-align:center">
+        <button class="button" onclick="window.location.href='jogo.html'">Jogar</button>
+    </div>
 
-</audio>
+
 
 
 </body>
-
 </html>
