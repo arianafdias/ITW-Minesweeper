@@ -17,47 +17,47 @@
     <meta charset="UTF-8">
     <title>Página Inicial</title>
 </head>
-<body><!--NavBar Tutorial: https: //www.makeuseof.com/responsive-navigation-bar-using-html-and-css/
-    -->
-<nav class="navbar">
-    <ul class="nav-links">
-        <!-- Para o móvel -->
-        <input type="checkbox" id="checkbox_toggle" />
-        <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-        <!--Items-->
-        <div class="menu">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="info.html">Info</a></li>
-            <!--  <li><a href="jogo.html">Jogo</a></li>-->
-            <li><a href="score.html">Scoreboard</a></li>
-            <li class="services">
-                <!-- DROPDOWN EXEMPLO -->
-                <a href="./jogo.html">Jogo</a>
-                <ul class="dropdown">
-                    <li><a href="./SPlayer.html">Singleplayer</a></li>
-                    <li><a href="./Mplayer.html">Multiplayer</a></li>
-                    <!--<li><a href="/">Dropdown 2</a></li>
-                    <li><a href="/">Dropdown 3</a></li>
-                    <li><a href="/">Dropdown 4</a></li> -->
-                </ul>
-            </li>
-            <li><a href="login.html">Login</a></li>
+<body><!--NavBar Tutorial: https: //www.makeuseof.com/responsive-navigation-bar-using-html-and-css/-->
+    <div class = "container">
+        <nav class="navbar">
+            <ul class="nav-links">
+                <!-- Para o móvel -->
+                <input type="checkbox" id="checkbox_toggle" />
+                <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+                <!--Items-->
+                <div class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="info.html">Info</a></li>
+                    <!--  <li><a href="jogo.html">Jogo</a></li>-->
+                    <li><a href="score.html">Scoreboard</a></li>
+                    <li class="services">
+                        <!-- DROPDOWN EXEMPLO -->
+                        <a href="./jogo.html">Jogo</a>
+                        <ul class="dropdown">
+                            <li><a href="./SPlayer.html">Singleplayer</a></li>
+                            <li><a href="./Mplayer.html">Multiplayer</a></li>
+                            <!--<li><a href="/">Dropdown 2</a></li>
+                            <li><a href="/">Dropdown 3</a></li>
+                            <li><a href="/">Dropdown 4</a></li> -->
+                        </ul>
+                    </li>
+                    <li><a href="login.html">Login</a></li>
+                </div>
+            </ul>
+        </nav>
+
+        <div class="grid-container">
+            <div class="grid-item">1</div>
+            <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+            <div class="grid-item">4</div>
+            <div class="grid-item">5</div>
+            <div class="grid-item">6</div>
+            <div class="grid-item">7</div>
+            <div class="grid-item">8</div>
+            <div class="grid-item">9</div>
         </div>
-    </ul>
-</nav>
 
-<div class="grid-container">
-    <div class="grid-item">1</div>
-    <div class="grid-item">2</div>
-    <div class="grid-item">3</div>
-    <div class="grid-item">4</div>
-    <div class="grid-item">5</div>
-    <div class="grid-item">6</div>
-    <div class="grid-item">7</div>
-    <div class="grid-item">8</div>
-    <div class="grid-item">9</div>
-</div>
-
-
+    </div>
 </body>
 </html>

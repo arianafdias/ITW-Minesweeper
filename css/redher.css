@@ -4,16 +4,20 @@ body{
     font-style: italic;
 }
 
-div div:hover{
-    background-color: var(--contrastColor);
-}
 
 .grid-container {
     display: inline-grid;
     grid-template-columns: repeat(3, 1fr);
-    
+    background-color: var(--primaryColor);
+    border-radius: 5px;
+    margin: 230px;
 }
 
 .grid-item {
-    padding: 10px;
+    padding: 20px;
+    background-color: var(--secondaryBackground);
+    border-style: solid;
+    border-color: var(--primaryColor);
+    border-radius: 5px;
 }
+
