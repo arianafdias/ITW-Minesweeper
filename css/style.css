@@ -33,6 +33,11 @@ body {
     background-color: var(--background
     );
     overflow-x:hidden; 
+    background-image:url(assets/images/background.png);
+background-size: 75% ;
+background-attachment: scroll;
+background-repeat: true;
+mask-repeat: false;
 }
 
 .nav .login-container {
