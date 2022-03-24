@@ -2,5 +2,18 @@ body{
     color:red;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
-    background-color: blueviolet;
+}
+
+div div:hover{
+    background-color: var(--contrastColor);
+}
+
+.grid-container {
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+}
+
+.grid-item {
+    padding: 10px;
 }
