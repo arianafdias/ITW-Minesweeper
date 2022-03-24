@@ -1,70 +1,61 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html>
 
 <head>
+    <style>
+        body{
+
+            background-image:url(assets/images/background.png);
+            background-size: 75% ;
+            background-attachment: scroll;
+            background-repeat: true;
+            mask-repeat: false;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/redher.css">
     <meta charset="UTF-8">
-    <title>Single Player</title>
-    <link rel =  "stylesheet" href="css/redher.css">
+    <title>Página Inicial</title>
 </head>
-<body>
-<div id = "line1">
-    <div id = "cell11">
+<body><!--NavBar Tutorial: https: //www.makeuseof.com/responsive-navigation-bar-using-html-and-css/
+    -->
+<nav class="navbar">
+    <ul class="nav-links">
+        <!-- Para o móvel -->
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+        <!--Items-->
+        <div class="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="info.html">Info</a></li>
+            <!--  <li><a href="jogo.html">Jogo</a></li>-->
+            <li><a href="score.html">Scoreboard</a></li>
+            <li class="services">
+                <!-- DROPDOWN EXEMPLO -->
+                <a href="/">Jogo</a>
+                <ul class="dropdown">
+                    <li><a href="./SPlayer.html">Singleplayer</a></li>
+                    <li><a href="./Mplayer.html">Multiplayer</a></li>
+                    <!--<li><a href="/">Dropdown 2</a></li>
+                    <li><a href="/">Dropdown 3</a></li>
+                    <li><a href="/">Dropdown 4</a></li> -->
+                </ul>
+            </li>
+            <li><a href="login.html">Login</a></li>
+        </div>
+    </ul>
+</nav>
 
-    </div>
-    <div id = "cell12">
-
-    </div>
-    <div id = "cell13">
-
-    </div>
-    <div id = "cell14">
-
-    </div>
-
-</div>
-<div id = "line2">
-    <div id = "cell21">
-
-    </div>
-    <div id = "cell22">
-
-    </div>
-    <div id = "cell23">
-
-    </div>
-    <div id = "cell24">
-
-    </div>
-
-</div>
-<div id = "line3">
-    <div id = "cell31">
-
-    </div>
-    <div id = "cell32">
-
-    </div>
-    <div id = "cell33">
-
-    </div>
-    <div id = "cell34">
-
-    </div>
-
-</div>
-<div id = "line4">
-    <div id = "cell41">
-
-    </div>
-    <div id = "cell42">
-
-    </div>
-    <div id = "cell43">
-
-    </div>
-    <div id = "cell44">
-
-    </div>
+<div class="grid-container">
+    <div class="grid-item">1</div>
+    <div class="grid-item">2</div>
+    <div class="grid-item">3</div>
+    <div class="grid-item">4</div>
+    <div class="grid-item">5</div>
+    <div class="grid-item">6</div>
+    <div class="grid-item">7</div>
+    <div class="grid-item">8</div>
+    <div class="grid-item">9</div>
 </div>
 
 
