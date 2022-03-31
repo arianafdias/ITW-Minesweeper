@@ -4,7 +4,7 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-
+    <link rel="stylesheet" type="text/css" href="./css/navBar.css">
 
     <meta charset="UTF-8">
     <title>Informações</title>
@@ -42,54 +42,58 @@
     </nav>
     <!--FIM NAVBAR-->
     <br>
-    <p> <b> Regras: </b> </p>
-    <p> O tabuleiro é dividido em células, com as minas distribuídas aleatoriamente. Clicar em uma célula que não tem nenhuma mina revela um número, este número é a quantidade de células vizinhas que contêm uma mina. Usando essas informações, determina as
-        células que são seguras e as que contêm minas. As células suspeitas de estarem minadas podem ser marcadas com uma bandeira usando o botão direito do rato.</p>
-    <p> <b> Como ganhar: </b> </p>
-    <p> Para vencer, tens que abrir todas as células que não contêm minas.</p>
+    <div id="Regras">
+        <h3> <b> Regras: </b> </h3>
+        <p> O tabuleiro é dividido em células, com as minas distribuídas aleatoriamente. Clicar numa célula que não tem nenhuma mina revela um número, este número é a quantidade de células vizinhas que contêm uma mina. Usando essas informações, determina as células que são seguras e as que contêm minas. As células suspeitas de estarem minadas podem ser marcadas com uma bandeira usando o botão direito do rato.</p>
+    </div>
+    <div id="ComoGanhar">
+        <h3> <b> Como ganhar: </b> </h3>
+        <p> Para vencer, tens que abrir todas as células que não contêm minas.</p>
+    </div>
     <br> 
 
-  
-    <p> <b> Gameplay Básico: </b> </p>
-    <p> Quando um número toca no mesmo número de quadrados, esses quadrados são minas. Por exemplo:</p>
-    <br>
-    <div class="row">
-        <div class="column">
-          <img alt = "explicação do 1" src="assets/images/tt1.png" style="width:25%">
+    <div>
+        <h3> <b> Gameplay Básico: </b> </h3>
+        <p> Quando um número toca no mesmo número de quadrados, esses quadrados são minas. Por exemplo:</p>
+        <br>
+        <div class="row">
+            <div class="column">
+              <img src="assets/images/tt1.png" style="width:25%">
+              <br>
+              <a>O 1 toca em 1 quadrado,<br> logo é uma mina.</a>
+            </div>
+            <div class="column">
+              <img src="assets/images/tt2.png" style="width:25%">
+              <br>
+              <a>O 2 toca 2 quadrados, <br> por isso ambos são minas.</a>
+            </div>
+            <div class="column">
+              <img src="assets/images/tt3.png" style="width:25%">
+              <br>
+              <a>O 3 toca 3 quadrados, <br>por isso todos são minas.</a>
+            </div>
+          </div>
           <br>
-          <a>O 1 toca em 1 quadrado,<br> logo é uma mina.</a>
-        </div>
-        <div class="column">
-          <img alt = "explicação do 2" src="assets/images/tt2.png" style="width:25%">
-          <br>
-          <a>O 2 toca 2 quadrados, <br> por isso ambos são minas.</a>
-        </div>
-        <div class="column">
-          <img alt = "explicação do 3" src="assets/images/tt3.png" style="width:25%">
-          <br>
-          <a>O 3 toca 3 quadrados, <br>por isso todos são minas.</a>
-        </div>
-      </div>  
-      <br>
-    <p> <b> Padrões:</b> </p>
-    <p> Um padrão é um arranjo comum de números com apenas uma solução. Memorizar padrões é importante porque pensar desperdiça tempo.
+        <p> <b> Padrões:</b> </p>
+        <p> Um padrão é um arranjo comum de números com apenas uma solução. Memorizar padrões é importante porque pensar desperdiça tempo.
 
-        Os dois padrões mais famosos são 1-2-1 e 1-2-2-1. Devias memorizá-los imediatamente.</p>
-    <br><br>
+            Os dois padrões mais famosos são 1-2-1 e 1-2-2-1. Devias memorizá-los imediatamente.</p>
+        <br><br>
 
-      <div class="row">
-  
-        <div class="column2">
-          <img alt = "exemplo de padrão 1-2-1" src="assets/images/tt4.png" style="width:25%">
-          <br>
-          <a>O padrão 1-2-1 têm 1 solução.</a>
-        </div>
-        <div class="column2">
-          <img alt = "exemplo de padrão 1-2-2-1"src="assets/images/tt5.png" style="width:25%">
-          <br>
-          <a>O padrão 1-2-2-1 têm 1 solução.</a>
-        </div>
-      </div>     
+          <div class="row">
+
+            <div class="column2">
+              <img src="assets/images/tt4.png" style="width:25%">
+              <br>
+              <a>O padrão 1-2-1 têm 1 solução.</a>
+            </div>
+            <div class="column2">
+              <img src="assets/images/tt5.png" style="width:25%">
+              <br>
+              <a>O padrão 1-2-2-1 têm 1 solução.</a>
+            </div>
+          </div>
+    </div>
     
      
 
