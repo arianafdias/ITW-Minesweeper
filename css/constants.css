@@ -4,6 +4,5 @@
     --secondaryBackground: #393E46;
     --primaryColor: #00ADB5;
     --contrastColor: #EEEEEE;
-    font-family: 'Cursive', cursive;
     color: var(--contrastColor);
     }
