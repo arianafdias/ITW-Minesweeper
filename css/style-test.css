@@ -57,18 +57,5 @@ a {
     color: var(--primaryColor);
 }
 
-table {
-    border: 5px var(--primaryColor) solid;
-    margin: auto;
-    display: inline-block;
-    width: 100%;
-    border-radius: 25px;
-    text-align: center;
-    table-layout: fixed;
-}
-thead {
-    border: 3px var(--primaryColor) solid;
-    margin: auto;
 
-}
 
