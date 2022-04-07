@@ -136,3 +136,9 @@ input[type="range"]::-webkit-slider-thumb {
     text-align: center;
 
 }
+
+@supports not (display: grid) {
+  .container{
+    display: none;
+  }
+}
