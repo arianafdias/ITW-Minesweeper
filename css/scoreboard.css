@@ -67,3 +67,8 @@ h2 small {
         text-align: right;
    }
 }
+@supports not (display: table) {
+    .scoreboard{
+      display: none;
+    }
+  }
