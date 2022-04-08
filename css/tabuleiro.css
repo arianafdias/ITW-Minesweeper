@@ -37,3 +37,20 @@
     border-radius: 25px;
     background-color: rgba(57, 62, 70, 0.70);
 }
+
+.defaulInfo{
+    display: inline;
+    text-align: center;
+}
+
+.jogadores{
+    bottom: 0;
+    display: inline;
+    text-align: center;
+}
+
+@media only screen and (max-width: 920px){
+    .painelJogo{
+        display: none;
+    }
+}
