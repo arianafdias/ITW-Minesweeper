@@ -1,7 +1,35 @@
 /*Constants*/
 @import "constants.css";
 
-/* Makes things Responsive*/
+
+/* STYLING DA TABELA*/
+table.scoreboard {
+    margin: auto;
+    display: inline-block;
+    border-radius: 25px;
+    text-align: center;
+    overflow: visible;
+    padding: 0.1em;
+}
+
+th, td{
+    padding: 1em;
+}
+
+hr{
+    height: 3px;
+    background-color: var(--primaryColor);
+    border: none;
+    border-radius: 5px;
+}
+
+div>div>div {
+    border: 5px var(--primaryColor) solid;
+    border-radius: 25px;
+}
+
+
+/* Makes things Responsive MAS NÃO TEMOS NADA DESTAS CLASSES*/
 .responsive-table li {
     border-radius: 3px;
     padding: 25px 30px;
