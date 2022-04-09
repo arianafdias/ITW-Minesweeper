@@ -39,7 +39,7 @@ button {
 .special-corners1{
     border-radius: 0 0 25px 25px;
 }
-.container > div:not(.button, .quote, .special-corners1,){
+.container > div:not(.button, .quote){
     margin: auto;
     width: 70%;
     padding: 20px;
