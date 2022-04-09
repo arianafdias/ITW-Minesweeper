@@ -57,7 +57,7 @@ li {
 .dropdown {
     background-color: var(--secondaryBackground);
     padding: 1em 0;
-    position: absolute; /*WITH RESPECT TO PARENT*/
+    position: absolute; 
     display: none;
     border-radius: 8px;
     top: 35px;
@@ -88,7 +88,7 @@ input[type=checkbox]{
     user-select: none;
 }
 /* EXPANDIR MENU */
-@media (max-width: 769px) {
+@media (max-width: 768px) {
     .menu {
         display:none;
         position: absolute;
