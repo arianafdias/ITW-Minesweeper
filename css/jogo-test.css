@@ -24,6 +24,7 @@
 }
 
 input[type="range"] {
+    display: none;
     position: relative;
     -webkit-appearance: none;
     background-color: #bdc3c7;

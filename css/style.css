@@ -78,6 +78,7 @@ body {
 
 input[type="range"] {
   position: relative;
+  
   -webkit-appearance: none;
   background-color: #bdc3c7;
   width: 300px;
@@ -114,10 +115,12 @@ input[type="range"]::-webkit-slider-thumb {
 .RangeAndLabel {
     position:relative;
     display:block;
+   
 }
 .RangeSlider {
     position:relative;
     display:flex;
+    
 }
 /* Para centrar toda a info na pagina */
 .container{

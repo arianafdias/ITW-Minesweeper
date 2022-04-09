@@ -35,7 +35,11 @@ button {
 .test {
     cursor:url(https://i.imgur.com/psJxi2y.png), auto;
 }
-.container > div:not(.button, .quote){
+
+.special-corners1{
+    border-radius: 0 0 25px 25px;
+}
+.container > div:not(.button, .quote, .special-corners1,){
     margin: auto;
     width: 70%;
     padding: 20px;
