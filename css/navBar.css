@@ -28,6 +28,7 @@ li {
 }
 /* NAVBAR STYLING */
 .navbar {
+   
     display: flex;
     align-items: center;
     justify-content: center;

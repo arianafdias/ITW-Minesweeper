@@ -7,4 +7,7 @@ Grupo 46    PL21
 .footer{
     text-align: center;
     margin-top: 5%;
+    position:fixed;
+    left:0px;
+    bottom:0px;
 }
