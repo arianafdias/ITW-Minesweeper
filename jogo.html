@@ -18,24 +18,30 @@
 
 <body>
     <script>          
-            
-        var docStyle = getComputedStyle(document.documentElement);
-       
+    
         function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
         var navbar= document.getElementsByClassName("navbar");
         var colorPickerValue= document.getElementById("colorPicker").value;
         var element= document.getElementById("multicolor5"); 
         var element2= document.getElementById("multicolor6"); 
+        //Mudar a cor de um elemento pseudo-elemento (n sei pk está lento mas até ficou fixe)
+        var css = 'input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-color:'+colorPickerValue+';width: 30px;height: 30px;border-radius: 50%;border: 2px solid white;cursor: pointer;transition: .3s ease-in-out;}​';
+var style = document.createElement('style');
+
+if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+} else {
+    style.appendChild(document.createTextNode(css));
+}
+
+document.getElementsByTagName('head')[0].appendChild(style);
         
         navbar[0].style.backgroundColor=colorPickerValue;
         element.style.background=colorPickerValue;
         element2.style.background=colorPickerValue;
      
         }
-        function getDefaultColor(){
-            return docStyle.getPropertyValue('--primaryColor');
-
-        }
+      
         function setCookies(){
             var colorPicker= document.getElementById("colorPicker");
             Cookie.set("color", colorPicker.value, 365);
@@ -134,9 +140,12 @@
                slider1.style.display = "block";
                     slider2.style.display = "block";
                     slider3.style.display = "block";
+                    slider3.max=(29)*(19)-1;
+                    slider3.value=(29)*(19)*0.20 //20% mine density
+                    lbl3.innerHTML = Math.floor(29*(19)*0.20);
            }    
            //(x-1)*(y-1)
-           slider3.max=(slider1.value-1)*(slider2.value-1);
+           
        }
            </script>
     <div class="SpaceAround" style="border-radius: 25px 25px 0 0;">
@@ -227,7 +236,18 @@
      element.style.background=color;
      element2.style.background=color;
       
-    
+    //Mudar a cor de um elemento pseudo-elemento (n sei pk está lento mas até ficou fixe)
+    var css = 'input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-color:'+color+';width: 30px;height: 30px;border-radius: 50%;border: 2px solid white;cursor: pointer;transition: .3s ease-in-out;}​';
+var style = document.createElement('style');
+
+if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+} else {
+    style.appendChild(document.createTextNode(css));
+}
+
+document.getElementsByTagName('head')[0].appendChild(style);
+
       </script>
 </body>
 
