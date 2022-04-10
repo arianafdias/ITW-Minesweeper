@@ -18,3 +18,7 @@
     clear: both;
     display: table;
 }
+
+.column > img , .column2 > img{
+    width: 25%;
+}
