@@ -8,22 +8,25 @@
         <link rel="stylesheet" type="text/css" href="./css/fontStyles.css">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <meta charset="UTF-8">
         <title>Página Inicial</title>
-        <script type="text/javascript" src="assets/js/cookies.js"></script>
-        <script type="text/javascript" src="assets/js/Cookie.js"></script>
+        <script type="text/javascript" src="assets/js/Cookies.js"></script>
         </head>
 
     <body>
        
         <script>          
-            
             var docStyle = getComputedStyle(document.documentElement);
            
-            function changeColour() {
+            function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
             var navbar= document.getElementsByClassName("navbar");
-            var colorPicker= document.getElementById("colorPicker");
-             navbar[0].style.backgroundColor=colorPicker.value;
+            var colorPickerValue= document.getElementById("colorPicker").value;
+            var element= document.getElementById("multicolor"); //A palavra "regras"
+            var element2= document.getElementById("multicolor2"); //O botão para jogar
+            navbar[0].style.backgroundColor=colorPickerValue;
+            element.style.color=colorPickerValue;
+            element2.style.background=colorPickerValue;
           
             }
             function getDefaultColor(){
@@ -33,9 +36,8 @@
             function setCookies(){
                 var colorPicker= document.getElementById("colorPicker");
                 Cookie.set("color", colorPicker.value, 365);
-                alert(Cookie.get("color"));
             }
-            </script>
+        </script>
     <div class="container">
         <nav class="navbar">
             <ul class="nav-links">
@@ -72,14 +74,14 @@
         </div>
         <br>
         <div>
-            <p> Nesta página vais encontrar as <a href="./info.html">regras</a> de como jogar Minesweeper! </p>
+            <p> Nesta página vais encontrar as <a id="multicolor" href="./info.html">regras</a> de como jogar Minesweeper! </p>
             <p> Tens a possibilidade de jogar individualmente ou desafiar alguém para jogar contigo! </p><br>
             <p> Do que estás à espera?? </p>
         </div>
         <br>
         <!--Botão para jogar -->
-        <div class="button">
-            <button class="button test" onclick="window.location.href='jogo.html'">Bora lá!!</button>
+        <div class="button" >
+            <button id="multicolor2" class="button test" onclick="window.location.href='jogo.html'">Bora lá!!</button>
         </div>
         <br>
 
@@ -89,16 +91,17 @@
         </iframe>
     </div>
     <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
+      var color=Cookie.get("color");
       
-        var docStyle = getComputedStyle(document.documentElement);
-    
-       var navbar= document.getElementsByClassName("navbar");
-      
-       navbar[0].style.backgroundColor=Cookie.get("color");
-      
-        
-      
-        </script>
+      var colorPicker = document.getElementById("colorPicker");
+      var navbar= document.getElementsByClassName("navbar");
+      var element= document.getElementById("multicolor"); //A palavra "regras"
+      var element2= document.getElementById("multicolor2"); //O botão para jogar
+       navbar[0].style.backgroundColor=color;
+       colorPicker.value=color;
+       element.style.color=color;
+       element2.style.background=color;
+    </script>
     </body>
 
 

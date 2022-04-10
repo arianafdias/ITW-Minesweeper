@@ -11,14 +11,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
-    <script type="text/javascript" src="/assets/js/cookies.js"></script>
-    <script type="text/javascript" src="assets/js/Cookie.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/colorPicker.css">
+    <script type="text/javascript" src="assets/js/Cookies.js"></script>
     <title>Informações</title>
   
 </head>
 
 <body>
-    
+    <script>          
+            
+        var docStyle = getComputedStyle(document.documentElement);
+       
+        function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
+        var navbar= document.getElementsByClassName("navbar");
+        var colorPickerValue= document.getElementById("colorPicker").value;
+        var element= document.getElementById("multicolor"); //A palavra "regras"
+       
+        navbar[0].style.backgroundColor=colorPickerValue;
+ 
+        element.style.background=colorPickerValue;
+      
+        }
+        function getDefaultColor(){
+            return docStyle.getPropertyValue('--primaryColor');
+
+        }
+        function setCookies(){
+            var colorPicker= document.getElementById("colorPicker");
+            Cookie.set("color", colorPicker.value, 365);
+        }
+       
+    </script>
    
     <div class="container">
 
@@ -44,6 +67,8 @@
                         </ul>
                     </li>
                     <li><a href="login.html">Login</a></li>
+                    <li><div class="cp_wrapper">
+                        <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()" value="getDefaultColor()" style="width:100%;"></div></li>
                 </div>
             </ul>
         </nav>
@@ -123,16 +148,22 @@
         <br>
             <!--Botão para jogar -->
             <div class ="button">
-                <button class="button test" onclick="window.location.href='jogo.html'">Jogar</button>
+                <button id="multicolor" class="button test" onclick="window.location.href='jogo.html'">Jogar</button>
             </div>
 
 
 
     </div>
     <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
-    var docStyle = getComputedStyle(document.documentElement);
-   var navbar= document.getElementsByClassName("navbar");
-   navbar[0].style.backgroundColor=Cookie.get("color");
+     var color=Cookie.get("color");
+      
+      var colorPicker = document.getElementById("colorPicker");
+      var navbar= document.getElementsByClassName("navbar");
+      var element= document.getElementById("multicolor"); //O botão
+    
+       navbar[0].style.backgroundColor=color;
+       colorPicker.value=color;
+        element.style.background=color;
     </script>
 </body>
 

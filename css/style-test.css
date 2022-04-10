@@ -18,9 +18,8 @@ body {
 }
 
 button {
-    background-color: var(--primaryColor);
     border: none;
-    color: var(--contrastColor);
+    background: var(--primaryColor);
     padding: 10px 25px;
     text-align: center;
     text-decoration: none;
@@ -31,6 +30,7 @@ button {
     border-radius: 8px;
     text-transform: uppercase;
     font-weight: bold;
+    color: white;
 }
 .test {
     cursor:url(https://i.imgur.com/psJxi2y.png), auto;

@@ -67,15 +67,15 @@ form.form1 {
   cursor: pointer;
     border-radius: 5em;
     color: #fff;
-    background: linear-gradient(to bottom, #00ADB5, #005eb5);
+    /*background: linear-gradient(to bottom, #00ADB5, #005eb5);*/
     border: 0;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 10px;
     padding-top: 10px;
     font-family: 'Ubuntu', sans-serif;
 
-    font-size: 13px;
+    font-size: 15px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 

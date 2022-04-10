@@ -24,7 +24,8 @@ hr{
 }
 
 div>div>div {
-    border: 5px var(--primaryColor) solid;
+    border: 5px solid;
+    border-color: var(--primaryColor);
     border-radius: 25px;
 }
 

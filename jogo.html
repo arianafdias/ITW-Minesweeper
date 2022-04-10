@@ -10,36 +10,65 @@
     <link rel="stylesheet" type="text/css" href="./css/navBar.css">
     <link rel="stylesheet" type="text/css" href="./css/jogo-test.css">
     <link rel="stylesheet" type="text/css" href="./css/jogo.css">
+    <link rel="stylesheet" type="text/css" href="./css/colorPicker.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script type="text/javascript" src="assets/js/Cookies.js"></script>
 </head>
 
 <body>
+    <script>          
+            
+        var docStyle = getComputedStyle(document.documentElement);
+       
+        function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
+        var navbar= document.getElementsByClassName("navbar");
+        var colorPickerValue= document.getElementById("colorPicker").value;
+        var element= document.getElementById("multicolor5"); 
+        var element2= document.getElementById("multicolor6"); 
+        
+        navbar[0].style.backgroundColor=colorPickerValue;
+        element.style.background=colorPickerValue;
+        element2.style.background=colorPickerValue;
+     
+        }
+        function getDefaultColor(){
+            return docStyle.getPropertyValue('--primaryColor');
+
+        }
+        function setCookies(){
+            var colorPicker= document.getElementById("colorPicker");
+            Cookie.set("color", colorPicker.value, 365);
+        }
+       
+    </script>
 <div class="container">
     <!--NAVBAR-->
     <nav class="navbar">
-            <ul class="nav-links">
-                <!-- Para o móvel -->
-                <input type="checkbox" id="checkbox_toggle" />
-                <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-                <!--Items-->
-                <div class="menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="info.html">Info</a></li>
-                    <!--  <li><a href="jogo.html">Jogo</a></li>-->
-                    <li><a href="jogo.html">Jogo</a></li>
-                    <li class="services">
-                        <!-- DROPDOWN EXEMPLO -->
-                        <p> Score</p>
-                        <ul class="dropdown">
-                            <li><a href="./score.html">Geral</a></li>
-                            <li><a href="./scoreindivid.html">Individual</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="login.html">Login</a></li>
-                </div>
-            </ul>
-        </nav>
+        <ul class="nav-links">
+            <!-- Para o móvel -->
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <!--Items-->
+            <div class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="info.html">Info</a></li>
+                <!--  <li><a href="jogo.html">Jogo</a></li>-->
+                <li><a href="jogo.html">Jogo</a></li>
+                <li class="services">
+                    <!-- DROPDOWN EXEMPLO -->
+                    <p> Score</p>
+                    <ul class="dropdown">
+                        <li><a href="./score.html">Geral</a></li>
+                        <li><a href="./scoreindivid.html">Individual</a></li>
+                    </ul>
+                </li>
+                <li><a href="login.html">Login</a></li>
+                <li><div class="cp_wrapper">
+                    <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()" value="getDefaultColor()" style="width:100%;"></div></li>
+            </div>
+        </ul>
+    </nav>
     <!--FIM NAVBAR-->
 
     <br>
@@ -178,15 +207,28 @@
     <br>  <br>
     <div class="gameButtons" style="width: 20%;" >
         <div class ="button">
-            <button class="button test" onclick="window.location.href='SPlayer.html'"> Single Player</button>
+            <button id="multicolor5" class="button test" onclick="window.location.href='SPlayer.html'"> Single Player</button>
         </div>
         <div class ="button">
-            <button class="button test" onclick="window.location.href='Mplayer.html'">Multi Player</button>
+            <button id="multicolor6" class="button test" onclick="window.location.href='Mplayer.html'">Multi Player</button>
         </div>
 
     </div>
 </div>
-
+<script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
+    var color=Cookie.get("color");
+    
+    var colorPicker = document.getElementById("colorPicker");
+    var navbar= document.getElementsByClassName("navbar");
+    var element= document.getElementById("multicolor5"); //A palavra "regras"
+    var element2= document.getElementById("multicolor6"); //O botão para jogar
+     navbar[0].style.backgroundColor=color;
+     colorPicker.value=color;
+     element.style.background=color;
+     element2.style.background=color;
+      
+    
+      </script>
 </body>
 
 </html>
