@@ -1,36 +1,26 @@
 /*Constants*/
 @import "constants.css";
 
-/* Three image containers (use 25% for four, and 50% for two, etc) */
-.column {
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-}
-.column2 {
-  float: left;
-  width:50%;
-  padding: 5px;
-}
-/* Clear floats after image containers */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-.InfoPage {
-  margin: 1em;
-  text-align: center;
+
+/* Para centrar toda a info na pagina */
+.container {
+    margin: 0 auto;
+    text-align: center;
 }
 
-.InfoPage p{
-  padding: 0.4em;
+body {
+    background-color: var(--background);
+    overflow-x:hidden;
+    background-image:url("../assets/images/background.png");
+    background-size: 75% ;
+    background-attachment: scroll;
+    background-repeat: true;
+    mask-repeat: false;
 }
 
 button {
-    background-color: var(--primaryColor);
     border: none;
-    color: var(--contrastColor);
+    background: var(--primaryColor);
     padding: 10px 25px;
     text-align: center;
     text-decoration: none;
@@ -39,106 +29,39 @@ button {
     margin: 4px 4px;
     cursor: pointer;
     border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
 }
 .test {
-
- cursor:url(https://i.imgur.com/psJxi2y.png), auto;
-}
-body {
-    background-color: var(--background);
-    overflow-x:hidden;
-    background-image:url('assets/images/background.png');
-    background-size: 75% ;
-    background-attachment: scroll;
-    background-repeat: true;
-    mask-repeat: false;
+    cursor:url(https://i.imgur.com/psJxi2y.png), auto;
 }
 
-
-/* RANGE , VALUE E LABEL*/
-
-.label{  
-    font-size: 2em;
-    font-weight: bold;
-    position:relative;
-    display:block;
-    text-align: center;
+.special-corners1{
+    border-radius: 0 0 25px 25px;
 }
-
-.value {
-  text-align: center;
-  font-weight: bold;
-  font-size: 7em; 
-  height: 80px;
-  line-height: 60px;
-  margin: 40px auto;
-  letter-spacing: -.07em;
-  text-shadow: white 2px 2px 2px;
-}
-
-input[type="range"] {
-  position: relative;
-  
-  -webkit-appearance: none;
-  background-color: #bdc3c7;
-  width: 300px;
-  height: 5px;
-  border-radius: 5px;
-  margin: 0 auto;
-  outline: 0;
-}
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background-color: var(--primaryColor);
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: 2px solid white;
-  cursor: pointer;
-  transition: .3s ease-in-out;
-}​
-  input[type="range"]::-webkit-slider-thumb:hover {
-    background-color: white;
-    border: 2px solid #e74c3c;
-  }
-  input[type="range"]::-webkit-slider-thumb:active {
-    transform: scale(1.6);
-  }
-
-.SpaceAround {
-    display: flex;
-  }
-  .SpaceAround > div {
-    flex: 1; /*grow*/
-  }
-
-.RangeAndLabel {
-    position:relative;
-    display:block;
-   
-}
-.RangeSlider {
-    position:relative;
-    display:flex;
-    
-}
-/* Para centrar toda a info na pagina */
-.container{
-    margin: 0 auto;
-    text-align: center;
+.container > div:not(.button, .quote, .special-corners1, .LoginBox){
+    margin: auto;
+    width: 70%;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: rgba(57, 62, 70, 0.70);
 }
 
 /* Quote Pagina Inicial*/
-.quote {
-    border: 1px solid black;
-    display: inline-block;
+.container .quote  {
+    margin: auto;
+    width: 70%;
     padding: 20px;
     background-color: var(--secondaryBackground);
-    /* This set radius to all 4 corners */
-    border-radius: 10px;
+    border-radius: 25px;
     text-align: center;
-
 }
+
+a {
+    color: var(--primaryColor);
+}
+
 
 @supports not (display: grid) {
   .container{
