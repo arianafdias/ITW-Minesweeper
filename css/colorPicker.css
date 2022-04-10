@@ -1,0 +1,14 @@
+input[type='color'] {
+    padding: 0;
+    width: 150%;
+    height: 150%;
+    margin: -25%;
+  }
+  
+  .cp_wrapper {
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    box-shadow: 1px 1px 3px 0px grey;
+  }

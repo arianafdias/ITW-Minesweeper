@@ -4,18 +4,38 @@
     <head>
         <link rel="stylesheet" type="text/css" href="./css/navBar.css">
         <link rel="stylesheet" type="text/css" href="./css/style-test.css">
+        <link rel="stylesheet" type="text/css" href="./css/colorPicker.css">
         <link rel="stylesheet" type="text/css" href="./css/fontStyles.css">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
         <title>Página Inicial</title>
-        
-        
+        <script type="text/javascript" src="assets/js/cookies.js"></script>
+        <script type="text/javascript" src="assets/js/Cookie.js"></script>
         </head>
 
     <body>
+       
+        <script>          
+            
+            var docStyle = getComputedStyle(document.documentElement);
+           
+            function changeColour() {
+            var navbar= document.getElementsByClassName("navbar");
+            var colorPicker= document.getElementById("colorPicker");
+             navbar[0].style.backgroundColor=colorPicker.value;
+          
+            }
+            function getDefaultColor(){
+                return docStyle.getPropertyValue('--primaryColor');
 
-   
+            }
+            function setCookies(){
+                var colorPicker= document.getElementById("colorPicker");
+                Cookie.set("color", colorPicker.value, 365);
+                alert(Cookie.get("color"));
+            }
+            </script>
     <div class="container">
         <nav class="navbar">
             <ul class="nav-links">
@@ -37,6 +57,8 @@
                         </ul>
                     </li>
                     <li><a href="login.html">Login</a></li>
+                    <li><div class="cp_wrapper">
+                        <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()" value="getDefaultColor()" style="width:100%;"></div></li>
                 </div>
             </ul>
         </nav>
@@ -66,6 +88,17 @@
                 allowfullscreen>
         </iframe>
     </div>
+    <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
+      
+        var docStyle = getComputedStyle(document.documentElement);
+    
+       var navbar= document.getElementsByClassName("navbar");
+      
+       navbar[0].style.backgroundColor=Cookie.get("color");
+      
+        
+      
+        </script>
     </body>
 
 
