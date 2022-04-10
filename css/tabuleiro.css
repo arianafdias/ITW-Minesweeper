@@ -11,7 +11,7 @@
     background-color: var(--secondaryBackground);
     border-style: solid;
     border-color: var(--primaryColor);
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .grid-item:hover{
