@@ -70,7 +70,7 @@ a {
 }
 
 
-.container footer{
+footer{
     display: grid;
     bottom:0;
     grid-template-rows: auto;
