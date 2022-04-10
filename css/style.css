@@ -72,11 +72,12 @@ a {
 
 footer{
     display: grid;
-    bottom:0;
     grid-template-rows: auto;
     grid-template-columns: 50% 50%;
     background-color: var(--primaryColor);
-    width:100%;
+    bottom: 0;
+    width: 100%;
+
 }
 footer > .cadeiraInfo{
     grid-column: 1;
