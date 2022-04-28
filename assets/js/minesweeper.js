@@ -1,5 +1,3 @@
-
-
 class Cell{
 
     constructor(x, y, mine){
@@ -10,6 +8,17 @@ class Cell{
         this.flagged = false;
     }
 
+}
+
+var game = {
+    grid: [],
+    mines: 0,
+    width: 0,
+    height: 0,
+    minesLeft: 0,   
+    gameOver: false,
+    gameWon: false,
+    firstClick: true,
 }
 
 
@@ -26,8 +35,8 @@ window.onload = function () {
     dimension=64;} 
 
     //Colocar Minas
-    //let minePositions = randomInts(mines, dimension); 
-
+    let minePositions = randomInts(mines, dimension); 
+    alert(minePositions[0]);
     //Create grid-item divs
     for (var i = 0; i < dimension; i++) {
         var gridItem = document.createElement('div');
