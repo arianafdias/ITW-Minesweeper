@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+=======
+/* ------------------------------------------------------------------------- */
+/* Constantes / Variaveis  ------------------------------------------------- */
+let cronometro
+
+/* ------------------------------------------------------------------------- */
+>>>>>>> 2a0dee8cf1ed235773f43b9e9dd899834a7fa091
 class Cell{
 
     constructor(x, y, mine){
@@ -45,6 +53,9 @@ window.onload = function () {
     }
     changeColour();
     //Create mines
+
+    //timer
+    cronometro = setInterval(timer, 1000)
 }
     
     
@@ -83,4 +94,11 @@ style.appendChild(document.createTextNode(css));
 
 document.getElementsByTagName('head')[0].appendChild(style);
 
+}
+
+function timer() {
+    let tempo_antigo = parseInt(document.getElementById("timer").innerText)
+    let novo_tempo = tempo_antigo + 1;
+    let newTempo = novo_tempo.toString();
+    document.getElementById("timer").innerHTML = newTempo;
 }
