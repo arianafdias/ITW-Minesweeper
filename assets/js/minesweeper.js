@@ -1,5 +1,8 @@
 /* Constantes / Variaveis  ------------------------------------------------- */
-let cronometro
+let cronometro;
+let timerStarted;
+
+
 class Cell{
 
     constructor(x, y, mine){
@@ -33,9 +36,11 @@ window.onload = function () {
    
     if(Cookie.get("Width")!=null && Cookie.get("Height")!=null && Cookie.get("Mines")!=null)
         gridContainer.style.gridTemplateColumns = "repeat(" + Cookie.get("Width") + ", 1fr)";
-    else{ gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
-    dimension=64;} 
+    else{ gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
+    dimension=81;}
 
+    //timer
+    timerStarted = false;
     //Colocar Minas
     let minePositions = randomInts(mines, dimension); 
     let minePositionsArray = Array.from(minePositions);
@@ -49,8 +54,7 @@ window.onload = function () {
     //Create mines
 }
     
-    //timer
-    cronometro = setInterval(timer, 1000)
+
 
 
 /* ------------------------------------------------------------------------- */
@@ -91,6 +95,14 @@ style.appendChild(document.createTextNode(css));
 
 document.getElementsByTagName('head')[0].appendChild(style);
 
+}
+
+onclick(){
+    if(!timerStarted) {
+        // start your interval
+        timerStarted = true;
+        cronometro = setInterval(timer, 1000)
+    }
 }
 function timer() {
     let tempo_antigo = parseInt(document.getElementById("timer").innerText)
