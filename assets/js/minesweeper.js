@@ -8,27 +8,31 @@ window.onload = function () {
         gridItem.className = 'grid-item';
         gridContainer.appendChild(gridItem);
     }
-    var color = Cookie.get("color");
+    changeColour();
+}
 
-        var allGridItems = document.getElementsByClassName("grid-item");
-        colorPicker.value = color;
 
-      
-        //Change all grid items border color
-        for (var i = 0; i < allGridItems.length; i++) {
-            allGridItems[i].style.borderColor = color;
-        }
-        var darkerColor=mudarBrightness(color, -55);
+function changeColour()
+{var color = Cookie.get("color");
 
-        gridContainer[0].style.backgroundColor=darkerColor;
-        var css = '.grid-item:hover{ background-color:'+darkerColor;+'; color: black;}';
+    var allGridItems = document.getElementsByClassName("grid-item");
+    colorPicker.value = color;
+
+  
+    //Change all grid items border color
+    for (var i = 0; i < allGridItems.length; i++) {
+        allGridItems[i].style.borderColor = color;
+    }
+    var darkerColor=mudarBrightness(color, -55);
+
+    gridContainer[0].style.backgroundColor=darkerColor;
+    var css = '.grid-item:hover{ background-color:'+darkerColor;+'; color: black;}';
 var style = document.createElement('style');
 
 if (style.styleSheet) {
-    style.styleSheet.cssText = css;
+style.styleSheet.cssText = css;
 } else {
-    style.appendChild(document.createTextNode(css));
+style.appendChild(document.createTextNode(css));
 }
 
-document.getElementsByTagName('head')[0].appendChild(style);
-}
+document.getElementsByTagName('head')[0].appendChild(style);}
