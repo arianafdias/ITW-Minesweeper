@@ -54,7 +54,7 @@ window.onload = function () {
 
 
 /* ------------------------------------------------------------------------- */
-/* Gerar Posições das Minas  ------
+/* Gerar Posições das Minas  ------  */
 
 function randomInts(quantity, max){
     const set = new Set()
@@ -63,7 +63,7 @@ function randomInts(quantity, max){
     }
     return set
   }
-  */
+
 
 
 function changeColour()
