@@ -13,16 +13,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="UTF-8">
     
-        <script type="text/javascript" src="assets/js/Cookies.js"></script>
+        <script type="text/javascript" src="assets/js/cookies.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="/js/rangeSliders.js"></script>
+        <script type="text/javascript" src="assets/js/rangeSliders.js"></script>
     
         <title>Jogo</title>
     </head>
 
 <body>
     <script>          
-    
+         
           
         function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
         var navbar= document.getElementsByClassName("navbar");
@@ -90,97 +90,17 @@ document.getElementsByTagName('head')[0].appendChild(style);
           <option value="Easy">Fácil</option>
           <option value="Normal">Normal</option>
           <option value="Hard">Difícil</option> 
-          <option value="Custom">Custom</option> 
+          <option value="Custom" >Custom</option> 
         </select>
         <span class="focus"></span>
       </div>
       <br>
-    <script>   
-        document.getElementById("select-css").addEventListener("change", changeSliders);
-       function changeSliders() {
-           var selector = document.getElementById("select-css").value;
-           var slider1 = document.getElementById("slider1");
-           var slider2 = document.getElementById("slider2");
-           var slider3 = document.getElementById("slider3");
-           var lbl1 = document.getElementById("lbl1");
-           var lbl2 = document.getElementById("lbl2");
-           var lbl3 = document.getElementById("lbl3");
-           var mineDensity= document.getElementById("mineDensity");
-           switch(selector){
-               case "Easy": //8x8 10 mines
-                   slider1.value = 8;
-                   lbl1.innerHTML = 8;
-                   slider2.value = 8;
-                   lbl2.innerHTML = 8;
-                   slider3.value = 10;
-                   lbl3.innerHTML = 10;
-                    slider1.style.display = "none";
-                    slider2.style.display = "none";
-                    slider3.style.display = "none";
-                    mineDensity.innerHTML='15.63%'
-                    
-                   break;
-               case "Normal": //16x16 40 mines
-                   slider1.value = 16;
-                   lbl1.innerHTML = 16;
-                   slider2.value = 16;
-                   lbl2.innerHTML = 16;
-                   slider3.value = 40;
-                   lbl3.innerHTML = 40;
-                   slider1.style.display = "none";
-                    slider2.style.display = "none";
-                    slider3.style.display = "none";
-                    mineDensity.innerHTML='15.63%'
-                   break;    
-             
-               case "Hard": //30x16 99 mines
-                   slider1.value = 30;
-                   lbl1.innerHTML = 30;
-                   slider2.value = 16;
-                   lbl2.innerHTML = 16;
-                   slider3.value = 99;
-                   lbl3.innerHTML = 99;
-                   slider1.style.display = "none";
-                    slider2.style.display = "none";
-                    slider3.style.display = "none";
-                    mineDensity.innerHTML='20.63%'
-                   break;    
-               ;
-               case "Custom":
-               slider1.style.display = "block";
-                    slider2.style.display = "block";
-                    slider3.style.display = "block";
-                    slider1.value = 30;
-                   lbl1.innerHTML = 30;
-                   slider2.value = 24;
-                   lbl2.innerHTML = 24;
-                    slider3.max=(29)*(23);
-                    slider3.value=125 //26.04% mine density
-                    lbl3.innerHTML = Math.floor(29*(23)*0.25);
-                    mineDensity.innerHTML="26.04%"
-                    break;
-           }    
-        
-           //(x-1)*(y-1)
-           
-       }
-           </script>
+    
     <div class="SpaceAround" style="border-radius: 25px 25px 0 0;">
         <div class="RangeAndLabel">
             <div class="value" id="lbl1">8</div>
             <div class="RangeSlider">
                 <input id="slider1" type="range" min="1" max="30" step="1" value="8">
-                <script>
-                    var range1 = document.getElementById("slider1");
-                    var output = document.getElementById("lbl1");
-                    output.innerHTML = range1.value;
-
-                    range1.oninput = function() {
-                        output.innerHTML = this.value;
-                        mineDensity.innerHTML= ((range3.value*100/(this.value*range2.value)).toFixed(2)).toString()+"%";
-                    }
-                </script>
-                
             </div>
         </div>
 
@@ -188,16 +108,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
             <div class="value" id="lbl2">8</div>
             <div class="RangeSlider">
                 <input id="slider2" type="range" min="1" max="24" step="1" value="8">
-                <script>
-                    var range2 = document.getElementById("slider2");
-                    var output2 = document.getElementById("lbl2");
-                    output2.innerHTML = range2.value;
 
-                    range2.oninput = function() {
-                        output2.innerHTML = this.value;
-                        mineDensity.innerHTML= ((range3.value*100/(range1.value*this.value)).toFixed(2)).toString()+"%";
-                    }
-                </script>
             </div>
 
         </div>
@@ -206,20 +117,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
             <div class="value" id="lbl3">10</div>
             <div class="RangeSlider">
                 <input id="slider3" type="range" min="1" max="20" step="1" value="10">
-                <script>
-                    var range1 = document.getElementById("slider1");
-                    var range2 = document.getElementById("slider2");
-                    var range3 = document.getElementById("slider3");
-                    var output3 = document.getElementById("lbl3");
-                    
-                    output3.innerHTML = range3.value;
-
-                    range3.oninput = function() {
-                        output3.innerHTML = this.value;
-                       
-                        mineDensity.innerHTML= ((this.value*100/(range1.value*range2.value)).toFixed(2)).toString()+"%";
-                    }
-                </script>
+                
             </div>
         </div>
     </div>
