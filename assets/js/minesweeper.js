@@ -2,6 +2,7 @@
 /* Constantes / Variaveis  ------------------------------------------------- */
 let cronometro
 
+
 /* ------------------------------------------------------------------------- */
 class Cell{
 
@@ -21,7 +22,7 @@ window.onload = function () {
     let dimension = Cookie.get("Width") * Cookie.get("Height");
     let mines = Cookie.get("Mines");
     
-    //No cado do user nunca ter mudado a dimensão
+    //No caso do user nunca ter mudado a dimensão
    
     if(Cookie.get("Width")!=null && Cookie.get("Height")!=null && Cookie.get("Mines")!=null)
         gridContainer.style.gridTemplateColumns = "repeat(" + Cookie.get("Width") + ", 1fr)";
@@ -43,11 +44,12 @@ window.onload = function () {
     //timer
     cronometro = setInterval(timer, 1000)
 }
-    
-    
+
+/* ------------------------------------------------------------------------- */
+/* Gerar Posições das Minas  ----------------------------------------------- */
 function randomInts(quantity, max){
     const set = new Set()
-    while(set.size < quantity) {
+    while(set.size <= quantity) {
       set.add(Math.floor(Math.random() * max) + 1)
     }
     return set
