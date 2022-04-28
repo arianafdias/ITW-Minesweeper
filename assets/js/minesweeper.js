@@ -1,15 +1,52 @@
 
+
+class Cell{
+
+    constructor(x, y, mine){
+        this.x = x;
+        this.y = y;
+        this.mine = mine;
+        this.revealed = false;
+        this.flagged = false;
+    }
+
+}
+
+
 window.onload = function () {
     var gridContainer = document.getElementsByClassName('grid-container')[0];
-    gridContainer.style.gridTemplateColumns = "repeat(" + Cookie.get("Width") + ", 1fr)";
+    let dimension = Cookie.get("Width") * Cookie.get("Height");
+    let mines = Cookie.get("Mines");
+    
+    //No cado do user nunca ter mudado a dimensão
+   
+    if(Cookie.get("Width")!=null && Cookie.get("Height")!=null && Cookie.get("Mines")!=null)
+        gridContainer.style.gridTemplateColumns = "repeat(" + Cookie.get("Width") + ", 1fr)";
+    else{ gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
+    dimension=64;} 
+
+    //Colocar Minas
+    //let minePositions = randomInts(mines, dimension); 
+
     //Create grid-item divs
-    for (var i = 0; i < Cookie.get("Width") * Cookie.get("Height"); i++) {
+    for (var i = 0; i < dimension; i++) {
         var gridItem = document.createElement('div');
         gridItem.className = 'grid-item';
         gridContainer.appendChild(gridItem);
     }
     changeColour();
+    //Create mines
 }
+    
+    
+function randomInts(quantity, max){
+    const set = new Set()
+    while(set.size < quantity) {
+      set.add(Math.floor(Math.random() * max) + 1)
+    }
+    return set
+  }
+  
 
 
 function changeColour()
@@ -35,4 +72,6 @@ style.styleSheet.cssText = css;
 style.appendChild(document.createTextNode(css));
 }
 
-document.getElementsByTagName('head')[0].appendChild(style);}
+document.getElementsByTagName('head')[0].appendChild(style);
+
+}
