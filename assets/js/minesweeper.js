@@ -26,8 +26,8 @@ window.onload = function () {
    
     if(Cookie.get("Width")!=null && Cookie.get("Height")!=null && Cookie.get("Mines")!=null)
         gridContainer.style.gridTemplateColumns = "repeat(" + Cookie.get("Width") + ", 1fr)";
-    else{ gridContainer.style.gridTemplateColumns = "repeat(8, 1fr)";
-    dimension=64;} 
+    else{ gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
+    dimension=81;}
 
     //Colocar Minas
     //let minePositions = randomInts(mines, dimension); 
