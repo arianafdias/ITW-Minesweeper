@@ -95,6 +95,14 @@ style.appendChild(document.createTextNode(css));
 document.getElementsByTagName('head')[0].appendChild(style);
 
 }
+
+function onClick(){
+    if(!timerStarted) {
+        // start your interval
+        timerStarted = true;
+        cronometro = setInterval(timer, 1000)
+    }
+}
 function timer() {
     let tempo_antigo = parseInt(document.getElementById("timer").innerText)
     let novo_tempo = tempo_antigo + 1;
