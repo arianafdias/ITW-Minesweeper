@@ -1,12 +1,5 @@
-<<<<<<< HEAD
-=======
-/* ------------------------------------------------------------------------- */
 /* Constantes / Variaveis  ------------------------------------------------- */
 let cronometro
-
-
-/* ------------------------------------------------------------------------- */
->>>>>>> 2a0dee8cf1ed235773f43b9e9dd899834a7fa091
 class Cell{
 
     constructor(x, y, mine){
@@ -16,7 +9,7 @@ class Cell{
         this.revealed = false;
         this.flagged = false;
     }
-
+        
 }
 
 var game = {
@@ -36,7 +29,7 @@ window.onload = function () {
     let dimension = Cookie.get("Width") * Cookie.get("Height");
     let mines = Cookie.get("Mines");
     
-    //No caso do user nunca ter mudado a dimensão
+    //No cado do user nunca ter mudado a dimensão
    
     if(Cookie.get("Width")!=null && Cookie.get("Height")!=null && Cookie.get("Mines")!=null)
         gridContainer.style.gridTemplateColumns = "repeat(" + Cookie.get("Width") + ", 1fr)";
@@ -45,7 +38,7 @@ window.onload = function () {
 
     //Colocar Minas
     let minePositions = randomInts(mines, dimension); 
-    alert(minePositions[0]);
+    let minePositionsArray = Array.from(minePositions);
     //Create grid-item divs
     for (var i = 0; i < dimension; i++) {
         var gridItem = document.createElement('div');
@@ -54,21 +47,23 @@ window.onload = function () {
     }
     changeColour();
     //Create mines
-
+}
+    
     //timer
     cronometro = setInterval(timer, 1000)
-}
+
 
 /* ------------------------------------------------------------------------- */
-/* Gerar Posições das Minas  ----------------------------------------------- */
+/* Gerar Posições das Minas  ------
+
 function randomInts(quantity, max){
     const set = new Set()
-    while(set.size <= quantity) {
+    while(set.size < quantity) {
       set.add(Math.floor(Math.random() * max) + 1)
     }
     return set
   }
-  
+  */
 
 
 function changeColour()
@@ -97,7 +92,6 @@ style.appendChild(document.createTextNode(css));
 document.getElementsByTagName('head')[0].appendChild(style);
 
 }
-
 function timer() {
     let tempo_antigo = parseInt(document.getElementById("timer").innerText)
     let novo_tempo = tempo_antigo + 1;
