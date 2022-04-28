@@ -97,7 +97,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 
 }
 
-onclick(){
+onClick(){
     if(!timerStarted) {
         // start your interval
         timerStarted = true;
