@@ -58,7 +58,7 @@ window.onload = function () {
 
 
 /* ------------------------------------------------------------------------- */
-/* Gerar Posições das Minas  ------
+/* Gerar Posições das Minas  ------ */
 
 function randomInts(quantity, max){
     const set = new Set()
@@ -67,7 +67,7 @@ function randomInts(quantity, max){
     }
     return set
   }
-  */
+
 
 
 function changeColour()
@@ -85,15 +85,15 @@ function changeColour()
 
     gridContainer[0].style.backgroundColor=darkerColor;
     var css = '.grid-item:hover{ background-color:'+darkerColor;+'; color: black;}';
-var style = document.createElement('style');
+    var style = document.createElement('style');
 
-if (style.styleSheet) {
-style.styleSheet.cssText = css;
-} else {
-style.appendChild(document.createTextNode(css));
-}
+    if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+    } else {
+    style.appendChild(document.createTextNode(css));
+    }
 
-document.getElementsByTagName('head')[0].appendChild(style);
+    document.getElementsByTagName('head')[0].appendChild(style);
 
 }
 
