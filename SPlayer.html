@@ -28,7 +28,7 @@ Grupo 46    PL21
 
 <body>
     <script>
-        
+
 
         function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
             var navbar = document.getElementsByClassName("navbar");
@@ -40,40 +40,40 @@ Grupo 46    PL21
             for (var i = 0; i < allGridItems.length; i++) {
                 allGridItems[i].style.borderColor = colorPickerValue;
             }
-            var darkerColor=mudarBrightness(colorPickerValue, -55);
-            gridContainer[0].style.backgroundColor=darkerColor
-            var css = '.grid-item:hover{ background-color:'+darkerColor;+'; color: black;}';
-var style = document.createElement('style');
+            var darkerColor = mudarBrightness(colorPickerValue, -55);
+            gridContainer[0].style.backgroundColor = darkerColor
+            var css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
+            var style = document.createElement('style');
 
-if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-} else {
-    style.appendChild(document.createTextNode(css));
-}
+            if (style.styleSheet) {
+                style.styleSheet.cssText = css;
+            } else {
+                style.appendChild(document.createTextNode(css));
+            }
 
-document.getElementsByTagName('head')[0].appendChild(style);
+            document.getElementsByTagName('head')[0].appendChild(style);
         }
         //Negativo fica mais esquro
         function mudarBrightness(cor, percent) {
-    let hex = cor;
+            let hex = cor;
 
-    // tirar o # se existir
-    hex = hex.replace(/^\s*#|\s*$/g, "");
+            // tirar o # se existir
+            hex = hex.replace(/^\s*#|\s*$/g, "");
 
-    let r = parseInt(hex.substr(0, 2), 16);
-    let g = parseInt(hex.substr(2, 2), 16);
-    let b = parseInt(hex.substr(4, 2), 16);
+            let r = parseInt(hex.substr(0, 2), 16);
+            let g = parseInt(hex.substr(2, 2), 16);
+            let b = parseInt(hex.substr(4, 2), 16);
 
-    const calculatedPercent = (100 + percent) / 100;
+            const calculatedPercent = (100 + percent) / 100;
 
-    r = Math.round(Math.min(255, Math.max(0, r * calculatedPercent)));
-    g = Math.round(Math.min(255, Math.max(0, g * calculatedPercent)));
-    b = Math.round(Math.min(255, Math.max(0, b * calculatedPercent)));
+            r = Math.round(Math.min(255, Math.max(0, r * calculatedPercent)));
+            g = Math.round(Math.min(255, Math.max(0, g * calculatedPercent)));
+            b = Math.round(Math.min(255, Math.max(0, b * calculatedPercent)));
 
-    return `#${r.toString(16).toUpperCase()}${g.toString(16).toUpperCase()}${b
-        .toString(16)
-        .toUpperCase()}`;
-}
+            return `#${r.toString(16).toUpperCase()}${g.toString(16).toUpperCase()}${b
+                .toString(16)
+                .toUpperCase()}`;
+        }
 
 
         function setCookies() {
@@ -81,74 +81,71 @@ document.getElementsByTagName('head')[0].appendChild(style);
             Cookie.set("color", colorPicker.value, 365);
         }
     </script>
-        <div class="container">
-            <nav class="navbar">
-                <ul class="nav-links">
-                    <!-- Para o móvel -->
-                    <input type="checkbox" id="checkbox_toggle" />
-                    <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-                    <!--Items-->
-                    <div class="menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="info.html">Info</a></li>
-                        <!--  <li><a href="jogo.html">Jogo</a></li>-->
-                        <li><a href="jogo.html">Jogo</a></li>
-                        <li class="services">
-                            <!-- DROPDOWN EXEMPLO -->
-                            <p> Score</p>
-                            <ul class="dropdown">
-                                <li><a href="./score.html">Geral</a></li>
-                                <li><a href="./scoreindivid.html">Individual</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="login.html">Login</a></li>
-                        <li>
-                            <div class="cp_wrapper">
-                                <input type="color" id="colorPicker"
-                                    oninput="changeColour()"
-                                    onchange="setCookies()"
-                                    value="getDefaultColor()"
-                                    style="width:100%;">
-                            </div>
-                        </li>
-                    </div>
-                </ul>
-            </nav>
-
-            <br>
-            <div class="painelJogo">
-                <div class="tabuleiro">
-                    <div class="grid-container">
-                        
-                    </div>
+    <div class="container">
+        <nav class="navbar">
+            <ul class="nav-links">
+                <!-- Para o móvel -->
+                <input type="checkbox" id="checkbox_toggle" />
+                <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+                <!--Items-->
+                <div class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="info.html">Info</a></li>
+                    <!--  <li><a href="jogo.html">Jogo</a></li>-->
+                    <li><a href="jogo.html">Jogo</a></li>
+                    <li class="services">
+                        <!-- DROPDOWN EXEMPLO -->
+                        <p> Score</p>
+                        <ul class="dropdown">
+                            <li><a href="./score.html">Geral</a></li>
+                            <li><a href="./scoreindivid.html">Individual</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="login.html">Login</a></li>
+                    <li>
+                        <div class="cp_wrapper">
+                            <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()"
+                                value="getDefaultColor()" style="width:100%;">
+                        </div>
+                    </li>
                 </div>
+            </ul>
+        </nav>
 
-                <div class="gameInfo">
-                    <h2> Tempo </h2>
-                    <p> <span id="timer">0</span> s</p>
-                    <h2> Minas </h2>
-                    <p> ## </p>
+        <br>
+        <div class="painelJogo">
+            <div class="tabuleiro">
+                <div class="grid-container">
+
                 </div>
             </div>
+
+            <div class="gameInfo">
+                <h2> Tempo </h2>
+                <p> <span id="timer">0</span> s</p>
+                <h2> Minas </h2>
+                <p> ## </p>
+            </div>
         </div>
+    </div>
     <br>
     <footer>
         <div class="cadeiraInfo">
             <p> ITW - 2020/2021 </p>
-            <p> Grupo 46    PL21 </p>
+            <p> Grupo 46 PL21 </p>
             <p> feito com HTML5, CSS, JavaScript</p>
         </div>
         <div class="alunosInfo">
-            <p> 53687  Ariana Dias </p>
-            <p> 56931  Diogo Forte </p>
-            <p> 58628  Miguel Miguel </p>
+            <p> 53687 Ariana Dias </p>
+            <p> 56931 Diogo Forte </p>
+            <p> 58628 Miguel Miguel </p>
 
         </div>
     </footer>
-        <!--- <audio alt="easy" href="assets/audio/05 - Logic and Trick.mp3" controls type="audio/mpeg"> </audio>
+    <!--- <audio alt="easy" href="assets/audio/05 - Logic and Trick.mp3" controls type="audio/mpeg"> </audio>
     <audio alt="medium" href="assets/audio/10 - Suspense.mp3" controls type="audio/mpeg"> </audio>
     <audio alt="hard" href="assets/audio/08 - Pressing Pursuit _ Cornered.mp3" controls type="audio/mpeg"> </audio> -->
-        <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/
+    <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/
         var color = Cookie.get("color");
 
         var colorPicker = document.getElementById("colorPicker");
@@ -162,20 +159,20 @@ document.getElementsByTagName('head')[0].appendChild(style);
         for (var i = 0; i < allGridItems.length; i++) {
             allGridItems[i].style.borderColor = color;
         }
-        var darkerColor=mudarBrightness(color, -55);
+        var darkerColor = mudarBrightness(color, -55);
 
-        gridContainer[0].style.backgroundColor=darkerColor;
-        var css = '.grid-item:hover{ background-color:'+darkerColor;+'; color: black;}';
-var style = document.createElement('style');
+        gridContainer[0].style.backgroundColor = darkerColor;
+        var css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
+        var style = document.createElement('style');
 
-if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-} else {
-    style.appendChild(document.createTextNode(css));
-}
+        if (style.styleSheet) {
+            style.styleSheet.cssText = css;
+        } else {
+            style.appendChild(document.createTextNode(css));
+        }
 
-document.getElementsByTagName('head')[0].appendChild(style);
+        document.getElementsByTagName('head')[0].appendChild(style);
     </script>
-    </body>
+</body>
 
 </html>
