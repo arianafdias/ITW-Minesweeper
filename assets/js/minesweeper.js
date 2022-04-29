@@ -100,7 +100,8 @@ window.onload = function () {
 
     function onMineClick(cell) {
         if (!cell.flagged && !cell.revealed) {
-            if (board.firstClick) { //Prevent losing on first click if there are mines
+            if (board.firstClick) { //TODO - FINISH THIS
+                //Prevent losing on first click if there are mines
                 if (cell.isMine){
                     //Put the bomb on another random cell  
                     cell.isMine = false;
