@@ -97,17 +97,27 @@ window.onload = function () {
 
         }
     }
-    //Reveal all mines
-    minePositions.forEach(position => {
-        let cell = board.grid[Math.floor(position / board.width)][position % board.width];
-        cell.reveal();
-
-    });
 
     function onMineClick(cell) {
         if (!cell.flagged && !cell.revealed) {
+            if (board.firstClick) { //Prevent losing on first click if there are mines
+                if (cell.isMine){
+                    //Put the bomb on another random cell  
+                    cell.isMine = false;
+                    let newMinePosition = randomInts(1, board.width * board.height)[0];
+                    while (board.grid[cell.height][cell.width].isMine || newMinePosition === cell.height * board.width + cell.width) {
+                        newMinePosition = randomInts(1, board.width * board.height)[0];
+                    }
+                    alert("New Mine Position: " + newMinePosition);
+                    board.grid[Math.floor(newMinePosition / board.width)][newMinePosition % board.width].isMine = true;
+                  
+                }   
+                board.firstClick=false;
+            }
+
             cell.reveal();
             if (cell.isMine) {
+
                 gameOver();
             }
             else {
