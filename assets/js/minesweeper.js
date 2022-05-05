@@ -130,8 +130,10 @@ window.onload = function () {
             }
             else {
                 if (board.firstClick) {
+                    //cronometro = startTimer();
+                    console.log('holo');
                     board.firstClick = false;
-                    //           startTimer();
+
                 }
                 //       checkForWin();
             }
@@ -180,13 +182,7 @@ window.onload = function () {
 
 }
 
-function onClick() {
-    if (!timerStarted) {
-        // start your interval
-        timerStarted = true;
-        cronometro = setInterval(timer, 1000)
-    }
-}
+
 
 function timer() {
     let tempo_antigo = parseInt(document.getElementById("timer").innerText)
