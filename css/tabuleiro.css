@@ -15,11 +15,14 @@ Grupo 46    PL21
 }
 
 .grid-item {
-    padding: 20px;
+    padding: 1em;
     background-color: var(--secondaryBackground);
     border-style: solid;
+    width: 3em;
+    height: 3em;
     border-color: var(--primaryColor);
-    border-radius: 10px;
+    border-radius: 0.5em;
+    text-align: center;
 }
 
 .grid-item:hover{
