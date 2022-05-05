@@ -17,8 +17,9 @@ class Cell {
         this.element.innerHTML = this.isMine ? "💣" : this.getNeighborMines();
     }
     flag() {
-        this.flagged = !this.flagged;
-        this.element.innerHTML = this.flagged ? "🚩" : "";
+        if(!this.flagged && !this.revealed)
+        {this.flagged = true;
+        this.element.innerHTML = this.flagged ? "🚩" : "";}
     }
     getNeighborMines() {
         let neighbors = this.getNeighbors();
@@ -78,6 +79,7 @@ window.onload = function () {
         board.width = 9;
     }
 
+    board.minesLeft = mines;
     //timer
     timerStarted = false;
     //Colocar Minas
@@ -92,7 +94,19 @@ window.onload = function () {
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', () => { onMineClick(cell) });
-            cell.element.addEventListener('contextmenu',()=>{(cell)});
+            cell.element.addEventListener('contextmenu',e=>{ e.preventDefault(); onRightClick(cell)});
+            cell.element.onMouseUp = function (evt) {
+                if (evt.which === 3) { // right-click
+                    /* if you wanted to be less strict about what
+                       counts as a double click you could use
+                       evt.originalEvent.detail > 1 instead */
+                    if (evt.originalEvent.detail === 2) { 
+                      $(this).text('Double right-click');
+                    } else if (evt.originalEvent.detail === 1) { 
+                      $(this).text('Single right-click');
+                    }
+                  }
+                };
             gridContainer.appendChild(element);
             board.grid[height][width] = cell;
 }
@@ -101,8 +115,12 @@ window.onload = function () {
 
         
     }
+ 
     function onRightClick(cell) {
         cell.flag();
+        if (!cell.isFlagged) {
+            board.minesLeft--;
+        } else board.minesLeft++;
     }
 
     function onMineClick(cell) {
@@ -113,7 +131,7 @@ window.onload = function () {
                     //Put the bomb on another random cell  
                     cell.isMine = false;
                     let newMinePosition = randomInts(1, board.width * board.height)[0];
-                    while (board.grid[cell.height][cell.width].isMine || newMinePosition === cell.height * board.width + cell.width) {
+                    while (board.grid[cell.height][cell.width].isMine || newMinePosition === cell.height * (board.width + cell.width)) {
                         newMinePosition = randomInts(1, board.width * board.height)[0];
                     }
                     alert("New Mine Position: " + newMinePosition);
