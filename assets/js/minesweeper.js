@@ -92,7 +92,7 @@ window.onload = function () {
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', () => { onMineClick(cell) });
-            cell.element.addEventListener('contextmenu',()=>{(cell)});
+            cell.element.addEventListener('contextmenu',e=>{ e.preventDefault(); onRightClick(cell)});
             gridContainer.appendChild(element);
             board.grid[height][width] = cell;
 }
