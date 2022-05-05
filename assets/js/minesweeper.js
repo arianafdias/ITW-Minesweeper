@@ -16,6 +16,10 @@ class Cell {
         this.revealed = true;
         this.element.innerHTML = this.isMine ? "💣" : this.getNeighborMines();
     }
+    flag() {
+        this.flagged = !this.flagged;
+        this.element.innerHTML = this.flagged ? "🚩" : "";
+    }
     getNeighborMines() {
         let neighbors = this.getNeighbors();
         let count = 0;
@@ -88,14 +92,17 @@ window.onload = function () {
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', () => { onMineClick(cell) });
-            //cell.element.addEventListener('contextmenu',()=>{onMineClick(cell)});
+            cell.element.addEventListener('contextmenu',()=>{(cell)});
             gridContainer.appendChild(element);
             board.grid[height][width] = cell;
-
+}
             //Dar cor ao tabuleiro
             changeColour();
 
-        }
+        
+    }
+    function onRightClick(cell) {
+        cell.flag();
     }
 
     function onMineClick(cell) {
@@ -180,6 +187,7 @@ function onClick() {
         cronometro = setInterval(timer, 1000)
     }
 }
+
 function timer() {
     let tempo_antigo = parseInt(document.getElementById("timer").innerText)
     let novo_tempo = tempo_antigo + 1;
