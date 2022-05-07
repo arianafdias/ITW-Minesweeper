@@ -23,11 +23,14 @@ Grupo 46    PL21
     border-color: var(--primaryColor);
     border-radius: 0.5em;
     text-align: center;
+    transition: opacity 1000ms; /* Para o efeito de fade-in */
+  
 }
 
 .grid-item:hover{
     background-color: var(--primaryColor);
     color: black;
+    
 }
 
 .tabuleiro{

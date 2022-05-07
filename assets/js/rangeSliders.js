@@ -1,5 +1,6 @@
 
 window.onload = function () {
+  
     var range1 = document.getElementById("slider1");
     var range2 = document.getElementById("slider2");
     var range3 = document.getElementById("slider3");
@@ -9,17 +10,14 @@ window.onload = function () {
     var dificultySelector = document.getElementById("select-css");
     dificultySelector.onchange =
         function changeSliders() {
-
-
-
             var mineDensity = document.getElementById("mineDensity");
             switch (dificultySelector.value) {
                 case "Easy": //8x8 10 mines
                     slider1.value = lbl1.innerHTML = slider2.value = lbl2.innerHTML = 8;
                     slider3.value = lbl3.innerHTML = 10;
                     slider1.style.display = slider2.style.display  = slider3.style.display = "none";
-                    Cookie.set("Height", 8);
-                    Cookie.set("Width", 8);
+                    Cookie.set("Height", 9);
+                    Cookie.set("Width", 9);
                     Cookie.set("Mines", 10);
                     mineDensity.innerHTML = '15.63%'
                     break;
