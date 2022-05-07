@@ -142,10 +142,8 @@ function BuildBoard() {
             this.board.grid[height][width] = cell;
         }
         //Dar cor ao tabuleiro
-        changeColour();
-
-
     }
+    changeColour();
 }
 
 function onRightClick(cell) {
