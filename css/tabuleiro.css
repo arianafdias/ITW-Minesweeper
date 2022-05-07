@@ -23,7 +23,7 @@ Grupo 46    PL21
     border-color: var(--primaryColor);
     border-radius: 0.5em;
     text-align: center;
-    transition: opacity 1000ms; /* Para o efeito de fade-in */
+    transition: opacity 750ms; /* Para o efeito de fade-in */
   
 }
 
