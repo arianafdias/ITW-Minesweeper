@@ -3,6 +3,8 @@ let cronometro;
 let clickTimer; //Timer para destinguir click de double click
 let timerStarted;
 
+/* ------------------------------------------------------------------------- */
+
 class Cell {
 
     constructor(x, y, isMine, element) {
@@ -18,30 +20,30 @@ class Cell {
     reveal() {
         this.revealed = true;
         if (this.isMine) {
-            this.element.innerHTML = "💣";  
+            this.element.innerHTML = "💣";
             //gameOver();
         } else {
-        let neighborMines = this.getNeighborMines();
-        if (neighborMines === 0) {
-            this.element.style.opacity = 0.6;
-            this.getNeighbors().forEach(neighbor => {
-                if (!neighbor.revealed) {
-                    neighbor.reveal();
-                    neighbor.element.style.opacity = 0.6;
-                }
-            });
-        }
-        else{
-        this.element.innerHTML = neighborMines;
-        this.element.style.opacity = 0.6;
-        }
+            let neighborMines = this.getNeighborMines();
+            if (neighborMines === 0) {
+                this.element.style.opacity = 0.6;
+                this.getNeighbors().forEach(neighbor => {
+                    if (!neighbor.revealed) {
+                        neighbor.reveal();
+                        neighbor.element.style.opacity = 0.6;
+                    }
+                });
+            }
+            else {
+                this.element.innerHTML = neighborMines;
+                this.element.style.opacity = 0.6;
+            }
         }
     }
 
     flag() {
         if (!this.revealed) {
             this.flagged = !this.flagged;
-            board.minesLeft= this.flagged? board.minesLeft+1: board.minesLeft-1;
+            board.minesLeft = this.flagged ? board.minesLeft + 1 : board.minesLeft - 1;
             this.element.innerHTML = this.flagged ? "🚩" : "";
         }
     }
@@ -97,7 +99,7 @@ var board = {
 
 window.onload = BuildBoard;
 
-
+//Build the board with the cells and add event listeners to each cell -------------------------
 function BuildBoard() {
     var gridContainer = document.getElementsByClassName('grid-container')[0];
     let boardWidth = Cookie.get("Width");
@@ -129,15 +131,15 @@ function BuildBoard() {
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', (e) => {
-               
+
                 if (e.detail === 1) {
                     timer = setTimeout(() => {
-                        onMineClick(cell);
+                        onCellClick(cell);
                     }, 119)
                 }
             });
-            cell.element.addEventListener('contextmenu', (e) => {e.preventDefault(); onRightClick(cell) });
-            cell.element.addEventListener('dblclick', () => {  clearTimeout(timer);   cell.mark() });
+            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); onRightClick(cell) });
+            cell.element.addEventListener('dblclick', () => { clearTimeout(timer); cell.mark() });
             gridContainer.appendChild(element);
             this.board.grid[height][width] = cell;
         }
@@ -153,7 +155,7 @@ function onRightClick(cell) {
     } else this.board.minesLeft++;
 }
 
-function onMineClick(cell) {
+function onCellClick(cell) {
     //Handle First Click
     if (board.firstClick) {
         board.firstClick = false;
@@ -205,10 +207,12 @@ function changeColour() {
     var allGridItems = document.getElementsByClassName("grid-item");
     colorPicker.value = color;
 
-
+    board.grid.forEach(row => {
+        row.forEach(cell => { cell.element.style.borderColor = color; }
+        );
+    });
     //Change all grid items border color
-    for (var i = 0; i < allGridItems.length; i++)
-        allGridItems[i].style.borderColor = color;
+
 
     var darkerColor = mudarBrightness(color, -55);
 
