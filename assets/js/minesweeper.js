@@ -1,4 +1,6 @@
 /* Constantes / Variaveis  ------------------------------------------------- */
+
+
 let cronometro;
 let clickTimer; //Timer para destinguir click de double click
 let timerStarted;
@@ -34,6 +36,7 @@ class Cell {
         this.revealed = true;
         if (this.isMine) {
             this.element.innerHTML = "💣";
+            explosionSound.play();
             //gameOver();
         } else {
             let neighborMines = this.getNeighborMines();
@@ -126,6 +129,9 @@ var board = {
     firstClick: true,
 }
 
+//var explosionSound = new Audio('../audio/explosion.mp3');
+var explosionSound  = new Audio('../assets/audio/explosion.mp3');
+
 window.onload = BuildBoard;
 
 /**
@@ -165,13 +171,13 @@ function BuildBoard() {
             cell.element.addEventListener('click', (e) => {
                 //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
                 if (e.detail === 1) {
-                    timer = setTimeout(() => {
+                    clickTimer = setTimeout(() => {
                         onCellClick(cell);
                     }, 119)
                 }
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); onRightClick(cell) });
-            cell.element.addEventListener('dblclick', () => { clearTimeout(timer); cell.mark() });
+            cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
             gridContainer.appendChild(element);
             this.board.grid[height][width] = cell;
         }
@@ -214,20 +220,7 @@ function onCellClick(cell) {
         });
     }
 
-    if (!cell.flagged && !cell.revealed) {
-        cell.reveal();
-        if (cell.isMine) {
-            gameOver();
-        }
-        else {
-            if (this.board.firstClick) {
-                //cronometro = startTimer();
-                console.log('holo');
-                this.board.firstClick = false;
-            }
-            //       checkForWin();
-        }
-    }
+    cell.reveal();
 }
 
 /**
