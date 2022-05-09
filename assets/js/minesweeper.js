@@ -4,19 +4,32 @@ let clickTimer; //Timer para destinguir click de double click
 let timerStarted;
 
 /* ------------------------------------------------------------------------- */
+/**
+    Class to represent a cell in the board --------------------------------------
+    @param {number} x The x position is the Column of the cell
+    @param {number} y The y position is the Row of the cell
+    @param {boolean} isMine Whether the cell is a mine or not
+    @param {HTMLElement} element The element that represents the cell
+    @param {boolean} isFlagged Whether the cell is flagged or not
+    @param {boolean} isRevealed Whether the cell is revealed or not
+    @param {boolean} isMine Whether the cell is a mine or not
+ */
 
 class Cell {
 
-    constructor(x, y, isMine, element) {
+    constructor(x, y, element) {
         this.x = x;
         this.y = y;
         this.element = element;
-        this.isMine = isMine;
+        this.isMine = false;
         this.revealed = false;
         this.flagged = false;
         this.marked = false;
     }
-
+    /**
+     * Reveals the cell and its neighbors if it is not a mine and if it has no neighbors that are mines
+     * @returns {void}
+    */
     reveal() {
         this.revealed = true;
         if (this.isMine) {
@@ -39,7 +52,10 @@ class Cell {
             }
         }
     }
-
+    /**
+     * Flags the cell and changes the mine counter if it is not revealed
+     * @returns {void}
+    */
     flag() {
         if (!this.revealed) {
             this.flagged = !this.flagged;
@@ -47,14 +63,20 @@ class Cell {
             this.element.innerHTML = this.flagged ? "🚩" : "";
         }
     }
-
+    /** //TODO - Implementar Imagem da Flag
+     * Marks the cell if it is not revealed
+     * @returns {void}
+    */
     mark() {
         if (!this.revealed) {
             this.marked = !this.marked;
             this.element.innerHTML = this.marked ? "<img src=\"https://www.thedome.org/wp-content/uploads/2019/06/300x300-Placeholder-Image.jpg\" width=\"25px\" height=\"25px\">" : "";
         }
     }
-
+    /**
+    Gets the number of mines in the neighbors of the cell
+    * @returns {number}
+    */
     getNeighborMines() {
         let neighbors = this.getNeighbors();
         let count = 0;
@@ -65,7 +87,14 @@ class Cell {
         });
         return count;
     }
+    /**
+     * Gets the neighbors of the cell that becomes (0,0)
 
+     * (-1,-1) (-1,0) (-1,1)
+     * (0,-1) (0,0) (0,-1)
+     * (1,-1) (1,0) (1,1)
+        * @returns {Array}
+    */
     getNeighbors() {
         let neighbors = [];
         for (let horizontal = -1; horizontal < 2; horizontal++) {
@@ -83,9 +112,9 @@ class Cell {
         return neighbors;
     }
 }
-
-//FUnction to tell the number of bombs around a Cell
-
+/* ------------------------------------------------------------------------- 
+    Object that represents the board --------------------------------------
+*/
 var board = {
     grid: [],
     mines: 0,
@@ -99,7 +128,10 @@ var board = {
 
 window.onload = BuildBoard;
 
-//Build the board with the cells and add event listeners to each cell -------------------------
+/**
+ * Build the board with the cells and add event listeners to each cell -------------------------
+*/
+
 function BuildBoard() {
     var gridContainer = document.getElementsByClassName('grid-container')[0];
     let boardWidth = Cookie.get("Width");
@@ -127,11 +159,11 @@ function BuildBoard() {
         this.board.grid[height] = [];
         for (let width = 0; width < this.board.width; width++) {
             let element = document.createElement('div');
-            let cell = new Cell(height, width, false, element);
+            let cell = new Cell(height, width, element);
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', (e) => {
-
+                //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
                 if (e.detail === 1) {
                     timer = setTimeout(() => {
                         onCellClick(cell);
@@ -148,12 +180,21 @@ function BuildBoard() {
     changeColour();
 }
 
+/**
+ * Trigger on cell right click
+ * @param {Cell} cell The cell that was right clicked 
+*/
 function onRightClick(cell) {
     cell.flag();
     if (!cell.isFlagged) {
         this.board.minesLeft--;
     } else this.board.minesLeft++;
 }
+
+/**
+ * Trigger on cell left click
+ * @param {Cell} cell The cell that was clicked
+    */
 
 function onCellClick(cell) {
     //Handle First Click
@@ -189,8 +230,13 @@ function onCellClick(cell) {
     }
 }
 
-/* ------------------------------------------------------------------------- */
-/* Gerar Posições das Minas  ------  */
+/**
+ * Function to generate <quantity> integers from 0 to <max> (except <blacklist>) without repetition -------------------------
+ * @param {number} quantity The number of integers to generate
+ * @param {number} max The maximum value of the integers
+ * @param {number[]} blacklist The integers that should not be generated (e.g. the position of the clicked cell)) 
+*/
+
 function randomInts(quantity, max, blacklist = []) {
     const set = new Set()
     while (set.size < quantity) {
@@ -200,6 +246,10 @@ function randomInts(quantity, max, blacklist = []) {
     }
     return Array.from(set);
 }
+
+/**
+ * Function to change the color of the page -------------------------
+*/
 
 function changeColour() {
     var color = Cookie.get("color");
@@ -212,7 +262,6 @@ function changeColour() {
         );
     });
     //Change all grid items border color
-
 
     var darkerColor = mudarBrightness(color, -55);
 
@@ -228,6 +277,10 @@ function changeColour() {
     document.getElementsByTagName('head')[0].appendChild(style);
 
 }
+
+/**
+ * Timer Stuff -------------------------
+*/
 
 function timer() {
     let tempo_antigo = parseInt(document.getElementById("timer").innerText)
