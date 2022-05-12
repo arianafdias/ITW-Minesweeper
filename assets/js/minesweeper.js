@@ -290,3 +290,11 @@ function gameOver(){
     
 
 }
+
+function gameWon(){
+    board.gameWon = True;
+    alert("Parabéns!, Ganhou!");
+    //calcScore()
+    //addscore()
+    window.location.href = "scoreindivid.html";    
+};
