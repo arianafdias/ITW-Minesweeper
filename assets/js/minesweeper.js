@@ -4,6 +4,7 @@
 let cronometro;
 let clickTimer; //Timer para destinguir click de double click
 let timerStarted;
+let loginForm;
 
 /* ------------------------------------------------------------------------- */
 /**
@@ -139,6 +140,7 @@ window.onload = BuildBoard;
 */
 
 function BuildBoard() {
+    isLoggedIn();
     var gridContainer = document.getElementsByClassName('grid-container')[0];
     let boardWidth = Cookie.get("Width");
     let boardHeight = Cookie.get("Height");
@@ -298,3 +300,13 @@ function gameWon(){
     //addscore()
     window.location.href = "scoreindivid.html";    
 };
+
+
+function isLoggedIn() {
+    loginForm = document.forms[0]
+    if (loginForm === undefined) {
+        document.getElementById("mustLogin").style.display = "none";
+
+    }
+    console.log(loginForm)
+}
