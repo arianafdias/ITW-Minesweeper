@@ -284,8 +284,8 @@ function timer() {
 
 
 function gameOver(){
-    board.gameOver = True
-    alert("Perdeu!, Tente outra vez!")
+    board.gameOver = True;
+    alert("Perdeu!, Tente outra vez!");
     window.location.href = "scoreindivid.html";
     
 
