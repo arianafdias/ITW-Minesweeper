@@ -5,7 +5,6 @@ Grupo 46    PL21
 56931 - Diogo Forte
 58628 - Miguel Miguel -->
 
-
 <html lang="pt">
 
 <head>
@@ -22,36 +21,12 @@ Grupo 46    PL21
 
     <script type="text/javascript" src="assets/js/Cookies.js"></script>
     <script type="text/javascript" src="assets/js/login.js"></script>
-
+    <script type="text/javascript" src="assets/js/info.js"></script>
     <title>Informações</title>
   
 </head>
 
 <body>
-    <script>          
-            
-        var docStyle = getComputedStyle(document.documentElement);
-       
-        function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-        var navbar= document.getElementsByClassName("navbar");
-        var colorPickerValue= document.getElementById("colorPicker").value;
-        var element= document.getElementById("multicolor"); //A palavra "regras"
-       
-        navbar[0].style.backgroundColor=colorPickerValue;
- 
-        element.style.background=colorPickerValue;
-      
-        }
-        function getDefaultColor(){
-            return docStyle.getPropertyValue('--primaryColor');
-
-        }
-        function setCookies(){
-            var colorPicker= document.getElementById("colorPicker");
-            Cookie.set("color", colorPicker.value, 365);
-        }
-       
-    </script>
    
     <div class="container">
 
@@ -76,9 +51,9 @@ Grupo 46    PL21
                             <li id="mustLogin"><a href="./scoreindivid.html">Individual</a></li>
                         </ul>
                     </li>
-                    <li><a href="login.html">Login</a></li>
+                    <li id="login"><a href="login.html"></a>Login</li>
                     <li><div class="cp_wrapper">
-                        <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()" value="getDefaultColor()" style="width:100%;"></div></li>
+                        <input type="color" id="colorPicker" oninput="changeColour()" onchange="Cookie.set('color', this.value, 365);" value="getDefaultColor()" style="width:100%;"></div></li>
                 </div>
             </ul>
         </nav>
@@ -178,17 +153,7 @@ Grupo 46    PL21
 
         </div>
     </footer>
-    <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
-     var color=Cookie.get("color");
-      
-      var colorPicker = document.getElementById("colorPicker");
-      var navbar= document.getElementsByClassName("navbar");
-      var element= document.getElementById("multicolor"); //O botão
-    
-       navbar[0].style.backgroundColor=color;
-       colorPicker.value=color;
-        element.style.background=color;
-    </script>
+   
 </body>
 
 </html>

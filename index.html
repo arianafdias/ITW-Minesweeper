@@ -21,6 +21,7 @@ Grupo 46    PL21
 
         <script type="text/javascript" src="assets/js/Cookies.js"></script>
         <script type="text/javascript" src="assets/js/login.js"></script>
+        <script type="text/javascript" src="assets/js/index.js"></script>
 
         <title>Página Inicial</title>
 
@@ -28,29 +29,7 @@ Grupo 46    PL21
 
     <body>
        
-        <script>  
-        window.onload = function() {
-        }
-        
-        
-
-            var docStyle = getComputedStyle(document.documentElement);
-           
-            function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-            var navbar= document.getElementsByClassName("navbar");
-            var colorPickerValue= document.getElementById("colorPicker").value;
-            var element= document.getElementById("multicolor"); //A palavra "regras"
-            var element2= document.getElementById("multicolor2"); //O botão para jogar
-            navbar[0].style.backgroundColor=colorPickerValue;
-            element.style.color=colorPickerValue;
-            element2.style.background=colorPickerValue;
-          
-            }
-            function setCookies(){
-                var colorPicker= document.getElementById("colorPicker");
-                Cookie.set("color", colorPicker.value, 365);
-            }
-        </script>
+       
     <div class="container">
         <nav class="navbar">
             <ul class="nav-links">
@@ -72,7 +51,7 @@ Grupo 46    PL21
                     </li>
                     <li id="login"><a href="login.html">Login</a></li>
                     <li><div class="cp_wrapper">
-                        <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()" value="getDefaultColor()" style="width:100%;"></div></li>
+                        <input type="color" id="colorPicker" oninput="changeColour()" onchange="Cookie.set('color', this.value, 365);" value="getDefaultColor()" style="width:100%;"></div></li>
                 </div>
             </ul>
         </nav>
@@ -97,8 +76,9 @@ Grupo 46    PL21
             <button id="multicolor2" class="button test" onclick="window.location.href='jogo.html'">Bora lá!!</button>
         </div>
         <br>
-
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/GrZCWx0fnfc"
+        <br>                    <!-- O video só começa a renderizar depois das cores mudarem 
+                                se não demoram demasiado tempo a mudar (ver index.js window.onload) -->
+        <iframe id="video" width="560" height="315" src="about:blank"
                 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
         </iframe>
@@ -119,18 +99,7 @@ Grupo 46    PL21
             </div>
         </footer>
 
-    <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
-        var color=Cookie.get("color");
-      
-        var colorPicker = document.getElementById("colorPicker");
-        var navbar= document.getElementsByClassName("navbar");
-        var element= document.getElementById("multicolor"); //A palavra "regras"
-        var element2= document.getElementById("multicolor2"); //O botão para jogar
-        navbar[0].style.backgroundColor=color;
-        colorPicker.value=color;
-        element.style.color=color;
-        element2.style.background=color;
-    </script>
+   
     </body>
   
 

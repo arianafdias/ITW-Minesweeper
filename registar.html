@@ -21,40 +21,14 @@ Grupo 46    PL21
     <meta charset="UTF-8">
 
     <script type="text/javascript" src="assets/js/Cookies.js"></script>
-    <script type="text/javascript" src="assets/js/login.js"></script>
-
+    <script type="text/javascript" src="assets/js/registar.js"></script>
     <title>Registar</title>
 </head>
 
 <body>
-    <script>          
-            
-        var docStyle = getComputedStyle(document.documentElement);
-       
-        function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-        var navbar= document.getElementsByClassName("navbar");
-        var colorPickerValue= document.getElementById("colorPicker").value;
-        var element1= document.getElementById("multicolor1"); 
-        var element2= document.getElementById("multicolor2"); 
-       
-        var loginBox= document.getElementsByClassName("LoginBox"); //div glow
-        navbar[0].style.backgroundColor=colorPickerValue;
-        element1.style.color=colorPickerValue;
-        element2.style.color=colorPickerValue;
-      
-        loginBox[0].style.boxShadow= "0px 11px 35px 2px "+ colorPickerValue;
-      
-        }
-        function getDefaultColor(){
-            return docStyle.getPropertyValue('--primaryColor');
-
-        }
-        function setCookies(){
-            var colorPicker= document.getElementById("colorPicker");
-            Cookie.set("color", colorPicker.value, 365);
-        }
-       
-    </script>
+          
+    
+    
 <div class="container">
     <nav class="navbar">
         <ul class="nav-links">
@@ -72,12 +46,12 @@ Grupo 46    PL21
                     <p> Score</p>
                     <ul class="dropdown">
                         <li><a href="./score.html">Geral</a></li>
-                        <li  id="mustLogin"><a href="./scoreindivid.html">Individual</a></li>
+                        <li><a href="./scoreindivid.html">Individual</a></li>
                     </ul>
                 </li>
                 <li><a href="login.html">Login</a></li>
                 <li><div class="cp_wrapper">
-                    <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()" value="getDefaultColor()" style="width:100%;"></div></li>
+                    <input type="color" id="colorPicker" oninput="changeColour()" onchange="Cookie.set('color', this.value, 365);" value="getDefaultColor()" style="width:100%;"></div></li>
             </div>
         </ul>
     </nav>
@@ -85,16 +59,16 @@ Grupo 46    PL21
     <div class="LoginBox">
         <p id="multicolor1" class="Title">Registar</p>
         <form class="form1">
-            <input class="InputBox" type="text" placeholder="Username">
+            <input class="InputBox" id="username" type="text" placeholder="Username">
             <br> <br>
-            <input class="InputBox" type="text" placeholder="E-Mail">
+            <input class="InputBox" id="email" type="text" placeholder="E-Mail">
             <br> <br>
-            <input class="InputBox" type="password" placeholder="Password">
+            <input class="InputBox" id="pass" type="password" placeholder="Password">
             <br> <br>
-            <input class="InputBox" type="password" placeholder="Repetir Password">
+            <input class="InputBox" id="passAgain" type="password" placeholder="Repetir Password">
             <br> <br>
             <br>
-            <a class="submit">Entrar</a>
+            <a class="submit" id="multicolor" onclick="createAcc()">Entrar</a>
             <br> <br> <br> 
         
             <p >
@@ -120,22 +94,7 @@ Grupo 46    PL21
 
         </div>
     </footer>
-<script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
-    var color=Cookie.get("color");
-    
-    var colorPicker = document.getElementById("colorPicker");
-    var navbar= document.getElementsByClassName("navbar");
-    var element1= document.getElementById("multicolor1"); 
-    var element2= document.getElementById("multicolor2");
-    
-     var loginBox= document.getElementsByClassName("LoginBox"); //div glow
-     navbar[0].style.backgroundColor=color;
-     colorPicker.value=color;
-     element1.style.color=color;
-     element2.style.color=color;
-      
-        loginBox[0].style.boxShadow= "0px 11px 35px 2px "+ color;
-      </script>
+
 </body>
 
 </html>

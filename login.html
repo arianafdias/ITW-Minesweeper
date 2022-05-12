@@ -27,36 +27,7 @@ Grupo 46    PL21
 </head>
 
 <body>
-    <script>          
-            
-        var docStyle = getComputedStyle(document.documentElement);
-       
-        function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-        var navbar= document.getElementsByClassName("navbar");
-        var colorPickerValue= document.getElementById("colorPicker").value;
-        var element1= document.getElementById("multicolor1"); 
-        var element2= document.getElementById("multicolor2"); 
-        var element3= document.getElementById("multicolor3"); 
-        var element4= document.getElementById("multicolor4"); 
-        var loginBox= document.getElementsByClassName("LoginBox"); //div glow
-        navbar[0].style.backgroundColor=colorPickerValue;
-        element1.style.color=colorPickerValue;
-        element2.style.color=colorPickerValue;
-        element3.style.color=colorPickerValue;
-        element4.style.background=colorPickerValue;
-        loginBox[0].style.boxShadow= "0px 11px 35px 2px "+ colorPickerValue;
-      
-        }
-        function getDefaultColor(){
-            return docStyle.getPropertyValue('--primaryColor');
-
-        }
-        function setCookies(){
-            var colorPicker= document.getElementById("colorPicker");
-            Cookie.set("color", colorPicker.value, 365);
-        }
-       
-    </script>
+    
 <div class="container">
     <nav class="navbar">
         <ul class="nav-links">
@@ -79,7 +50,7 @@ Grupo 46    PL21
                 </li>
                 <li id="login"><a  href="login.html">Login</a></li>
                 <li><div class="cp_wrapper">
-                    <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()" value="getDefaultColor()" style="width:100%;"></div></li>
+                    <input type="color" id="colorPicker" oninput="changeColour()" onchange="Cookie.set('color', this.value, 365);" value="getDefaultColor()" style="width:100%;"></div></li>
             </div>
         </ul>
     </nav>
@@ -87,12 +58,12 @@ Grupo 46    PL21
     <div id="multicolor5" class="LoginBox">
         <p id="multicolor1" class="Title">Login</p>
         <form class="form1">
-            <input class="InputBox" type="text" placeholder="Username">
+            <input class="InputBox" id="username" type="text" placeholder="Username">
             <br> <br>
-            <input class="InputBox" type="password" placeholder="Password">
+            <input class="InputBox" id="pass" type="password" placeholder="Password">
             <br> <br><br>
             <div class="button submit" >
-                <button id="multicolor4" class="button test">Entrar</button>
+                <button id="multicolor4" class="button test" onclick="login()">Entrar</button>
             </div>
           
             <br> <br> <br> 

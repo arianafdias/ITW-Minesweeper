@@ -17,44 +17,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/rangeSliders.js"></script>
     <script type="text/javascript" src="assets/js/login.js"></script>
-
+    <script type="text/javascript" src="assets/js/jogo.js"></script>
     <title>Jogo</title>
 </head>
 
 <body>
-    <script>
-
-
-        function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-            var navbar = document.getElementsByClassName("navbar");
-            var colorPickerValue = document.getElementById("colorPicker").value;
-            var element = document.getElementById("multicolor5");
-            var element2 = document.getElementById("multicolor6");
-            //Mudar a cor de um elemento pseudo-elemento (n sei pk está lento mas até ficou fixe)
-            var css = 'input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-color:' + colorPickerValue + ';width: 30px;height: 30px;border-radius: 50%;border: 2px solid white;cursor: pointer;transition: .3s ease-in-out;}​';
-            var style = document.createElement('style');
-
-            if (style.styleSheet) {
-                style.styleSheet.cssText = css;
-            } else {
-                style.appendChild(document.createTextNode(css));
-            }
-
-            document.getElementsByTagName('head')[0].appendChild(style);
-
-            navbar[0].style.backgroundColor = colorPickerValue;
-            element.style.background = colorPickerValue;
-            element2.style.background = colorPickerValue;
-
-        }
-
-        function setCookies() {
-            var colorPicker = document.getElementById("colorPicker");
-            Cookie.set("color", colorPicker.value, 365);
-        }
-
-
-    </script>
+   
     <div class="container">
         <!--NAVBAR-->
         <nav class="navbar">
@@ -76,10 +44,9 @@
                             <li id="mustLogin"><a href="./scoreindivid.html">Individual</a></li>
                         </ul>
                     </li>
-                    <li><a href="login.html">Login</a></li>
-                    <li>
+  <li id="login"><a href="login.html">Login</a></li>                    <li>
                         <div class="cp_wrapper">
-                            <input type="color" id="colorPicker" oninput="changeColour()" onchange="setCookies()"
+                            <input type="color" id="colorPicker" oninput="changeColour()" onchange="Cookie.set('color', this.value, 365);"
                                 value="getDefaultColor()" style="width:100%;">
                         </div>
                     </li>
@@ -157,31 +124,7 @@
 
 
     </div>
-    <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/
-        var color = Cookie.get("color");
-
-        var colorPicker = document.getElementById("colorPicker");
-        var navbar = document.getElementsByClassName("navbar")[0];
-        var element = document.getElementById("multicolor5"); //A palavra "regras"
-        var element2 = document.getElementById("multicolor6"); //O botão para jogar
-        navbar.style.backgroundColor = color;
-        colorPicker.value = color;
-        element.style.background = color;
-        element2.style.background = color;
-
-        //Mudar a cor de um elemento pseudo-elemento (para mudar o tempo de transição tá no fim)
-        var css = 'input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-color:' + color + ';width: 30px;height: 30px;border-radius: 50%;border: 2px solid white;cursor: pointer;transition: .3s ease-in-out;}​';
-        var style = document.createElement('style');
-
-        if (style.styleSheet)
-            style.styleSheet.cssText = css;
-        else
-            style.appendChild(document.createTextNode(css));
-
-
-        document.getElementsByTagName('head')[0].appendChild(style);
-
-    </script>
+   
 </body>
 
 </html>
