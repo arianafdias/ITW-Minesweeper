@@ -300,3 +300,20 @@ function gameWon(){
 };
 
 
+
+const loginform = document.getElementsByClassName("form1");
+var userdata = {};
+function registerNewUser(){
+    $.post('createaccount.php', {
+        new_user: new_user,
+        new_pass: new_pass,
+        confirm_pass: confirm_pass,
+        new_email: new_email
+    });
+};
+
+function Login(user,pass){
+     $.post("demo_test.asp", function(data, status){
+          alert("Data: " + data + "\nStatus: " + status);
+        })
+}
