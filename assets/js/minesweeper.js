@@ -281,3 +281,12 @@ function timer() {
     let newTempo = novo_tempo.toString();
     document.getElementById("timer").innerHTML = newTempo;
 }
+
+
+function gameOver(){
+    board.gameOver = True
+    alert("Perdeu!, Tente outra vez!")
+    window.location.href = "scoreindivid.html";
+    
+
+}
