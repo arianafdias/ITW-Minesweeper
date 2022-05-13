@@ -26,177 +26,264 @@ Grupo 46    PL21
     <script type="text/javascript" src="assets/js/Mplayer.js"></script>
     <title>Individual</title>
 </head>
+
 <body>
-       
+
+
+    <div class="container">
+        <nav class="navbar">
+            <ul class="nav-links">
+                <!-- Para o móvel -->
+                <input type="checkbox" id="checkbox_toggle" />
+                <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+                <!--Items-->
+                <div class="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="info.html">Info</a></li>
+                    <!--  <li><a href="jogo.html">Jogo</a></li>-->
+                    <li><a href="jogo.html">Jogo</a></li>
+                    <li class="services">
+                        <!-- DROPDOWN EXEMPLO -->
+                        <p> Score</p>
+                        <ul class="dropdown">
+                            <li><a href="./score.html">Geral</a></li>
+                            <li id="mustLogin"><a href="./scoreindivid.html">Individual</a></li>
+                        </ul>
+                    </li>
+                    <li id="login"><a href="login.html">Login</a></li>
+                    <li>
+                        <div class="cp_wrapper">
+                            <input type="color" id="colorPicker" oninput="changeColour()"
+                                onchange="Cookie.set('color', this.value, 365);" value="getDefaultColor()"
+                                style="width:100%;">
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </nav>
+        <br>
+
+        <div class="painelJogoMultiplayer">
+            <div class="tabuleiro">
+                <div class="grid-container">
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                </div>
+            </div>
+
+
+            <div class="gameInfo">
+                <div class="defaulInfo">
+                    <h2> Tempo </h2>
+                    <p> #timer </p>
+                    <h2> Minas </h2>
+                    <p> ## </p>
+                </div>
+
+                <br>
+                <br>
+                <div class="jogadores">
+                    <div>
+                        <h2> Jogador 1 </h2>
+                        <h4> Pontos </h4>
+                        <p> ## </p>
+                    </div>
+                    <div>
+                        <h2> Jogador 2 </h2>
+                        <h4> Pontos </h4>
+                        <p> ## </p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="tabuleiro">
+                <div class="grid-container">
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                    <div class="grid-item">1</div>
+                    <div class="grid-item">2</div>
+                    <div class="grid-item">3</div>
+                    <div class="grid-item">4</div>
+                    <div class="grid-item">5</div>
+                    <div class="grid-item">6</div>
+                    <div class="grid-item">7</div>
+                    <div class="grid-item">8</div>
+                    <div class="grid-item">9</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
         
 
-       
-   
-        <div class="container">
-            <nav class="navbar">
-                <ul class="nav-links">
-                    <!-- Para o móvel -->
-                    <input type="checkbox" id="checkbox_toggle" />
-                    <label for="checkbox_toggle" class="hamburger">&#9776;</label>
-                    <!--Items-->
-                    <div class="menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="info.html">Info</a></li>
-                        <!--  <li><a href="jogo.html">Jogo</a></li>-->
-                        <li><a href="jogo.html">Jogo</a></li>
-                        <li class="services">
-                            <!-- DROPDOWN EXEMPLO -->
-                            <p> Score</p>
-                            <ul class="dropdown">
-                                <li><a href="./score.html">Geral</a></li>
-                                <li  id="mustLogin"><a href="./scoreindivid.html">Individual</a></li>
-                            </ul>
-                        </li>
-      <li id="login"><a href="login.html">Login</a></li>                        <li>
-                            <div class="cp_wrapper">
-                                <input type="color" id="colorPicker"
-                                    oninput="changeColour()"
-                                    onchange="Cookie.set('color', this.value, 365);"
-                                    value="getDefaultColor()"
-                                    style="width:100%;">
-                            </div>
-                        </li>
-                    </div>
-                </ul>
-            </nav>
-            <br>
-
-            <div class="painelJogo">
-                <div class="tabuleiro">
-                    <div class="grid-container">
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                        <div class="grid-item">1</div>
-                        <div class="grid-item">2</div>
-                        <div class="grid-item">3</div>
-                        <div class="grid-item">4</div>
-                        <div class="grid-item">5</div>
-                        <div class="grid-item">6</div>
-                        <div class="grid-item">7</div>
-                        <div class="grid-item">8</div>
-                        <div class="grid-item">9</div>
-                    </div>
-                </div>
-
-                
-        <div class="gameInfo">
-            <div class="defaulInfo">
-            <h2> Tempo </h2>
-            <p> #timer </p>
-            <h2> Minas </h2>
-            <p> ## </p>
-            </div>
-
-            <br>
-            <br>
-            <div class = "jogadores">
-                <div>
-                <h2> Jogador 1 </h2>
-                <h4> Pontos </h4>
-                <p> ## </p>
-                </div>
-                <div>
-                <h2> Jogador 2 </h2>
-                <h4> Pontos </h4>
-                <p> ## </p>
-                </div>
-            </div>
-        </div>
-            </div>
-        </div>
         <br>
         <footer>
             <div class="cadeiraInfo">
                 <p> ITW - 2020/2021 </p>
-                <p> Grupo 46    PL21 </p>
+                <p> Grupo 46 PL21 </p>
                 <p> feito com HTML5, CSS, JavaScript</p>
             </div>
             <div class="alunosInfo">
-                <p> 53687  Ariana Dias </p>
-                <p> 56931  Diogo Forte </p>
-                <p> 58628  Miguel Miguel </p>
+                <p> 53687 Ariana Dias </p>
+                <p> 56931 Diogo Forte </p>
+                <p> 58628 Miguel Miguel </p>
 
             </div>
         </footer>
         <!--- <audio alt="easy" href="assets/audio/05 - Logic and Trick.mp3" controls type="audio/mpeg"> </audio>
     <audio alt="medium" href="assets/audio/10 - Suspense.mp3" controls type="audio/mpeg"> </audio>
     <audio alt="hard" href="assets/audio/08 - Pressing Pursuit _ Cornered.mp3" controls type="audio/mpeg"> </audio> -->
-       
-    </body>
+
+</body>
 
 </html>

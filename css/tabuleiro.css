@@ -51,6 +51,16 @@ Grupo 46    PL21
     border-radius: 25px;
     background-color: rgba(57, 62, 70, 0.70);
 }
+.painelJogoMultiplayer{
+    margin: auto;
+    width: 70%;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: rgba(57, 62, 70, 0.70);
+    display: flex;
+flex-direction: row;
+}
 
 .defaulInfo{
     display: inline;

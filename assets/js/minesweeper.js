@@ -19,9 +19,10 @@ let timerStarted;
 
 class Cell {
 
-    constructor(x, y, element) {
+    constructor(x, y, element,board) {
         this.x = x;
         this.y = y;
+        this.board=board;
         this.element = element;
         this.isMine = false;
         this.revealed = false;
@@ -33,6 +34,21 @@ class Cell {
      * @returns {void}
     */
     reveal() {
+        if (board.firstClick) {
+            board.firstClick = false;
+            //startTimer();
+            //Create bomb numbers
+            let minePositions = randomInts(this.board.mines, this.board.width * this.board.height, [this.x * this.y + this.y]);
+            //Populate cells with bombs (except the clicked cell)
+            this.board.grid.forEach(row => {
+                row.forEach(cell => {
+                    if (minePositions.includes(cell.x * cell.y + cell.y)) {
+                        cell.isMine = true;
+                    }
+                }
+                );
+            });
+        }
         this.revealed = true;
         if (this.isMine) {
             this.element.innerHTML = "💣";
@@ -129,7 +145,6 @@ var board = {
     firstClick: true,
 }
 
-//var explosionSound = new Audio('../audio/explosion.mp3');
 var explosionSound  = new Audio('../assets/audio/explosion.mp3');
 
 window.onload = BuildBoard;
@@ -165,18 +180,18 @@ function BuildBoard() {
         this.board.grid[height] = [];
         for (let width = 0; width < this.board.width; width++) {
             let element = document.createElement('div');
-            let cell = new Cell(height, width, element);
+            let cell = new Cell(height, width, element,board);
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', (e) => {
                 //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
                 if (e.detail === 1) {
                     clickTimer = setTimeout(() => {
-                        onCellClick(cell);
+                        cell.reveal();
                     }, 119)
                 }
             });
-            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); onRightClick(cell) });
+            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag() });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
             gridContainer.appendChild(element);
             this.board.grid[height][width] = cell;
@@ -184,43 +199,6 @@ function BuildBoard() {
         //Dar cor ao tabuleiro
     }
     changeColour();
-}
-
-/**
- * Trigger on cell right click
- * @param {Cell} cell The cell that was right clicked 
-*/
-function onRightClick(cell) {
-    cell.flag();
-    if (!cell.isFlagged) {
-        this.board.minesLeft--;
-    } else this.board.minesLeft++;
-}
-
-/**
- * Trigger on cell left click
- * @param {Cell} cell The cell that was clicked
-    */
-
-function onCellClick(cell) {
-    //Handle First Click
-    if (board.firstClick) {
-        board.firstClick = false;
-        //startTimer();
-        //Create bomb numbers
-        let minePositions = randomInts(board.mines, board.width * board.height, [cell.x * cell.y + cell.y]);
-        //Populate cells with bombs (except the clicked cell)
-        board.grid.forEach(row => {
-            row.forEach(cell => {
-                if (minePositions.includes(cell.x * cell.y + cell.y)) {
-                    cell.isMine = true;
-                }
-            }
-            );
-        });
-    }
-
-    cell.reveal();
 }
 
 /**
