@@ -1,6 +1,6 @@
 window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
-        document.getElementById("login").innerHTML = `<a href="index.html">Logout</a>`;
+        document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     var colorPicker = document.getElementById("colorPicker");
     if (Cookie.get("color") != null) {
         colorPicker.value = Cookie.get("color");
@@ -46,6 +46,7 @@ function login() {
 }
 function logout() {
     localStorage.setItem("logged-in", "false");
+    window.location.href = 'index.html';
     alert("Logget out!");
 }
 

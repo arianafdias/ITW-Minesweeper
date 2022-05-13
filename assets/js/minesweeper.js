@@ -222,32 +222,7 @@ function randomInts(quantity, max, blacklist = []) {
  * Function to change the color of the page -------------------------
 */
 
-function changeColour() {
-    var color = Cookie.get("color");
-    var gridContainer = document.getElementsByClassName('grid-container')[0];
-    var allGridItems = document.getElementsByClassName("grid-item");
-    colorPicker.value = color;
 
-    board.grid.forEach(row => {
-        row.forEach(cell => { cell.element.style.borderColor = color; }
-        );
-    });
-    //Change all grid items border color
-
-    var darkerColor = mudarBrightness(color, -55);
-
-    gridContainer.style.backgroundColor = darkerColor;
-    var css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
-    var style = document.createElement('style');
-
-    if (style.styleSheet)
-        style.styleSheet.cssText = css;
-    else
-        style.appendChild(document.createTextNode(css));
-
-    document.getElementsByTagName('head')[0].appendChild(style);
-
-}
 
 /**
  * Timer Stuff -------------------------
