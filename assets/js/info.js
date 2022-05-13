@@ -3,6 +3,7 @@ window.onload = function () {
     if(localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     
+       
     var colorPicker = document.getElementById("colorPicker");
     if (Cookie.get("color") != null) 
         colorPicker.value = Cookie.get("color");
@@ -18,11 +19,9 @@ var docStyle = getComputedStyle(document.documentElement);
         var navbar= document.getElementsByClassName("navbar");
         var colorPickerValue= document.getElementById("colorPicker").value;
         var element= document.getElementById("multicolor"); //A palavra "regras"
-       
-        navbar[0].style.backgroundColor=colorPickerValue;
- 
+        navbar[0].style.backgroundColor=colorPickerValue;    
         element.style.background=colorPickerValue;
-      
+
         }
         function getDefaultColor(){
             return docStyle.getPropertyValue('--primaryColor');

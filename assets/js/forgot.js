@@ -10,7 +10,7 @@ window.onload = function(){
        
     }
 
-    function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
+    function changeColour() {   //Tem que tar dentro da função para mudar tudo em tempo real
         var docStyle = document.documentElement.style;
         var navbar= document.getElementsByClassName("navbar");
         var colorPickerValue= document.getElementById("colorPicker").value;
