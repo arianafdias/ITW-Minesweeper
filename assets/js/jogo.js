@@ -53,7 +53,7 @@ window.onload = function () {
 function changeDificulty(dificulty){
     switch (dificulty) {
         case "Easy": //9x9 10 mines
-            slider1.value = lbl1.innerHTML = slider2.value = lbl2.innerHTML = 8;
+            slider1.value = lbl1.innerHTML = slider2.value = lbl2.innerHTML = 9;
             slider3.value = lbl3.innerHTML = 10;
             slider1.style.display = slider2.style.display  = slider3.style.display = "none";
             Cookie.set("Height", 9);

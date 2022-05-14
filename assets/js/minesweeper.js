@@ -1,10 +1,4 @@
-/* Constantes / Variaveis  ------------------------------------------------- */
-
-
-let cronometro;
-let clickTimer; //Timer para destinguir click de double click
-let timerStarted;
-
+import Cell from './Cell.js';
 /* ------------------------------------------------------------------------- */
 /**
     Class to represent a cell in the board --------------------------------------
@@ -17,120 +11,17 @@ let timerStarted;
     @param {boolean} isMine Whether the cell is a mine or not
  */
 
-class Cell {
+  
+   
 
-    constructor(x, y, element,board) {
-        this.x = x;
-        this.y = y;
-        this.board=board;
-        this.element = element;
-        this.isMine = false;
-        this.revealed = false;
-        this.flagged = false;
-        this.marked = false;
-    }
-    /**
-     * Reveals the cell and its neighbors if it is not a mine and if it has no neighbors that are mines
-     * @returns {void}
-    */
-    reveal() {
-        if (board.firstClick) {
-            board.firstClick = false;
-            //startTimer();
-            //Create bomb numbers
-            let minePositions = randomInts(this.board.mines, this.board.width * this.board.height, [this.x * this.y + this.y]);
-            //Populate cells with bombs (except the clicked cell)
-            this.board.grid.forEach(row => {
-                row.forEach(cell => {
-                    if (minePositions.includes(cell.x * cell.y + cell.y)) {
-                        cell.isMine = true;
-                    }
-                }
-                );
-            });
-        }
-        this.revealed = true;
-        if (this.isMine) {
-            this.element.innerHTML = "💣";
-            explosionSound.play();
-            //gameOver();
-        } else {
-            let neighborMines = this.getNeighborMines();
-            if (neighborMines === 0) {
-                this.element.style.opacity = 0.6;
-                this.getNeighbors().forEach(neighbor => {
-                    if (!neighbor.revealed) {
-                        neighbor.reveal();
-                        neighbor.element.style.opacity = 0.6;
-                    }
-                });
-            }
-            else {
-                this.element.innerHTML = neighborMines;
-                this.element.style.opacity = 0.6;
-            }
-        }
-    }
-    /**
-     * Flags the cell and changes the mine counter if it is not revealed
-     * @returns {void}
-    */
-    flag() {
-        if (!this.revealed) {
-            this.flagged = !this.flagged;
-            board.minesLeft = this.flagged ? board.minesLeft + 1 : board.minesLeft - 1;
-            this.element.innerHTML = this.flagged ? "🚩" : "";
-        }
-    }
-    /** //TODO - Implementar Imagem da Flag
-     * Marks the cell if it is not revealed
-     * @returns {void}
-    */
-    mark() {
-        if (!this.revealed) {
-            this.marked = !this.marked;
-            this.element.innerHTML = this.marked ? "<img src=\"https://www.thedome.org/wp-content/uploads/2019/06/300x300-Placeholder-Image.jpg\" width=\"25px\" height=\"25px\">" : "";
-        }
-    }
-    /**
-    Gets the number of mines in the neighbors of the cell
-    * @returns {number}
-    */
-    getNeighborMines() {
-        let neighbors = this.getNeighbors();
-        let count = 0;
-        neighbors.forEach(neighbor => {
-            if (neighbor.isMine) {
-                count++;
-            }
-        });
-        return count;
-    }
-    /**
-     * Gets the neighbors of the cell that becomes (0,0)
+/* Constantes / Variaveis  ------------------------------------------------- */
 
-     * (-1,-1) (-1,0) (-1,1)
-     * (0,-1) (0,0) (0,-1)
-     * (1,-1) (1,0) (1,1)
-        * @returns {Array}
-    */
-    getNeighbors() {
-        let neighbors = [];
-        for (let horizontal = -1; horizontal < 2; horizontal++) {
-            for (let vertical = -1; vertical < 2; vertical++) {
 
-                let neighborX = this.x + horizontal;
-                let neighborY = this.y + vertical;
+let cronometro;
+let clickTimer; //Timer para destinguir click de double click
+let timerStarted;
 
-                if (horizontal === 0 && vertical === 0 || (neighborX < 0 || neighborY < 0 || neighborX >= board.height || neighborY >= board.width)) {
-                    continue;
-                }
-                neighbors.push(board.grid[neighborX][neighborY]);
-            }
-        }
-        return neighbors;
-    }
-}
+
 /* ------------------------------------------------------------------------- 
     Object that represents the board --------------------------------------
 */
@@ -145,7 +36,6 @@ var board = {
     firstClick: true,
 }
 
-var explosionSound  = new Audio('../assets/audio/explosion.mp3');
 
 window.onload = BuildBoard;
 
@@ -161,26 +51,26 @@ function BuildBoard() {
 
     if (boardWidth != null && boardHeight != null && mines != null) {
         gridContainer.style.gridTemplateColumns = "repeat(" + boardWidth + ", 1fr)";
-        this.board.height = boardHeight;
-        this.board.width = boardWidth;
-        this.board.mines = mines;
+        board.height = boardHeight;
+        board.width = boardWidth;
+        board.mines = mines;
     }
     else { //No cado do user nunca ter mudado a dimensão
         gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
-        this.board.height = 9;
-        this.board.width = 9;
-        this.board.mines = 10;
+        board.height = 9;
+        board.width = 9;
+        board.mines = 10;
     }
 
     //timer
     timerStarted = false;
 
     //Create 2D array of cells
-    for (let height = 0; height < this.board.height; height++) {
-        this.board.grid[height] = [];
-        for (let width = 0; width < this.board.width; width++) {
+    for (let height = 0; height < board.height; height++) {
+        board.grid[height] = [];
+        for (let width = 0; width < board.width; width++) {
             let element = document.createElement('div');
-            let cell = new Cell(height, width, element,board);
+            let cell = new Cell(height, width, element, board);
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', (e) => {
@@ -194,11 +84,19 @@ function BuildBoard() {
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag() });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
             gridContainer.appendChild(element);
-            this.board.grid[height][width] = cell;
+            board.grid[height][width] = cell;
         }
         //Dar cor ao tabuleiro
     }
     changeColour();
+    /**
+     * Reveal all cells
+    for (let height = 0; height < board.height; height++) {
+        for (let width = 0; width < board.width; width++) {
+            board.grid[height][width].reveal();
+        }
+    }
+    /**
 }
 
 /**
@@ -207,22 +105,58 @@ function BuildBoard() {
  * @param {number} max The maximum value of the integers
  * @param {number[]} blacklist The integers that should not be generated (e.g. the position of the clicked cell)) 
 */
-
-function randomInts(quantity, max, blacklist = []) {
-    const set = new Set()
-    while (set.size < quantity) {
-        number = Math.floor(Math.random() * max) + 1
-        if (!blacklist.includes(number))
-            set.add(number)
-    }
-    return Array.from(set);
 }
 
 /**
  * Function to change the color of the page -------------------------
 */
+function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
+    if (Cookie.get("color") != null) 
+        colorPicker.value = Cookie.get("color");
+    var navbar = document.getElementsByClassName("navbar");
+    var colorPickerValue = document.getElementById("colorPicker").value;
+    var gridContainer = document.getElementsByClassName("grid-container");
+    var allGridItems = document.getElementsByClassName("grid-item");
+    navbar[0].style.backgroundColor = colorPickerValue;
+    //Change all grid items border color
+    for (var i = 0; i < allGridItems.length; i++) {
+        allGridItems[i].style.borderColor = colorPickerValue;
+    }
+    var darkerColor = mudarBrightness(colorPickerValue, -55);
+    gridContainer[0].style.backgroundColor = darkerColor
+    var css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
+    var style = document.createElement('style');
 
+    if (style.styleSheet) {
+        style.styleSheet.cssText = css;
+    } else {
+        style.appendChild(document.createTextNode(css));
+    }
 
+    document.getElementsByTagName('head')[0].appendChild(style);
+}
+
+//Para o efeito do hover
+function mudarBrightness(cor, percent) {
+    let hex = cor;
+
+    // tirar o # se existir
+    hex = hex.replace(/^\s*#|\s*$/g, "");
+
+    let r = parseInt(hex.substr(0, 2), 16);
+    let g = parseInt(hex.substr(2, 2), 16);
+    let b = parseInt(hex.substr(4, 2), 16);
+
+    const calculatedPercent = (100 + percent) / 100;
+
+    r = Math.round(Math.min(255, Math.max(0, r * calculatedPercent)));
+    g = Math.round(Math.min(255, Math.max(0, g * calculatedPercent)));
+    b = Math.round(Math.min(255, Math.max(0, b * calculatedPercent)));
+
+    return `#${r.toString(16).toUpperCase()}${g.toString(16).toUpperCase()}${b
+        .toString(16)
+        .toUpperCase()}`;
+}
 
 /**
  * Timer Stuff -------------------------
