@@ -19,7 +19,7 @@ Grupo 46    PL21
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
-
+    <script type="text/javascript" src="assets/js/logout.js"></script>
     <script type="text/javascript" src="assets/js/Cookies.js"></script>
     <script type="text/javascript" src="assets/js/registar.js"></script>
     <title>Registar</title>
@@ -49,7 +49,7 @@ Grupo 46    PL21
                         <li><a href="./scoreindivid.html">Individual</a></li>
                     </ul>
                 </li>
-                <li><a href="login.html">Login</a></li>
+                <li id="login"><a href="login.html">Login</a></li>
                 <li><div class="cp_wrapper">
                     <input type="color" id="colorPicker" oninput="changeColour()" onchange="Cookie.set('color', this.value, 365);" value="getDefaultColor()" style="width:100%;"></div></li>
             </div>
@@ -58,8 +58,8 @@ Grupo 46    PL21
 
     <div class="LoginBox">
         <p id="multicolor1" class="Title">Registar</p>
-        <form class="form1">
-            <input class="InputBox" id="username" type="text" placeholder="Username">
+        <form class="form1"  >
+            <input class="InputBox" id="username" type="text" placeholder="Username"  >
             <br> <br>
             <input class="InputBox" id="email" type="text" placeholder="E-Mail">
             <br> <br>
@@ -81,7 +81,7 @@ Grupo 46    PL21
 
 </div>
     <br>
-    <footer>
+    <footer id="footer">
         <div class="cadeiraInfo">
             <p> ITW - 2020/2021 </p>
             <p> Grupo 46    PL21 </p>

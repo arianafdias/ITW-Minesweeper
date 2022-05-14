@@ -117,7 +117,8 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
     //Mudar a cor de um elemento pseudo-elemento (n sei pk está lento mas até ficou fixe)
     var css = 'input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-color:' + colorPickerValue + ';width: 30px;height: 30px;border-radius: 50%;border: 2px solid white;cursor: pointer;transition: .3s ease-in-out;}​';
     var style = document.createElement('style');
-
+    var footer = document.getElementById("footer");
+    footer.style.backgroundColor = colorPickerValue;
     if (style.styleSheet) {
         style.styleSheet.cssText = css;
     } else {

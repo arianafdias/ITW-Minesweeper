@@ -76,6 +76,8 @@ function createAcc(){
     var element2= document.getElementById("multicolor2"); 
    
     var loginBox= document.getElementsByClassName("LoginBox"); //div glow
+    var footer = document.getElementById("footer");
+    footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor=colorPickerValue;
     element.style.background=colorPickerValue;
     element1.style.color=colorPickerValue;

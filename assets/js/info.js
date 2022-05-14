@@ -19,9 +19,11 @@ var docStyle = getComputedStyle(document.documentElement);
         var navbar= document.getElementsByClassName("navbar");
         var colorPickerValue= document.getElementById("colorPicker").value;
         var element= document.getElementById("multicolor"); //A palavra "regras"
+        var footer = document.getElementById("footer");
+    footer.style.backgroundColor = colorPickerValue;
         navbar[0].style.backgroundColor=colorPickerValue;    
         element.style.background=colorPickerValue;
-
+        
         }
         function getDefaultColor(){
             return docStyle.getPropertyValue('--primaryColor');

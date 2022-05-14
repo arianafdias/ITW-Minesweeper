@@ -19,6 +19,8 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
     var element3 = document.getElementById("multicolor3");
     var element4 = document.getElementById("multicolor4");
     var loginBox = document.getElementsByClassName("LoginBox"); //div glow
+    var footer = document.getElementById("footer");
+    footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor = colorPickerValue;
     element1.style.color = colorPickerValue;
     element2.style.color = colorPickerValue;

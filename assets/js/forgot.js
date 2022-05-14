@@ -11,14 +11,14 @@ window.onload = function(){
     }
 
     function changeColour() {   //Tem que tar dentro da função para mudar tudo em tempo real
-        var docStyle = document.documentElement.style;
         var navbar= document.getElementsByClassName("navbar");
         var colorPickerValue= document.getElementById("colorPicker").value;
         var element1= document.getElementById("multicolor1"); 
         var element2= document.getElementById("multicolor2"); 
         var element3= document.getElementById("multicolor3"); 
-        
         var loginBox= document.getElementsByClassName("LoginBox"); //div glow
+        var footer = document.getElementById("footer");
+        footer.style.backgroundColor = colorPickerValue;
         navbar[0].style.backgroundColor=colorPickerValue;
         element1.style.color=colorPickerValue;
         element2.style.backgroundColor=colorPickerValue;

@@ -22,6 +22,8 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
     var colorPickerValue = document.getElementById("colorPicker").value;
     var element = document.getElementById("multicolor"); //A palavra "regras"
     var element2 = document.getElementById("multicolor2"); //O botão para jogar
+    var footer = document.getElementById("footer");
+    footer.style.backgroundColor = colorPickerValue;
     navbar.style.backgroundColor = colorPickerValue;
     element.style.color = colorPickerValue;
     element2.style.background = colorPickerValue;
