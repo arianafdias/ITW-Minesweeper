@@ -11,8 +11,6 @@ o que falta:
 - Criar nova página com stats:
     --Número de minas abertas; Tempo Jogado; Número de jogos ganhos (SP e MP); Casas com bandeira e marcadas; 
 
-- game over quando já n houver minas
-
 - substituir esta linha com uma imagem de "uma bandeira com um ponto de interrogação"
  this.element.innerHTML = this.marked ? "<img src=\"https://www.thedome.org/wp-content/uploads/2019/06/300x300-Placeholder-Image.jpg\" width=\"25px\" height=\"25px\">" : "";
 
