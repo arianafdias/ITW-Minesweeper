@@ -26,8 +26,12 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
         Cookie.set("color", colorPicker.value, 365);
     }   
 
-//user array position (tem todos os dados dos jogos que o jogador fez no localstorage)
-
+//user array position (tem todos os dados dos jogos que os jogadores fizeram no localstorage)
+let gamedata = {
+    playername : none,
+    playertime : none,
+    playerscore : none
+}
 
 
 
