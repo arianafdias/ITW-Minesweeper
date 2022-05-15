@@ -5,11 +5,11 @@ Grupo 46    PL21
 58628 - Miguel Miguel */
 
 .footer {
-    position: absolute;
-    right: 0;
+    position: fixed;
+   
     bottom: 0;
-    left: 0;
-    padding: 1rem;
+ 
+      padding: 1rem;
     background-color: #efefef;
     text-align: center;
   }

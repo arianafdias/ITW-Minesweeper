@@ -44,6 +44,7 @@ window.onload = function () {
     if (Cookie.get("color") != null) {
         colorPicker.value = Cookie.get("color");
     }
+    document.getElementById("btnReset").addEventListener('click', () => resetBoard());
     changeColour();
     BuildBoard();
     
@@ -73,6 +74,8 @@ function BuildBoard() {
         board.mines = 10;
     }
 
+
+
     //timer
     timerStarted = false;
 
@@ -81,7 +84,7 @@ function BuildBoard() {
         board.grid[height] = [];
         for (let width = 0; width < board.width; width++) {
             let element = document.createElement('div');
-            let cell = new Cell(height, width, element, board , gameOver);
+            let cell = new Cell(height, width, element, board , gameOver , gameWon);
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', (e) => {
@@ -106,25 +109,7 @@ function BuildBoard() {
     }
     
     changeColour();
-    document.getElementById("btnReset").addEventListener('click', () => {
-    resetBoard();
-    });
-    /**
-     * Reveal all cells
-    for (let height = 0; height < board.height; height++) {
-        for (let width = 0; width < board.width; width++) {
-            board.grid[height][width].reveal();
-        }
-    }
-    /**
-}
-
-/**
- * Function to generate <quantity> integers from 0 to <max> (except <blacklist>) without repetition -------------------------
- * @param {number} quantity The number of integers to generate
- * @param {number} max The maximum value of the integers
- * @param {number[]} blacklist The integers that should not be generated (e.g. the position of the clicked cell)) 
-*/
+    
 }
 
 /**
@@ -198,6 +183,7 @@ function delay(time) {
   }
 
 let explosionSound  = new Audio('../assets/audio/explosion.mp3');
+let clapSound = new Audio('../assets/audio/clapclapclapclapclapclapclap.mp3');
 function gameOver(){
     
     explosionSound.play();
@@ -208,7 +194,9 @@ function gameOver(){
             board.grid[height][width].reveal();
         }
     }
-    delay(1).then(() =>{alert("Perdeste! :( ");})
+    
+ 
+   // delay(1).then(() =>{alert("Perdeste! :( ");})
     
 }
 
@@ -226,11 +214,25 @@ function resetBoard(){
 }
 
 function gameWon(){
-    board.gameWon = True;
-    alert("Parabéns!, Ganhou!");
-    //calcScore()
-    //addscore()
+    board.gameWon = true;
+    board.gameOver = true;
+    window.confetti();
+    alert("Parabéns!, Ganhaste!");
     window.location.href = "scoreindivid.html";    
+    setInterval(function(){
+        confetti({
+            particleCount: 100,
+            startVelocity: 30,
+            spread: 360,
+            origin: {
+              x: Math.random(),
+              // since they fall down, start a bit higher than random
+              y: Math.random() - 0.2
+            }
+          });
+        window.confetti();
+    }, 500);
+    clapSound.play();
 };
 
 

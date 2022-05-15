@@ -1,6 +1,7 @@
 /* ------------------------------------------------------------------------- */
 /**
-    Class to represent a cell in the board --------------------------------------
+    Class to represent a cell on it's board --------------------------------------
+    /**
     @param {number} x The x position is the Column of the cell
     @param {number} y The y position is the Row of the cell
     @param {boolean} isMine Whether the cell is a mine or not
@@ -12,7 +13,7 @@
 
     export default class Cell {
 
-        constructor(x, y, element,board,gameOver) {
+        constructor(x, y, element, board, gameOver, gameWin) {
             this.x = x;
             this.y = y;
             this.board=board;
@@ -21,7 +22,8 @@
             this.revealed = false;
             this.flagged = false;
             this.marked = false;
-            this.gameOver = gameOver;
+            this.gameOver = gameOver; // Estes 2 campos dão mais jeito estarem aqui
+            this.gameWin = gameWin;   //
         }
         /**
          * Reveals the cell and its neighbors if it is not a mine and if it has no neighbors that are mines
