@@ -13,8 +13,8 @@ window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     var colorPicker = document.getElementById("colorPicker");
-    if (localStorage.getItem('color') != null) {
-        colorPicker.value = localStorage.getItem('color');
+    if (localStorage.getItem("color") != null) {
+        colorPicker.value = localStorage.getItem("color");
     }
     changeColour();
     if(localStorage.getItem("Dificulty") != null){
@@ -41,8 +41,22 @@ window.onload = function () {
 
     slider3.oninput = function () {
         lbl3.innerHTML = this.value;
+        density=(this.value * 100 / (slider1.value * slider2.value)).toFixed(2);
+        while(density>100){ //While density>100 change the other 2 sliders to make the density lower
+            if(parseInt(slider1.value)+1<=slider1.max)
+           { 
+               slider1.value++;
+               lbl1.innerHTML=  parseInt(lbl1.innerHTML)+1;
 
-        mineDensity.innerHTML = ((this.value * 100 / (slider1.value * slider2.value)).toFixed(2)).toString() + "%";
+        }
+        if(parseInt(slider2.value)+1<=slider2.max)
+              {
+            slider2.value++;
+            lbl2.innerHTML++;
+        }
+            density=(this.value * 100 / (slider1.value * slider2.value)).toFixed(2);
+        }
+        mineDensity.innerHTML = density.toString() + "%";
     }
     slider3.onchange = function () {
         localStorage.setItem("Mines", this.value);
@@ -135,6 +149,11 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
 
 function openSinglePlayer(){
     //If login
+    density=(slider3.value * 100 / (slider1.value * slider2.value)).toFixed(2);
+    if(density>100){
+        alert("Densidade demasiado alta para o tamanho escolhido");
+        return;
+    }
     if(localStorage.getItem("logged-in")==="true")
     
         window.location.href = "Splayer.html";
