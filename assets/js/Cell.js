@@ -12,7 +12,7 @@
 
     export default class Cell {
 
-        constructor(x, y, element,board) {
+        constructor(x, y, element,board,gameOver) {
             this.x = x;
             this.y = y;
             this.board=board;
@@ -21,6 +21,7 @@
             this.revealed = false;
             this.flagged = false;
             this.marked = false;
+            this.gameOver = gameOver;
         }
         /**
          * Reveals the cell and its neighbors if it is not a mine and if it has no neighbors that are mines
@@ -45,16 +46,17 @@
             this.revealed = true;
             if (this.isMine) {
                 this.element.innerHTML = "💣";
-                explosionSound.play();
-                //gameOver();
+                if(!this.board.gameOver)
+                this.gameOver();
             } else {
+                this.board.minesLeft--;
                 let neighborMines = this.getNeighborMines();
                 if (neighborMines === 0) {
                     this.element.style.opacity = 0.6;
                     this.getNeighbors().forEach(neighbor => {
                         if (!neighbor.revealed) {
-                            neighbor.reveal();
                             neighbor.element.style.opacity = 0.6;
+                            neighbor.reveal();
                         }
                     });
                 }
@@ -125,15 +127,32 @@
         }
     }
 
-    function randomInts(quantity, max, blacklist = []) {
-        const set = new Set()
-        while (set.size < quantity) {
-            let number = Math.floor(Math.random() * max) + 1
-            if (!blacklist.includes(number))
-                set.add(number)
-        }
-        return Array.from(set);
-    }
+   /**
+ * Function to generate <quantity> integers from 0 to <max> (except <blacklist>) without repetition -------------------------
+ * @param {number} quantity The number of integers to generate
+ * @param {number} max The maximum value of the integers
+ * @param {number[]} blacklist The integers that should not be generated (e.g. the position of the clicked cell)) 
+*/
 
+function randomInts(quantity, max, blacklist = []) {
+    const set = new Set()
+    while (set.size < quantity) {
+        let number = Math.floor(Math.random() * max) + 1
+        if (!blacklist.includes(number))
+            set.add(number)
+    }
+    return Array.from(set);
+}
     
-var explosionSound  = new Audio('../assets/audio/explosion.mp3');
+
+
+
+function gameWon(){
+    this.board.gameOver = true;
+    this.board.gameWon = true;
+    for (let height = 0; height < this.board.height; height++) {
+        for (let width = 0; width < this.board.width; width++) {
+            this.board.grid[height][width].reveal();
+        }
+    }
+}

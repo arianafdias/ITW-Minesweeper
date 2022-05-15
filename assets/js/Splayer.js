@@ -1,17 +1,21 @@
-import Cell from './Cell';
+import Cell from './Cell.js';
+/* ------------------------------------------------------------------------- */
+/**
+    Class to represent a cell in the board --------------------------------------
+    @param {number} x The x position is the Column of the cell
+    @param {number} y The y position is the Row of the cell
+    @param {boolean} isMine Whether the cell is a mine or not
+    @param {HTMLElement} element The element that represents the cell
+    @param {boolean} isFlagged Whether the cell is flagged or not
+    @param {boolean} isRevealed Whether the cell is revealed or not
+    @param {boolean} isMine Whether the cell is a mine or not
+ */
 
-window.onload = function () {
+  
    
-    if (localStorage.getItem("logged-in") === "true")
-        document.getElementById("login").innerHTML = `<a onclick="logout()" href="index.html">Logout</a>`;
-    var colorPicker = document.getElementById("colorPicker");
-    if (Cookie.get("color") != null) {
-        colorPicker.value = Cookie.get("color");
-    }
-    BuildBoard();
-    changeColour(); 
 
-}
+/* Constantes / Variaveis  ------------------------------------------------- */
+
 
 let cronometro;
 let clickTimer; //Timer para destinguir click de double click
@@ -32,8 +36,19 @@ var board = {
     firstClick: true,
 }
 
-var explosionSound  = new Audio('../assets/audio/explosion.mp3');
 
+window.onload = function () {
+    if (localStorage.getItem("logged-in") === "true")
+        document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
+    var colorPicker = document.getElementById("colorPicker");
+    if (Cookie.get("color") != null) {
+        colorPicker.value = Cookie.get("color");
+    }
+    changeColour();
+    BuildBoard();
+    
+
+}
 
 /**
  * Build the board with the cells and add event listeners to each cell -------------------------
@@ -47,26 +62,26 @@ function BuildBoard() {
 
     if (boardWidth != null && boardHeight != null && mines != null) {
         gridContainer.style.gridTemplateColumns = "repeat(" + boardWidth + ", 1fr)";
-        this.board.height = boardHeight;
-        this.board.width = boardWidth;
-        this.board.mines = mines;
+        board.height = boardHeight;
+        board.width = boardWidth;
+        board.mines = mines;
     }
     else { //No cado do user nunca ter mudado a dimensão
         gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
-        this.board.height = 9;
-        this.board.width = 9;
-        this.board.mines = 10;
+        board.height = 9;
+        board.width = 9;
+        board.mines = 10;
     }
 
     //timer
     timerStarted = false;
 
     //Create 2D array of cells
-    for (let height = 0; height < this.board.height; height++) {
-        this.board.grid[height] = [];
-        for (let width = 0; width < this.board.width; width++) {
+    for (let height = 0; height < board.height; height++) {
+        board.grid[height] = [];
+        for (let width = 0; width < board.width; width++) {
             let element = document.createElement('div');
-            let cell = new Cell(height, width, element,board);
+            let cell = new Cell(height, width, element, board , gameOver);
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', (e) => {
@@ -80,11 +95,19 @@ function BuildBoard() {
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag() });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
             gridContainer.appendChild(element);
-            this.board.grid[height][width] = cell;
+            board.grid[height][width] = cell;
         }
         //Dar cor ao tabuleiro
     }
     changeColour();
+    /**
+     * Reveal all cells
+    for (let height = 0; height < board.height; height++) {
+        for (let width = 0; width < board.width; width++) {
+            board.grid[height][width].reveal();
+        }
+    }
+    /**
 }
 
 /**
@@ -93,17 +116,11 @@ function BuildBoard() {
  * @param {number} max The maximum value of the integers
  * @param {number[]} blacklist The integers that should not be generated (e.g. the position of the clicked cell)) 
 */
-
-function randomInts(quantity, max, blacklist = []) {
-    const set = new Set()
-    while (set.size < quantity) {
-        number = Math.floor(Math.random() * max) + 1
-        if (!blacklist.includes(number))
-            set.add(number)
-    }
-    return Array.from(set);
 }
 
+/**
+ * Function to change the color of the page -------------------------
+*/
 function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
     if (Cookie.get("color") != null) 
         colorPicker.value = Cookie.get("color");
@@ -131,7 +148,66 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
 
     document.getElementsByTagName('head')[0].appendChild(style);
 }
-//Negativo fica mais esquro
+
+//Para o efeito do hover
+function mudarBrightness(cor, percent) {
+    let hex = cor;
+
+    // tirar o # se existir
+    hex = hex.replace(/^\s*#|\s*$/g, "");
+
+    let r = parseInt(hex.substr(0, 2), 16);
+    let g = parseInt(hex.substr(2, 2), 16);
+    let b = parseInt(hex.substr(4, 2), 16);
+
+    const calculatedPercent = (100 + percent) / 100;
+
+    r = Math.round(Math.min(255, Math.max(0, r * calculatedPercent)));
+    g = Math.round(Math.min(255, Math.max(0, g * calculatedPercent)));
+    b = Math.round(Math.min(255, Math.max(0, b * calculatedPercent)));
+
+    return `#${r.toString(16).toUpperCase()}${g.toString(16).toUpperCase()}${b
+        .toString(16)
+        .toUpperCase()}`;
+}
+
+/**
+ * Timer Stuff -------------------------
+*/
+
+function timer() {
+    let tempo_antigo = parseInt(document.getElementById("timer").innerText)
+    let novo_tempo = tempo_antigo + 1;
+    let newTempo = novo_tempo.toString();
+    document.getElementById("timer").innerHTML = newTempo;
+}
+
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+  }
+
+let explosionSound  = new Audio('../assets/audio/explosion.mp3');
+function gameOver(){
+    
+    explosionSound.play();
+    board.gameOver = true;
+    board.gameWon = false;
+    for (let height = 0; height < board.height; height++) {
+        for (let width = 0; width < board.width; width++) {
+            board.grid[height][width].reveal();
+        }
+    }
+    delay(1).then(() =>{alert("Perdeste! :( ");})
+    
+}
+
+function gameWon(){
+    board.gameWon = True;
+    alert("Parabéns!, Ganhou!");
+    //calcScore()
+    //addscore()
+    window.location.href = "scoreindivid.html";    
+};
 
 
 
