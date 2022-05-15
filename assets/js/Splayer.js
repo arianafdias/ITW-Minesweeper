@@ -99,7 +99,11 @@ function BuildBoard() {
         }
         //Dar cor ao tabuleiro
     }
+    
     changeColour();
+    document.getElementById("btnReset").addEventListener('click', () => {
+    resetBoard();
+    });
     /**
      * Reveal all cells
     for (let height = 0; height < board.height; height++) {
@@ -128,7 +132,7 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
     var colorPickerValue = document.getElementById("colorPicker").value;
     var gridContainer = document.getElementsByClassName("grid-container");
     var allGridItems = document.getElementsByClassName("grid-item");
-    let btnRestart = document.getElementById("btnRestart");
+    let btnRestart = document.getElementById("btnReset");
     var footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor = colorPickerValue;
@@ -208,10 +212,12 @@ function resetBoard(){
     board.gameWon = false;
     for (let height = 0; height < board.height; height++) {
         for (let width = 0; width < board.width; width++) {
-            board.grid[height][width].reset();
+            board.grid[height][width].restart();
         }
     }
     document.getElementById("timer").innerHTML = 0;
+    board.firstClick=true;
+    
 }
 
 function gameWon(){

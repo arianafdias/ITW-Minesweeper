@@ -154,8 +154,6 @@ function randomInts(quantity, max, blacklist = []) {
 }
     
 
-
-
 function gameWon(){
     this.board.gameOver = true;
     this.board.gameWon = true;
