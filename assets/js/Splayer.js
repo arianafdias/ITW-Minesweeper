@@ -25,7 +25,7 @@ let timerStarted;
 /* ------------------------------------------------------------------------- 
     Object that represents the board --------------------------------------
 */
-var board = {
+let board = {
     grid: [],
     mines: 0,
     width: 0,
@@ -91,6 +91,9 @@ function BuildBoard() {
                         cell.reveal();
                     }, 119)
                 }
+                if (board.firstClick === true) {
+                    cronometro = setInterval(timer,1000);
+                }
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag() });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
@@ -98,6 +101,8 @@ function BuildBoard() {
             board.grid[height][width] = cell;
         }
         //Dar cor ao tabuleiro
+
+
     }
     
     changeColour();
@@ -227,6 +232,7 @@ function gameWon(){
     //addscore()
     window.location.href = "scoreindivid.html";    
 };
+
 
 
 
