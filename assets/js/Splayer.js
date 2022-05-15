@@ -128,9 +128,11 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
     var colorPickerValue = document.getElementById("colorPicker").value;
     var gridContainer = document.getElementsByClassName("grid-container");
     var allGridItems = document.getElementsByClassName("grid-item");
+    let btnRestart = document.getElementById("btnRestart");
     var footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor = colorPickerValue;
+    btnRestart.style.backgroundColor = colorPickerValue;
     //Change all grid items border color
     for (var i = 0; i < allGridItems.length; i++) {
         allGridItems[i].style.borderColor = colorPickerValue;
@@ -199,6 +201,17 @@ function gameOver(){
     }
     delay(1).then(() =>{alert("Perdeste! :( ");})
     
+}
+
+function resetBoard(){
+    board.gameOver = false;
+    board.gameWon = false;
+    for (let height = 0; height < board.height; height++) {
+        for (let width = 0; width < board.width; width++) {
+            board.grid[height][width].reset();
+        }
+    }
+    document.getElementById("timer").innerHTML = 0;
 }
 
 function gameWon(){
