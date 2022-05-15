@@ -8,7 +8,8 @@ o que falta:
 
 - faixa etária, e género - game over quando já n houver minas
 
-- um jogador pode ver estatísticas sobre o seu número de jogos e tempo total jogado. (criar nova página)
+- Criar nova página com stats:
+    --Número de minas abertas; Tempo Jogado; Número de jogos ganhos (SP e MP); Casas com bandeira e marcadas; 
 
 - game over quando já n houver minas
 
