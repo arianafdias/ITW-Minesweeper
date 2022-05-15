@@ -22,3 +22,37 @@ element1.style.backgroundColor=colorPickerValue;
 element2.style.borderColor=colorPickerValue;
 }   
 
+//user array position (tem todos os dados dos jogos que os jogadores fizeram no localstorage)
+let gamedata = {
+    playername : none,
+    playertime : none,
+    playerscore : none
+}
+
+
+
+
+function scoretable(){
+    let deftabela = document.getElementById("scoreboard");
+    let newtabela = document.createElement("table")
+    newtabela.setAttribute("id", "scoreboard");
+    let tabline = document.createElement("tr"); 
+    tabline.appendChild(linhaTabela);
+    tabline.innerHTML = "<th>Jogador</th>" + "<th>Pontos</th>"+"<th>Tempo</th>";
+    newtabela.append(tabline);
+
+
+    let numdata = 0;
+    for (let scoreline in gamedata){
+        while(numdata < 10){
+        tabline = document.createElement("tr");
+        tabline.innerHTML = "<td>" + //gamedata.playername + "</td>" +
+                                "<td>" + //gamedata.playertime + "</td>" +
+                                "<td>" + //gamedata.playerscore + "</td>";
+        newtabela.appendChild(tabline);   
+        }    
+    numdata++;   
+    }   
+    deftabela.parentNode.replaceChild(newtabela, deftabela);
+
+}
