@@ -217,8 +217,6 @@ function gameWon(){
     board.gameWon = true;
     board.gameOver = true;
     window.confetti();
-    alert("Parabéns!, Ganhaste!");
-    window.location.href = "scoreindivid.html";    
     setInterval(function(){
         confetti({
             particleCount: 100,
@@ -233,6 +231,10 @@ function gameWon(){
         window.confetti();
     }, 500);
     clapSound.play();
+    alert("Parabéns!, Ganhaste!");
+    delay(5).then(() =>{ window.location.href = "scoreindivid.html";    })
+   
+    
 };
 
 
