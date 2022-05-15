@@ -25,7 +25,7 @@ let timerStarted;
 /* ------------------------------------------------------------------------- 
     Object that represents the board --------------------------------------
 */
-var board = {
+let board = {
     grid: [],
     mines: 0,
     width: 0,
@@ -91,6 +91,9 @@ function BuildBoard() {
                         cell.reveal();
                     }, 119)
                 }
+                if (board.firstClick === true) {
+                    cronometro = setInterval(timer,1000);
+                }
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag() });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
@@ -98,8 +101,14 @@ function BuildBoard() {
             board.grid[height][width] = cell;
         }
         //Dar cor ao tabuleiro
+
+
     }
+    
     changeColour();
+    document.getElementById("btnReset").addEventListener('click', () => {
+    resetBoard();
+    });
     /**
      * Reveal all cells
     for (let height = 0; height < board.height; height++) {
@@ -128,9 +137,11 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
     var colorPickerValue = document.getElementById("colorPicker").value;
     var gridContainer = document.getElementsByClassName("grid-container");
     var allGridItems = document.getElementsByClassName("grid-item");
+    let btnRestart = document.getElementById("btnReset");
     var footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor = colorPickerValue;
+    btnRestart.style.backgroundColor = colorPickerValue;
     //Change all grid items border color
     for (var i = 0; i < allGridItems.length; i++) {
         allGridItems[i].style.borderColor = colorPickerValue;
@@ -201,6 +212,19 @@ function gameOver(){
     
 }
 
+function resetBoard(){
+    board.gameOver = false;
+    board.gameWon = false;
+    for (let height = 0; height < board.height; height++) {
+        for (let width = 0; width < board.width; width++) {
+            board.grid[height][width].restart();
+        }
+    }
+    document.getElementById("timer").innerHTML = 0;
+    board.firstClick=true;
+    
+}
+
 function gameWon(){
     board.gameWon = True;
     alert("Parabéns!, Ganhou!");
@@ -208,6 +232,7 @@ function gameWon(){
     //addscore()
     window.location.href = "scoreindivid.html";    
 };
+
 
 
 

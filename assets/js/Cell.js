@@ -125,6 +125,15 @@
             }
             return neighbors;
         }
+        restart() {
+            this.isMine = false;
+            this.revealed = false;
+            this.flagged = false;
+            this.marked = false;
+            this.element.innerHTML = "";
+            this.element.style.opacity = 1;
+        }
+
     }
 
    /**
@@ -144,8 +153,6 @@ function randomInts(quantity, max, blacklist = []) {
     return Array.from(set);
 }
     
-
-
 
 function gameWon(){
     this.board.gameOver = true;
