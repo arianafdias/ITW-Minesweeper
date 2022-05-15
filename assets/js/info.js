@@ -5,8 +5,8 @@ window.onload = function () {
     
        
     var colorPicker = document.getElementById("colorPicker");
-    if (Cookie.get("color") != null) 
-        colorPicker.value = Cookie.get("color");
+    if (localStorage.getItem('color') != null) 
+        colorPicker.value = localStorage.getItem('color');
     changeColour();
     //Load video
  

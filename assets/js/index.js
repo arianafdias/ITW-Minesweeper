@@ -4,8 +4,8 @@ window.onload = function () {
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     
     var colorPicker = document.getElementById("colorPicker");
-    if (Cookie.get("color") != null) 
-        colorPicker.value = Cookie.get("color");
+    if (localStorage.getItem('color') != null) 
+        colorPicker.value = localStorage.getItem('color');
     changeColour();
     //Load video
     document.getElementById("video").src = "https://www.youtube.com/embed/GrZCWx0fnfc";

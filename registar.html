@@ -20,7 +20,7 @@ Grupo 46    PL21
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
     <script type="text/javascript" src="assets/js/logout.js"></script>
-    <script type="text/javascript" src="assets/js/Cookies.js"></script>
+    
     <script type="text/javascript" src="assets/js/registar.js"></script>
     <title>Registar</title>
 </head>
@@ -51,7 +51,7 @@ Grupo 46    PL21
                 </li>
                 <li id="login"><a href="login.html">Login</a></li>
                 <li><div class="cp_wrapper">
-                    <input type="color" id="colorPicker" oninput="changeColour()" onchange="Cookie.set('color', this.value, 365);" value="getDefaultColor()" style="width:100%;"></div></li>
+                    <input type='color' id="colorPicker" oninput="changeColour()" onchange="localStorage.setItem('color',this.value);;" value="getDefaultColor()" style="width:100%;"></div></li>
             </div>
         </ul>
     </nav>

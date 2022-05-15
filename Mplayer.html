@@ -20,7 +20,7 @@ Grupo 46    PL21
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script type="text/javascript" src="assets/js/Cookies.js"></script>
+    
     <script type="text/javascript" src="assets/js/minesweeper.js"></script>
     
     <script type="text/javascript" src="assets/js/Mplayer.js"></script>
@@ -53,8 +53,8 @@ Grupo 46    PL21
                     <li id="login"><a href="login.html">Login</a></li>
                     <li>
                         <div class="cp_wrapper">
-                            <input type="color" id="colorPicker" oninput="changeColour()"
-                                onchange="Cookie.set('color', this.value, 365);" value="getDefaultColor()"
+                            <input type='color' id="colorPicker" oninput="changeColour()"
+                                onchange="localStorage.setItem('color',this.value);;" value="getDefaultColor()"
                                 style="width:100%;">
                         </div>
                     </li>

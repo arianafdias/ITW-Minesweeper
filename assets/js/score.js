@@ -2,8 +2,8 @@ window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     var colorPicker = document.getElementById("colorPicker");
-    if (Cookie.get("color") != null) {
-        colorPicker.value = Cookie.get("color");
+    if (localStorage.getItem('color') != null) {
+        colorPicker.value = localStorage.getItem('color');
     }
     changeColour();
     scoretable();
@@ -23,7 +23,7 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
     }   
     function setCookies(){
         var colorPicker= document.getElementById("colorPicker");
-        Cookie.set("color", colorPicker.value, 365);
+        localStorage.setItem('color', colorPicker.value);
     }   
 
 //user array position (tem todos os dados dos jogos que os jogadores fizeram no localstorage)

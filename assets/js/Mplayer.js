@@ -2,8 +2,8 @@ window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     var colorPicker = document.getElementById("colorPicker");
-    if (Cookie.get("color") != null) {
-        colorPicker.value = Cookie.get("color");
+    if (localStorage.getItem('color') != null) {
+        colorPicker.value = localStorage.getItem('color');
     }
     changeColour();
 
@@ -59,5 +59,5 @@ return `#${r.toString(16).toUpperCase()}${g.toString(16).toUpperCase()}${b
 
 function setCookies() {
     var colorPicker = document.getElementById("colorPicker");
-    Cookie.set("color", colorPicker.value, 365);
+    localStorage.setItem('color', colorPicker.value);
 }

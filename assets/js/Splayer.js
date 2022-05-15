@@ -41,8 +41,8 @@ window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     var colorPicker = document.getElementById("colorPicker");
-    if (Cookie.get("color") != null) {
-        colorPicker.value = Cookie.get("color");
+    if (localStorage.getItem('color') != null) {
+        colorPicker.value = localStorage.getItem('color');
     }
     document.getElementById("btnReset").addEventListener('click', () => resetBoard());
     changeColour();
@@ -57,9 +57,9 @@ window.onload = function () {
 
 function BuildBoard() {
     var gridContainer = document.getElementsByClassName('grid-container')[0];
-    let boardWidth = Cookie.get("Width");
-    let boardHeight = Cookie.get("Height");
-    let mines = Cookie.get("Mines");
+    let boardWidth = localStorage.getItem("Width");
+    let boardHeight = localStorage.getItem("Height");
+    let mines = localStorage.getItem("Mines");
 
     if (boardWidth != null && boardHeight != null && mines != null) {
         gridContainer.style.gridTemplateColumns = "repeat(" + boardWidth + ", 1fr)";
@@ -116,8 +116,8 @@ function BuildBoard() {
  * Function to change the color of the page -------------------------
 */
 function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-    if (Cookie.get("color") != null) 
-        colorPicker.value = Cookie.get("color");
+    if (localStorage.getItem('color') != null) 
+        colorPicker.value = localStorage.getItem('color');
     var navbar = document.getElementsByClassName("navbar");
     var colorPickerValue = document.getElementById("colorPicker").value;
     var gridContainer = document.getElementsByClassName("grid-container");

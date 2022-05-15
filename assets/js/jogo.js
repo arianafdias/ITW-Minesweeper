@@ -13,12 +13,12 @@ window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     var colorPicker = document.getElementById("colorPicker");
-    if (Cookie.get("color") != null) {
-        colorPicker.value = Cookie.get("color");
+    if (localStorage.getItem('color') != null) {
+        colorPicker.value = localStorage.getItem('color');
     }
     changeColour();
-    if(Cookie.get("Dificulty") != null){
-        dificulty=Cookie.get("Dificulty");
+    if(localStorage.getItem("Dificulty") != null){
+        dificulty=localStorage.getItem("Dificulty");
         changeDificulty(dificulty);
         dificultySelector.value = dificulty;
 
@@ -28,7 +28,7 @@ window.onload = function () {
         mineDensity.innerHTML = ((slider3.value * 100 / (this.value * slider2.value)).toFixed(2)).toString() + "%";
     }
     slider1.onchange = function () {
-        Cookie.set("Height", this.value, 4242);
+        localStorage.setItem("Height",this.value);
     }
 
     slider2.oninput = function () {
@@ -36,7 +36,7 @@ window.onload = function () {
         mineDensity.innerHTML = ((slider3.value * 100 / (slider1.value * this.value)).toFixed(2)).toString() + "%";
     }
     slider2.onchange = function () {
-        Cookie.set("Width", this.value, 4242);
+        localStorage.setItem("Height",this.value);
     }
 
     slider3.oninput = function () {
@@ -45,7 +45,7 @@ window.onload = function () {
         mineDensity.innerHTML = ((this.value * 100 / (slider1.value * slider2.value)).toFixed(2)).toString() + "%";
     }
     slider3.onchange = function () {
-        Cookie.set("Mines", this.value, 4242);
+        localStorage.setItem("Mines", this.value);
     }
 
 }
@@ -56,10 +56,10 @@ function changeDificulty(dificulty){
             slider1.value = lbl1.innerHTML = slider2.value = lbl2.innerHTML = 9;
             slider3.value = lbl3.innerHTML = 10;
             slider1.style.display = slider2.style.display  = slider3.style.display = "none";
-            Cookie.set("Height", 9);
-            Cookie.set("Width", 9);
-            Cookie.set("Mines", 10);
-            Cookie.set("Dificulty", "Easy");
+            localStorage.setItem("Height", 9);
+            localStorage.setItem("Width", 9);
+            localStorage.setItem("Mines", 10);
+            localStorage.setItem("Dificulty", "Easy");
             mineDensity.innerHTML = '15.63%'
             break;
         case "Normal": //16x16 40 mines
@@ -67,10 +67,10 @@ function changeDificulty(dificulty){
             slider3.value = lbl3.innerHTML = 40;
             slider1.style.display = slider2.style.display = slider3.style.display = "none";
             mineDensity.innerHTML = '15.63%'
-            Cookie.set("Height", 16);
-            Cookie.set("Width", 16);
-            Cookie.set("Mines", 40);
-            Cookie.set("Dificulty", "Normal");
+            localStorage.setItem("Height", 16);
+            localStorage.setItem("Width", 16);
+            localStorage.setItem("Mines", 40);
+            localStorage.setItem("Dificulty", "Normal");
             break;
         case "Hard": //30x16 99 mines
             slider1.value = lbl1.innerHTML = 30;
@@ -78,14 +78,14 @@ function changeDificulty(dificulty){
             slider3.value =  lbl3.innerHTML = 99;
             slider1.style.display =  slider2.style.display =  slider3.style.display = "none";
             mineDensity.innerHTML = '20.63%'
-            Cookie.set("Height", 30);
-            Cookie.set("Width", 16);
-            Cookie.set("Mines", 99);
-            Cookie.set("Dificulty", "Hard");
+            localStorage.setItem("Height", 30);
+            localStorage.setItem("Width", 16);
+            localStorage.setItem("Mines", 99);
+            localStorage.setItem("Dificulty", "Hard");
             break;
         case "Custom":
             slider1.style.display =   slider2.style.display =   slider3.style.display = "block";
-            if(Cookie.get("Height") == null && Cookie.get("Width") == null && Cookie.get("Mines") == null){
+            if(localStorage.getItem("Height") == null && localStorage.getItem("Width") == null && localStorage.getItem("Mines") == null){
                 //Default Values
             slider1.value = lbl1.innerHTML = 30;
             slider2.value = lbl2.innerHTML = 24;
@@ -93,18 +93,18 @@ function changeDificulty(dificulty){
             slider3.value = 125 //26.04% mine density
             lbl3.innerHTML = Math.floor(29 * (23) * 0.25);
             mineDensity.innerHTML = "26.04%"
-            Cookie.set("Height", 30);
-            Cookie.set("Width", 24);
-            Cookie.set("Mines", 125);
-            Cookie.set("Dificulty", "Custom");
+            localStorage.setItem("Height", 30);
+            localStorage.setItem("Width", 24);
+            localStorage.setItem("Mines", 125);
+            localStorage.setItem("Dificulty", "Custom");
             break;
     } else{
-        slider1.value = lbl1.innerHTML = Cookie.get("Height");
-        slider2.value = lbl2.innerHTML = Cookie.get("Width");
-        slider3.value = lbl3.innerHTML = Cookie.get("Mines");
+        slider1.value = lbl1.innerHTML = localStorage.getItem("Height");
+        slider2.value = lbl2.innerHTML = localStorage.getItem("Width");
+        slider3.value = lbl3.innerHTML = localStorage.getItem("Mines");
         slider3.max = (30) * (24) -1;
         mineDensity.innerHTML = ((slider3.value * 100 / (slider1.value * slider2.value)).toFixed(2)).toString() + "%";
-        Cookie.set("Dificulty", "Custom");
+        localStorage.setItem("Dificulty", "Custom");
     }
 }
 }
