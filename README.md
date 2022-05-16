@@ -4,7 +4,7 @@
 MAIN: 
 
 o que falta:
-- timers e número de minas restantes ( eventualmente ficar negativo, desce com a bandeira)
+- número de minas restantes ( eventualmente ficar negativo, desce com a bandeira) *almost done*
 
 - faixa etária, e género - game over quando já n houver minas
 

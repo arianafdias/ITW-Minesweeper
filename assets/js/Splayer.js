@@ -69,17 +69,15 @@ function BuildBoard() {
         board.height = boardHeight;
         board.width = boardWidth;
         board.mines = mines;
-        board.minesLeft = mines;
     }
     else { //No cado do user nunca ter mudado a dimensão
         gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
         board.height = 9;
         board.width = 9;
         board.mines = 10;
-        board.minesLeft = 10;
     }
 
-    cntMines.innerHTML=board.mines;
+    cntMines.innerText=board.mines;
 
     //timer
     timerStarted = false;
@@ -97,14 +95,18 @@ function BuildBoard() {
                 if (e.detail === 1) {
                     clickTimer = setTimeout(() => {
                         cell.reveal();
-                        cntMines.innerHTML = board.minesLeft; //Atualiza o contador de minas
+                        let minesToShow = board.mines - board.minesLeft;
+                        cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
                     }, 119)
+
                 }
                 if (board.firstClick === true) {
                     cronometro = setInterval(timer,1000);
                 }
             });
-            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag(); cntMines.innerHTML = board.minesLeft.toString();}); //Atualiza o contador de minas });
+            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag();
+                let minesToShow = board.mines - board.minesLeft;
+                cntMines.innerText = minesToShow.toString();}); //Atualiza o contador de minas });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
             gridContainer.appendChild(element);
             board.grid[height][width] = cell;
@@ -200,9 +202,8 @@ function gameOver(){
             board.grid[height][width].reveal();
         }
     }
-    
- 
-   // delay(1).then(() =>{alert("Perdeste! :( ");})
+    cronometro = clearInterval(cronometro);
+   delay(1).then(() =>{alert("Perdeste! :( ");})
     
 }
 
@@ -237,11 +238,13 @@ function gameWon(){
         window.confetti();
     }, 500);
     clapSound.play();
-    
+
     delay(3000).then(() =>{ window.location.href = "scoreindivid.html";    })
    
     
 };
+
+
 
 
 

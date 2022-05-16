@@ -51,7 +51,6 @@
                 if(!this.board.gameOver)
                 this.gameOver();
             } else {
-             
                 let neighborMines = this.getNeighborMines();
                 if (neighborMines === 0) {
                     this.element.style.opacity = 0.6;
@@ -77,7 +76,7 @@
         flag() {
             if (!this.revealed) {
                 this.flagged = !this.flagged;
-                this.board.minesLeft = this.flagged ? parseInt(this.board.minesLeft - 1) :parseInt(this.board.minesLeft + 1) ;
+                this.board.minesLeft = this.flagged ? this.board.minesLeft + 1 : this.board.minesLeft - 1;
                 this.element.innerHTML = this.flagged ? "🚩" : "";
                 this.checkWin();
             }
