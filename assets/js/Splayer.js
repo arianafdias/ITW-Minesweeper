@@ -60,23 +60,22 @@ function BuildBoard() {
     let boardWidth = localStorage.getItem("Width");
     let boardHeight = localStorage.getItem("Height");
     let mines = localStorage.getItem("Mines");
+    let cntMines = document.getElementById("minesLeft");
 
     if (boardWidth != null && boardHeight != null && mines != null) {
         gridContainer.style.gridTemplateColumns = "repeat(" + boardWidth + ", 1fr)";
         board.height = boardHeight;
         board.width = boardWidth;
         board.mines = mines;
-        board.minesLeft=board.mines;
     }
     else { //No cado do user nunca ter mudado a dimensão
         gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
         board.height = 9;
         board.width = 9;
         board.mines = 10;
-        board.minesLeft=board.mines;
     }
 
-
+    cntMines.innerHTML=board.mines;
 
     //timer
     timerStarted = false;
@@ -94,6 +93,7 @@ function BuildBoard() {
                 if (e.detail === 1) {
                     clickTimer = setTimeout(() => {
                         cell.reveal();
+                        cntMines.innerHTML = board.minesLeft; //Atualiza o contador de minas
                     }, 119)
 
                 }
@@ -101,7 +101,7 @@ function BuildBoard() {
                     cronometro = setInterval(timer,1000);
                 }
             });
-            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag() });
+            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag(); cntMines.innerHTML = board.minesLeft.toString();}); //Atualiza o contador de minas });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
             document.getElementById("minesLeft").innerText = board.minesLeft.toString();
             gridContainer.appendChild(element);
@@ -234,8 +234,8 @@ function gameWon(){
         window.confetti();
     }, 500);
     clapSound.play();
-    alert("Parabéns!, Ganhaste!");
-    delay(5).then(() =>{ window.location.href = "scoreindivid.html";    })
+
+    delay(3000).then(() =>{ window.location.href = "scoreindivid.html";    })
    
     
 };
