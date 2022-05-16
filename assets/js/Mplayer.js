@@ -1,3 +1,30 @@
+import Cell from './Cell.js';
+
+let board1 = {
+    grid: [],
+    mines: 0,
+    width: 0,
+    height: 0,
+    minesLeft: 0,
+    gameOver: false,
+    gameWon: false,
+    firstClick: true,
+    playable:true, //para controlar quem está a jogar
+}
+
+let board2 = {
+    grid: [],
+    mines: 0,
+    width: 0,
+    height: 0,
+    minesLeft: 0,
+    gameOver: false,
+    gameWon: false,
+    firstClick: true,
+    playable:false,
+}
+
+
 window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
@@ -7,33 +34,22 @@ window.onload = function () {
     }
     changeColour();
 
-
-}
-function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-    var navbar = document.getElementsByClassName("navbar");
-    var colorPickerValue = document.getElementById("colorPicker").value;
-    var gridContainer = document.getElementsByClassName("grid-container");
-    var allGridItems = document.getElementsByClassName("grid-item");
-    var footer = document.getElementById("footer");
-    footer.style.backgroundColor = colorPickerValue;
-    navbar[0].style.backgroundColor = colorPickerValue;
-    //Change all grid items border color
-    for (var i = 0; i < allGridItems.length; i++) {
-        allGridItems[i].style.borderColor = colorPickerValue;
-    }
-    var darkerColor=mudarBrightness(colorPickerValue, -55);
-    gridContainer[0].style.backgroundColor=darkerColor
-    var css = '.grid-item:hover{ background-color:'+darkerColor;+'; color: black;}';
-var style = document.createElement('style');
-
-if (style.styleSheet) {
-style.styleSheet.cssText = css;
-} else {
-style.appendChild(document.createTextNode(css));
 }
 
-document.getElementsByTagName('head')[0].appendChild(style);
+
+
+function BuildBoards(){
+    var gridContainer1 = document.getElementById("gridContainer1");
+    var gridContainer2 = document.getElementById("gridContainer2");
+    let boardWidth = localStorage.getItem("Width");
+    let boardHeight = localStorage.getItem("Height");
+    let mines = localStorage.getItem("Mines");
+    //let cntMines = document.getElementById("minesLeft");
+
+    buildABoard(board1,gridContainer1);
+    buildABoard(board2,gridContainer2);
 }
+
 //Negativo fica mais esquro
 function mudarBrightness(cor, percent) {
 let hex = cor;
@@ -54,10 +70,4 @@ b = Math.round(Math.min(255, Math.max(0, b * calculatedPercent)));
 return `#${r.toString(16).toUpperCase()}${g.toString(16).toUpperCase()}${b
 .toString(16)
 .toUpperCase()}`;
-}
-
-
-function setCookies() {
-    var colorPicker = document.getElementById("colorPicker");
-    localStorage.setItem('color', colorPicker.value);
 }

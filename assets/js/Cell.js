@@ -143,6 +143,7 @@
             this.revealed = false;
             this.flagged = false;
             this.marked = false;
+            this.minesLeft = this.board.mines;
             this.element.innerHTML = "";
             this.element.style.opacity = 1;
         }

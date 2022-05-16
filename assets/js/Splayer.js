@@ -55,6 +55,8 @@ window.onload = function () {
  * Build the board with the cells and add event listeners to each cell -------------------------
 */
 
+
+
 function BuildBoard() {
     var gridContainer = document.getElementsByClassName('grid-container')[0];
     let boardWidth = localStorage.getItem("Width");
@@ -176,7 +178,7 @@ function mudarBrightness(cor, percent) {
 */
 
 function timer() {
-    let tempo_antigo = parseInt(document.getElementById("timer").innerText)
+        let tempo_antigo = parseInt(document.getElementById("timer").innerText)
     let novo_tempo = tempo_antigo + 1;
     let newTempo = novo_tempo.toString();
     document.getElementById("timer").innerHTML = newTempo;

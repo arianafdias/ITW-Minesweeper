@@ -50,7 +50,15 @@ button {
 }
 .container > div:not(.button, .quote, .special-corners1, .LoginBox){
     margin: auto;
-    width: 70%;
+    width: auto; /*é preciso por causa dos campos maiores*/
+    padding: 20px;
+    border-radius: 25px;
+    background-color: rgba(57, 62, 70, 0.70);
+}
+
+.difficulty{
+    margin: auto;
+    width: 70%; /*é preciso por causa dos campos maiores*/
     padding: 20px;
     border-radius: 25px;
     background-color: rgba(57, 62, 70, 0.70);
