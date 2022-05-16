@@ -66,12 +66,14 @@ function BuildBoard() {
         board.height = boardHeight;
         board.width = boardWidth;
         board.mines = mines;
+        board.minesLeft=board.mines;
     }
     else { //No cado do user nunca ter mudado a dimensão
         gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
         board.height = 9;
         board.width = 9;
         board.mines = 10;
+        board.minesLeft=board.mines;
     }
 
 
@@ -93,6 +95,7 @@ function BuildBoard() {
                     clickTimer = setTimeout(() => {
                         cell.reveal();
                     }, 119)
+
                 }
                 if (board.firstClick === true) {
                     cronometro = setInterval(timer,1000);
@@ -100,6 +103,7 @@ function BuildBoard() {
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag() });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
+            document.getElementById("minesLeft").innerText = board.minesLeft.toString();
             gridContainer.appendChild(element);
             board.grid[height][width] = cell;
         }
@@ -194,9 +198,8 @@ function gameOver(){
             board.grid[height][width].reveal();
         }
     }
-    
- 
-   // delay(1).then(() =>{alert("Perdeste! :( ");})
+    cronometro = clearInterval(cronometro);
+   delay(1).then(() =>{alert("Perdeste! :( ");})
     
 }
 
