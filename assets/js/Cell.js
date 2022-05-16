@@ -51,7 +51,7 @@
                 if(!this.board.gameOver)
                 this.gameOver();
             } else {
-                this.board.minesLeft--;
+             
                 let neighborMines = this.getNeighborMines();
                 if (neighborMines === 0) {
                     this.element.style.opacity = 0.6;
@@ -66,6 +66,8 @@
                     this.element.innerHTML = neighborMines;
                     this.element.style.opacity = 0.6;
                 }
+                if(!this.board.gameOver)
+                this.checkWin();
             }
         }
         /**
@@ -75,8 +77,9 @@
         flag() {
             if (!this.revealed) {
                 this.flagged = !this.flagged;
-                this.board.minesLeft = this.flagged ? this.board.minesLeft + 1 : this.board.minesLeft - 1;
+                this.board.minesLeft = this.flagged ? parseInt(this.board.minesLeft - 1) :parseInt(this.board.minesLeft + 1) ;
                 this.element.innerHTML = this.flagged ? "🚩" : "";
+                this.checkWin();
             }
         }
         /** //TODO - Implementar Imagem da Flag
@@ -126,6 +129,14 @@
                 }
             }
             return neighbors;
+        }
+        checkWin() {
+            let cells = this.board.grid.reduce((a, b) => a.concat(b));
+            let revealedCells = cells.filter(cell => cell.revealed);
+            let flaggedCells = cells.filter(cell => cell.flagged);
+            if (revealedCells.length + flaggedCells.length === this.board.width * this.board.height) {
+                this.gameWin();
+            }
         }
         restart() {
             this.isMine = false;
