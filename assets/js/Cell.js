@@ -79,7 +79,6 @@
                 this.board.minesLeft = this.flagged ? this.board.minesLeft + 1 : this.board.minesLeft - 1;
                 this.element.innerHTML = this.flagged ? "🚩" : "";
                 this.checkWin();
-                this.checkWin();
             }
         }
         /** //TODO - Implementar Imagem da Flag

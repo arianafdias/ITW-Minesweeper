@@ -75,7 +75,7 @@ function BuildBoard() {
         board.mines = 10;
     }
 
-    cntMines.innerHTML=board.mines;
+    cntMines.innerText=board.mines;
 
     //timer
     timerStarted = false;
@@ -93,7 +93,8 @@ function BuildBoard() {
                 if (e.detail === 1) {
                     clickTimer = setTimeout(() => {
                         cell.reveal();
-                        cntMines.innerHTML = board.minesLeft; //Atualiza o contador de minas
+                        let minesToShow = board.mines - board.minesLeft;
+                        cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
                     }, 119)
 
                 }
@@ -101,9 +102,10 @@ function BuildBoard() {
                     cronometro = setInterval(timer,1000);
                 }
             });
-            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag(); cntMines.innerHTML = board.minesLeft.toString();}); //Atualiza o contador de minas });
+            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag();
+                let minesToShow = board.mines - board.minesLeft;
+                cntMines.innerText = minesToShow.toString();}); //Atualiza o contador de minas });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
-            document.getElementById("minesLeft").innerText = board.minesLeft.toString();
             gridContainer.appendChild(element);
             board.grid[height][width] = cell;
         }
@@ -239,6 +241,8 @@ function gameWon(){
    
     
 };
+
+
 
 
 
