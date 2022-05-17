@@ -7,7 +7,7 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
   }
 
-let board1 = {
+  let board1 = {
     grid: [],
     mines: 0,
     width: 0,
@@ -16,6 +16,7 @@ let board1 = {
     gameOver: false,
     gameWon: false,
     firstClick: true,
+    gridContainer : document.getElementById("gridContainer1"),
     isPlaying:true, //para controlar quem está a jogar
     player1: true,
     //cntMines : document.getElementById("minesLeft1")
@@ -38,6 +39,7 @@ let board2 = {
    // tempo: document.getElementById("tempo2")
 }
 
+let clickTimer;
 
 window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
@@ -55,36 +57,34 @@ window.onload = function () {
 
 
 function BuildBoards(){
-    let gridContainer1 = document.getElementById("gridContainer1");
-    let gridContainer2 = document.getElementById("gridContainer2");
+  
     let boardWidth = localStorage.getItem("Width");
     let boardHeight = localStorage.getItem("Height");
     let mines = localStorage.getItem("Mines");
     //let cntMines = document.getElementById("minesLeft");
 
     if (boardWidth != null && boardHeight != null && mines != null) {
-        gridContainer1.style.gridTemplateColumns = "repeat(" + boardWidth + ", 1fr)";
-        gridContainer2.style.gridTemplateColumns = "repeat(" + boardWidth + ", 1fr)";
+        board1.gridContainer.style.gridTemplateColumns = "repeat(" + boardWidth + ", 1fr)";
+        board2.gridContainer.style.gridTemplateColumns = "repeat(" + boardWidth + ", 1fr)";
         board1.height = board2.height= boardHeight;
         board1.width = board2.width = boardWidth;
         board1.mines = board2.mines = mines;
     }
     else { //No cado do user nunca ter mudado a dimensão
-        gridContainer1.style.gridTemplateColumns = "repeat(9, 1fr)";
-        gridContainer2.style.gridTemplateColumns = "repeat(9, 1fr)";
+        board1.gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
+        board2.gridContainer.style.gridTemplateColumns = "repeat(9, 1fr)";
         board1.height = board2.height = 9;
         board1.width = board2.width = 9;
         board1.mines = board2.mines = 10;
     }
 
+    buildBoard(board1,board2);
+    buildBoard(board2,board1);
 
-    buildBoard(board1,gridContainer1,board2);
-    buildBoard(board2,gridContainer2,board1);
-
-    gridContainer2.style.opacity = 0.5;
+    board2.gridContainer.style.opacity = 0.25;
 }
 
-function buildBoard(board,gridContainer,otherBoard){
+function buildBoard(board,otherBoard){
  
     for (let height = 0; height < board.height; height++) {
         board.grid[height] = [];
@@ -101,11 +101,11 @@ function buildBoard(board,gridContainer,otherBoard){
                             cell.reveal();
                             board.isPlaying = false;
                             otherBoard.isPlaying = true;
-                            board.gridContainer.style.opacity = 0.5;
+                            board.gridContainer.style.opacity = 0.25;
                             otherBoard.gridContainer.style.opacity = 1;
                             let minesToShow = board.mines - board.minesLeft;
                             cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
-                        }, 200  )
+                        },200)
                     }
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag();
@@ -116,7 +116,7 @@ function buildBoard(board,gridContainer,otherBoard){
             cell.element.style.width="3em";
             cell.element.style.height="3em";
             cell.element.style.padding="0.5em";*/
-            gridContainer.appendChild(element);
+            board.gridContainer.appendChild(element);
             board.grid[height][width] = cell;
         }
         //Dar cor ao tabuleiro
@@ -127,8 +127,7 @@ function buildBoard(board,gridContainer,otherBoard){
 
 let loadingPage=false;
 function gameOver(board){
-    let explosionSound  = new Audio('../assets/audio/explosion.mp3');
-
+   
     explosionSound.play();
     board.gameOver = true;
     board.gameWon = false;
@@ -138,9 +137,8 @@ function gameOver(board){
         }
     }
     cronometro = clearInterval(cronometro);
-    loadingPage=true;
+    loadingPage=true;  //para poder cancelar com o botão de restart se o pusermos
     delay(2500).then(() =>{if(loadingPage==true) window.location.href = "score.html"})
-    
 }
 
 function gameWon(board){
@@ -163,7 +161,7 @@ function gameWon(board){
     }, 500);
     clapSound.play();
 
-    loadingPage=true; //para poder cancelar com o botão direito
+    loadingPage=true; //para poder cancelar com o botão de restart se o pusermos
     delay(3000).then(() =>{ if(loadingPage==true) window.location.href = "score.html";  })
    
     
