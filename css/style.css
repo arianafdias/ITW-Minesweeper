@@ -106,6 +106,8 @@ footer> .alunosInfo{
     text-align: center;
 }
 
+
+
 @supports not (display: grid) {
   .container{
     display: none;

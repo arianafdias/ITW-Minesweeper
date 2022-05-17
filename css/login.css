@@ -30,6 +30,12 @@ input[type="text"],input[type="password"], textarea {
 
 }
 
+label{
+    color:var(--secondaryBackground);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+
 /* Cor dos placeholders */
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: white;
