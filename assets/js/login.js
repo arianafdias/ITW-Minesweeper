@@ -35,16 +35,27 @@ function getDefaultColor() {
 }
 
 function login() {
-    let username = document.getElementById("username");
-    let password = document.getElementById("pass");
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("pass").value;
 
-    if ((username.value === localStorage.getItem("username") ||
-        username.value === localStorage.getItem("email")) && password.value === localStorage.getItem("pass")) {
-        alert("Logged-in com Sucesso! ");
-        localStorage.setItem("logged-in", "true");
-        window.event.returnValue = false; //Isto é necessário for some reason?? It's deprecated though
-        window.location.href = 'jogo.html';
+    let users = JSON.parse(localStorage.getItem("users"));
+    if (users == null) {
+        users = [];
     }
+
+    let userFound = users.find(user => {    //find retorna o primeiro elemento que satisfaz a condição
+        if ((user.username == username || user.email == user.username) && user.password == password) {
+            localStorage.setItem("logged-in", "true");
+            localStorage.setItem("username", username);
+            window.event.returnValue = false; //Isto é necessário for some reason?? It's deprecated though
+            window.location.href = 'jogo.html';
+            return true;
+        }
+    });
+    if (!userFound) {
+        alert("Username ou password incorretos!");
+    }
+   
 }
 
 

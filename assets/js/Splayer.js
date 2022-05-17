@@ -108,7 +108,7 @@ function BuildBoard() {
 
                 }
                 if (board.firstClick === true) {
-             
+                
                     cronometro = setInterval(timer,1000);
                 }
             });
@@ -175,6 +175,7 @@ function resetBoard(){
     document.getElementById("timer").innerHTML = 0;
     document.getElementById("minesLeft").innerHTML = board.mines.toString();
     board.firstClick=true;
+ 
     
 }
 
@@ -182,9 +183,24 @@ function resetBoard(){
 function gameWon(){
     board.gameWon = true;
     board.gameOver = true;
+
+    for (let height = 0; height < board.height; height++) {
+        for (let width = 0; width < board.width; width++) {
+            board.grid[height][width].reveal();
+        }
+    }
+
+    let allScores = JSON.parse(localStorage.getItem("scores"));
+   
+    if(allScores==null) allScores=[];
+    let newScore = {
+        name: localStorage.getItem("username"),
+        time: document.getElementById("timer").innerText,
+        boardStats: board.height + "x" + board.width + "x" + board.mines,
+    }
+
     cronometro = clearInterval(cronometro);
-  
-    window.confetti();
+    
     setInterval(function(){
         confetti({
             particleCount: 100,
@@ -204,7 +220,6 @@ function gameWon(){
    
     
 };
-
 
 
 

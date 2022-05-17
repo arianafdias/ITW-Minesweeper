@@ -131,12 +131,11 @@
                 }
             }
             return neighbors;
-        }
+        }   
         checkWin() {
             let cells = this.board.grid.reduce((a, b) => a.concat(b));
-            let revealedCells = cells.filter(cell => cell.revealed);
-            let flaggedCells = cells.filter(cell => cell.flagged);
-            if (revealedCells.length + flaggedCells.length === this.board.width * this.board.height) {
+            let notRevealedCells = cells.filter(cell => !cell.revealed);
+            if (notRevealedCells.length === parseInt(this.board.mines)) {
                 this.gameWin();
             }
         }

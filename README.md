@@ -24,6 +24,4 @@ EXTRAS:
 
 - Organizar a página dos stats por modo de jogo e tamanho de tabuleiro 
 
-
-Perguntas á stora se podemos usar isto : 
-https://bitwiser.in/blurt/#:~:text=blurt%20is%20a%20javascript%20replacement,alert()%20%2D%3E%20blurt()
+- Trocar os alerts por cenas na interface mm

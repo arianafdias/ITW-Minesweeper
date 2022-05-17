@@ -53,12 +53,32 @@ function createAcc(){
         return;
     }
 
+   
 
     if(password.value===passwordAgain.value)
-        {
-            localStorage.setItem("username",username.value);
-            localStorage.setItem("pass",pass.value);
-            localStorage.setItem("email",email.value);
+        { 
+            let users = JSON.parse(localStorage.getItem("users"));
+            if (users == null) {
+                users = [];
+            }
+            
+            let userFound = users.find(user => user.email==email.value || user.username==username.value);
+            if(userFound){
+                alert("O utilizador ou email já existe!");
+                return;
+            }
+            
+            let user = {
+                username: username.value,
+                password: password.value,
+                email: email.value
+            }
+            //Get array of users from local storage
+           
+            //Add new user to array
+            users.push(user);
+            //Save array to local storage
+            localStorage.setItem("users", JSON.stringify(users));
             alert("Conta Criada com sucesso!")
             window.location.href='login.html';
         }
