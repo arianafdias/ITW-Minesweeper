@@ -14,7 +14,7 @@ import Cell from './Cell.js';
   
    
 
-/* Constantes / Variaveis  ------------------------------------------------- */
+/* Constantes / letiaveis  ------------------------------------------------- */
 
 
 let cronometro;
@@ -41,7 +41,7 @@ let board = {
 window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
-    var colorPicker = document.getElementById("colorPicker");
+    let colorPicker = document.getElementById("colorPicker");
     if (localStorage.getItem('color') != null) {
         colorPicker.value = localStorage.getItem('color');
     }
@@ -60,7 +60,7 @@ window.onload = function () {
 
 
 function BuildBoard() {
-    var gridContainer = document.getElementsByClassName('grid-container')[0];
+    let gridContainer = document.getElementsByClassName('grid-container')[0];
     let boardWidth = localStorage.getItem("Width");
     let boardHeight = localStorage.getItem("Height");
     let mines = localStorage.getItem("Mines");

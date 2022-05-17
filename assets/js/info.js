@@ -4,7 +4,7 @@ window.onload = function () {
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
     
        
-    var colorPicker = document.getElementById("colorPicker");
+    let colorPicker = document.getElementById("colorPicker");
     if (localStorage.getItem('color') != null) 
         colorPicker.value = localStorage.getItem('color');
     changeColour();
@@ -12,14 +12,14 @@ window.onload = function () {
  
 }
 
-var docStyle = getComputedStyle(document.documentElement);
+let docStyle = getComputedStyle(document.documentElement);
        
         function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
             
-        var navbar= document.getElementsByClassName("navbar");
-        var colorPickerValue= document.getElementById("colorPicker").value;
-        var element= document.getElementById("multicolor"); //A palavra "regras"
-        var footer = document.getElementById("footer");
+        let navbar= document.getElementsByClassName("navbar");
+        let colorPickerValue= document.getElementById("colorPicker").value;
+        let element= document.getElementById("multicolor"); //A palavra "regras"
+        let footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
         navbar[0].style.backgroundColor=colorPickerValue;    
         element.style.background=colorPickerValue;

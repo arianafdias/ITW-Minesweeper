@@ -36,7 +36,7 @@ let board2 = {
 window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
-    var colorPicker = document.getElementById("colorPicker");
+    let colorPicker = document.getElementById("colorPicker");
     if (localStorage.getItem('color') != null) {
         colorPicker.value = localStorage.getItem('color');
     }
@@ -145,25 +145,25 @@ return `#${r.toString(16).toUpperCase()}${g.toString(16).toUpperCase()}${b
 function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
     if (localStorage.getItem('color') != null) 
         colorPicker.value = localStorage.getItem('color');
-    var navbar = document.getElementsByClassName("navbar");
-    var colorPickerValue = document.getElementById("colorPicker").value;
-    var gridContainer1 = document.getElementById("gridContainer1");
-    var gridContainer2 = document.getElementById("gridContainer2");
-    var allGridItems = document.getElementsByClassName("grid-item");
+    let navbar = document.getElementsByClassName("navbar");
+    let colorPickerValue = document.getElementById("colorPicker").value;
+    let gridContainer1 = document.getElementById("gridContainer1");
+    let gridContainer2 = document.getElementById("gridContainer2");
+    let allGridItems = document.getElementsByClassName("grid-item");
 
-    var footer = document.getElementById("footer");
+    let footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor = colorPickerValue;
 
     //Change all grid items border color
-    for (var i = 0; i < allGridItems.length; i++) 
+    for (let i = 0; i < allGridItems.length; i++) 
         allGridItems[i].style.borderColor = colorPickerValue;
     
-    var darkerColor = mudarBrightness(colorPickerValue, -55);
+    let darkerColor = mudarBrightness(colorPickerValue, -55);
     gridContainer1.style.backgroundColor = darkerColor;
     gridContainer2.style.backgroundColor = darkerColor;
-    var css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
-    var style = document.createElement('style');
+    let css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
+    let style = document.createElement('style');
 
     if (style.styleSheet) {
         style.styleSheet.cssText = css;

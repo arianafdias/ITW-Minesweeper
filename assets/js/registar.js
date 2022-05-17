@@ -1,7 +1,7 @@
 window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
-    var colorPicker = document.getElementById("colorPicker");
+    let colorPicker = document.getElementById("colorPicker");
     if (localStorage.getItem('color') != null) {
         colorPicker.value = localStorage.getItem('color');
     }
@@ -11,10 +11,10 @@ window.onload = function () {
 }
 
 function createAcc(){
-    var username = document.getElementById("username");
-    var password = document.getElementById("pass");
-    var passwordAgain = document.getElementById("passAgain");
-    var email = document.getElementById("email");
+    let username = document.getElementById("username");
+    let password = document.getElementById("pass");
+    let passwordAgain = document.getElementById("passAgain");
+    let email = document.getElementById("email");
 
     if (username.value == "" || password.value == "" || passwordAgain.value == "" || email.value == "") {
         alert("Preencha todos os campos!");
@@ -34,10 +34,10 @@ function createAcc(){
     }
 
     //Check if password has uppercase and lowercase letters and numbers
-    var hasUpper = false;
-    var hasLower = false;
-    var hasNumber = false;
-    for (var i = 0; i < password.value.length; i++) {
+    let hasUpper = false;
+    let hasLower = false;
+    let hasNumber = false;
+    for (let i = 0; i < password.value.length; i++) {
         if (password.value[i] >= 'A' && password.value[i] <= 'Z') {
             hasUpper = true;
         }
@@ -66,17 +66,17 @@ function createAcc(){
    
 }
         
-    var docStyle = getComputedStyle(document.documentElement);
+    let docStyle = getComputedStyle(document.documentElement);
    
     function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-    var navbar= document.getElementsByClassName("navbar");
-    var colorPickerValue= document.getElementById("colorPicker").value;
-    var element= document.getElementById("multicolor"); 
-    var element1= document.getElementById("multicolor1"); 
-    var element2= document.getElementById("multicolor2"); 
+    let navbar= document.getElementsByClassName("navbar");
+    let colorPickerValue= document.getElementById("colorPicker").value;
+    let element= document.getElementById("multicolor"); 
+    let element1= document.getElementById("multicolor1"); 
+    let element2= document.getElementById("multicolor2"); 
    
-    var loginBox= document.getElementsByClassName("LoginBox"); //div glow
-    var footer = document.getElementById("footer");
+    let loginBox= document.getElementsByClassName("LoginBox"); //div glow
+    let footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor=colorPickerValue;
     element.style.background=colorPickerValue;
