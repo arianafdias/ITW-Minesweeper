@@ -4,9 +4,7 @@
 MAIN: 
 
 o que falta:
-- número de minas restantes ( eventualmente ficar negativo, desce com a bandeira) *almost done*
-
-- faixa etária, e género - game over quando já n houver minas.
+ - game over quando já n houver minas.
 
 - Criar nova página com stats:
     --Número de minas abertas; Tempo Jogado; Número de jogos ganhos (SP e MP); Casas com bandeira e marcadas; 
