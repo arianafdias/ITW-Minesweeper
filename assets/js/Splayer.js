@@ -20,6 +20,9 @@ import Cell from './Cell.js';
 let cronometro;
 let clickTimer; //Timer para destinguir click de double click
 let timerStarted;
+let explosionSound  = new Audio('../assets/audio/explosion.mp3');
+let clapSound = new Audio('../assets/audio/clapclapclapclapclapclapclap.mp3');
+let loadingPage=false;
 
 
 /* ------------------------------------------------------------------------- 
@@ -35,6 +38,9 @@ let board = {
     gameWon: false,
     firstClick: true,
     isPlaying: true,
+    startTimestamp: Date.now()/1000, //timestamp em segundos
+    //cntMines : document.getElementById("minesLeft")
+    //tempo: document.getElementById("tempo")
 }
 
 
@@ -99,7 +105,7 @@ function BuildBoard() {
                         cell.reveal();
                         let minesToShow = board.mines - board.minesLeft;
                         cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
-                    }, 119)
+                    }, 200)
 
                 }
                 if (board.firstClick === true) {
@@ -130,7 +136,7 @@ function BuildBoard() {
 */
 
 function timer() {
-        let tempo_antigo = parseInt(document.getElementById("timer").innerText)
+    let tempo_antigo = parseInt(document.getElementById("timer").innerText)
     let novo_tempo = tempo_antigo + 1;
     let newTempo = novo_tempo.toString();
     document.getElementById("timer").innerHTML = newTempo;
@@ -140,8 +146,7 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
   }
 
-let explosionSound  = new Audio('../assets/audio/explosion.mp3');
-let clapSound = new Audio('../assets/audio/clapclapclapclapclapclapclap.mp3');
+
 function gameOver(){
     
     explosionSound.play();
@@ -153,11 +158,13 @@ function gameOver(){
         }
     }
     cronometro = clearInterval(cronometro);
-   delay(1).then(() =>{alert("Perdeste! :( ");})
+    loadingPage=true;
+   delay(2500).then(() =>{if(loadingPage==true) window.location.href = "scoreindivid.html"})
     
 }
 
 function resetBoard(){
+    loadingPage=false;
     board.gameOver = false;
     board.gameWon = false;
     for (let height = 0; height < board.height; height++) {
@@ -171,9 +178,12 @@ function resetBoard(){
     
 }
 
+
 function gameWon(){
     board.gameWon = true;
     board.gameOver = true;
+    cronometro = clearInterval(cronometro);
+    alert(Date.now()/1000-board.startTimestamp);
     window.confetti();
     setInterval(function(){
         confetti({
@@ -189,8 +199,8 @@ function gameWon(){
         window.confetti();
     }, 500);
     clapSound.play();
-
-    delay(3000).then(() =>{ window.location.href = "scoreindivid.html";    })
+    loadingPage=true; //para poder cancelar com o botão direito
+    delay(2500).then(() =>{ if(loadingPage==true) window.location.href = "scoreindivid.html";  })
    
     
 };

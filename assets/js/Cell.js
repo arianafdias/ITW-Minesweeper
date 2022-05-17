@@ -52,6 +52,8 @@
                 if(!this.board.gameOver)
                 this.gameOver();
             } else {
+                this.flagged=false;
+                this.marked=false;
                 let neighborMines = this.getNeighborMines();
                 if (neighborMines === 0) {
                     this.element.style.opacity = 0.6;

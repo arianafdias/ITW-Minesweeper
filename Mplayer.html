@@ -19,7 +19,7 @@ Grupo 46    PL21
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <script type="text/javascript" src="assets/js/MplayerChangeColour.js"> </script>
     <script type="module" src="assets/js/Mplayer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
@@ -52,7 +52,7 @@ Grupo 46    PL21
                     <li id="login"><a href="login.html">Login</a></li>
                     <li>
                         <div class="cp_wrapper">
-                            <input type="color" id="colorPicker" oninput="changeColour()"
+                            <input type="color" id="colorPicker" oninput="changeColour(this.value)"
                                 onchange="localStorage.setItem('color',this.value);;" value="getDefaultColor()"
                                 style="width:100%;">
                         </div>
