@@ -14,12 +14,15 @@ import Cell from './Cell.js';
   
    
 
-/* Constantes / Variaveis  ------------------------------------------------- */
+/* Constantes / letiaveis  ------------------------------------------------- */
 
 
 let cronometro;
 let clickTimer; //Timer para destinguir click de double click
 let timerStarted;
+let explosionSound  = new Audio('../assets/audio/explosion.mp3');
+let clapSound = new Audio('../assets/audio/clapclapclapclapclapclapclap.mp3');
+let loadingPage=false;
 
 
 /* ------------------------------------------------------------------------- 
@@ -34,19 +37,23 @@ let board = {
     gameOver: false,
     gameWon: false,
     firstClick: true,
+    isPlaying: true,
+    //cntMines : document.getElementById("minesLeft")
+    //tempo: document.getElementById("tempo")
 }
 
 
 window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
-    var colorPicker = document.getElementById("colorPicker");
+    let colorPicker = document.getElementById("colorPicker");
     if (localStorage.getItem('color') != null) {
         colorPicker.value = localStorage.getItem('color');
     }
     document.getElementById("btnReset").addEventListener('click', () => resetBoard());
-    changeColour();
+    
     BuildBoard();
+    changeColour();
     
 
 }
@@ -58,7 +65,7 @@ window.onload = function () {
 
 
 function BuildBoard() {
-    var gridContainer = document.getElementsByClassName('grid-container')[0];
+    let gridContainer = document.getElementsByClassName('grid-container')[0];
     let boardWidth = localStorage.getItem("Width");
     let boardHeight = localStorage.getItem("Height");
     let mines = localStorage.getItem("Mines");
@@ -97,10 +104,11 @@ function BuildBoard() {
                         cell.reveal();
                         let minesToShow = board.mines - board.minesLeft;
                         cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
-                    }, 119)
+                    }, 200)
 
                 }
                 if (board.firstClick === true) {
+                
                     cronometro = setInterval(timer,1000);
                 }
             });
@@ -120,67 +128,15 @@ function BuildBoard() {
     
 }
 
-/**
- * Function to change the color of the page -------------------------
-*/
-function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-    if (localStorage.getItem('color') != null) 
-        colorPicker.value = localStorage.getItem('color');
-    var navbar = document.getElementsByClassName("navbar");
-    var colorPickerValue = document.getElementById("colorPicker").value;
-    var gridContainer = document.getElementsByClassName("grid-container");
-    var allGridItems = document.getElementsByClassName("grid-item");
-    let btnRestart = document.getElementById("btnReset");
-    var footer = document.getElementById("footer");
-    footer.style.backgroundColor = colorPickerValue;
-    navbar[0].style.backgroundColor = colorPickerValue;
-    btnRestart.style.backgroundColor = colorPickerValue;
-    //Change all grid items border color
-    for (var i = 0; i < allGridItems.length; i++) {
-        allGridItems[i].style.borderColor = colorPickerValue;
-    }
-    var darkerColor = mudarBrightness(colorPickerValue, -55);
-    gridContainer[0].style.backgroundColor = darkerColor
-    var css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
-    var style = document.createElement('style');
 
-    if (style.styleSheet) {
-        style.styleSheet.cssText = css;
-    } else {
-        style.appendChild(document.createTextNode(css));
-    }
 
-    document.getElementsByTagName('head')[0].appendChild(style);
-}
-
-//Para o efeito do hover
-function mudarBrightness(cor, percent) {
-    let hex = cor;
-
-    // tirar o # se existir
-    hex = hex.replace(/^\s*#|\s*$/g, "");
-
-    let r = parseInt(hex.substr(0, 2), 16);
-    let g = parseInt(hex.substr(2, 2), 16);
-    let b = parseInt(hex.substr(4, 2), 16);
-
-    const calculatedPercent = (100 + percent) / 100;
-
-    r = Math.round(Math.min(255, Math.max(0, r * calculatedPercent)));
-    g = Math.round(Math.min(255, Math.max(0, g * calculatedPercent)));
-    b = Math.round(Math.min(255, Math.max(0, b * calculatedPercent)));
-
-    return `#${r.toString(16).toUpperCase()}${g.toString(16).toUpperCase()}${b
-        .toString(16)
-        .toUpperCase()}`;
-}
 
 /**
  * Timer Stuff -------------------------
 */
 
 function timer() {
-        let tempo_antigo = parseInt(document.getElementById("timer").innerText)
+    let tempo_antigo = parseInt(document.getElementById("timer").innerText)
     let novo_tempo = tempo_antigo + 1;
     let newTempo = novo_tempo.toString();
     document.getElementById("timer").innerHTML = newTempo;
@@ -190,8 +146,7 @@ function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
   }
 
-let explosionSound  = new Audio('../assets/audio/explosion.mp3');
-let clapSound = new Audio('../assets/audio/clapclapclapclapclapclapclap.mp3');
+
 function gameOver(){
     
     explosionSound.play();
@@ -203,11 +158,13 @@ function gameOver(){
         }
     }
     cronometro = clearInterval(cronometro);
-   delay(1).then(() =>{alert("Perdeste! :( ");})
+    loadingPage=true;
+   delay(2500).then(() =>{if(loadingPage==true) window.location.href = "scoreindivid.html"})
     
 }
 
 function resetBoard(){
+    loadingPage=false;
     board.gameOver = false;
     board.gameWon = false;
     for (let height = 0; height < board.height; height++) {
@@ -216,14 +173,34 @@ function resetBoard(){
         }
     }
     document.getElementById("timer").innerHTML = 0;
+    document.getElementById("minesLeft").innerHTML = board.mines.toString();
     board.firstClick=true;
+ 
     
 }
+
 
 function gameWon(){
     board.gameWon = true;
     board.gameOver = true;
-    window.confetti();
+
+    for (let height = 0; height < board.height; height++) {
+        for (let width = 0; width < board.width; width++) {
+            board.grid[height][width].reveal();
+        }
+    }
+
+    let allScores = JSON.parse(localStorage.getItem("scores"));
+   
+    if(allScores==null) allScores=[];
+    let newScore = {
+        name: localStorage.getItem("username"),
+        time: document.getElementById("timer").innerText,
+        boardStats: board.height + "x" + board.width + "x" + board.mines,
+    }
+
+    cronometro = clearInterval(cronometro);
+    
     setInterval(function(){
         confetti({
             particleCount: 100,
@@ -238,12 +215,11 @@ function gameWon(){
         window.confetti();
     }, 500);
     clapSound.play();
-
-    delay(3000).then(() =>{ window.location.href = "scoreindivid.html";    })
+    loadingPage=true; //para poder cancelar com o botão direito
+    delay(2500).then(() =>{ if(loadingPage==true) window.location.href = "scoreindivid.html";  })
    
     
 };
-
 
 
 

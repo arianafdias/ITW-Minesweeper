@@ -52,7 +52,7 @@ Grupo 46    PL21
             </li>
             <li id="login"><a href="login.html">Login</a></li>
             <li><div class="cp_wrapper">
-                <input type='color' id="colorPicker" oninput="changeColour()" onchange="localStorage.setItem('color',this.value);;" value="getDefaultColor()" style="width:100%;"></div></li>
+                <input type="color" id="colorPicker" oninput="changeColour()" onchange="localStorage.setItem('color',this.value);;" value="getDefaultColor()" style="width:100%;"></div></li>
         </div>
     </ul>
 </nav>
@@ -82,12 +82,12 @@ Grupo 46    PL21
         </div>
     </footer>
 <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
-    var color=localStorage.getItem('color');
+    let color=localStorage.getItem('color');
     
-    var colorPicker = document.getElementById("colorPicker");
-    var navbar= document.getElementsByClassName("navbar");
-    var element1= document.getElementById("multicolor1"); //A palavra "regras"
-    var element2= document.getElementById("multicolor2"); //O botão para jogar
+    let colorPicker = document.getElementById("colorPicker");
+    let navbar= document.getElementsByClassName("navbar");
+    let element1= document.getElementById("multicolor1"); //A palavra "regras"
+    let element2= document.getElementById("multicolor2"); //O botão para jogar
      navbar[0].style.backgroundColor=color;
      colorPicker.value=color;
      element1.style.backgroundColor=color;

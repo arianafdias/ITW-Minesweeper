@@ -1,7 +1,7 @@
 window.onload = function () {
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
-    var colorPicker = document.getElementById("colorPicker");
+    let colorPicker = document.getElementById("colorPicker");
     if (localStorage.getItem('color') != null) {
         colorPicker.value = localStorage.getItem('color');
     }
@@ -9,17 +9,17 @@ window.onload = function () {
 
 }
 
-var docStyle = getComputedStyle(document.documentElement);
+let docStyle = getComputedStyle(document.documentElement);
 
 function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-    var navbar = document.getElementsByClassName("navbar");
-    var colorPickerValue = document.getElementById("colorPicker").value;
-    var element1 = document.getElementById("multicolor1");
-    var element2 = document.getElementById("multicolor2");
-    var element3 = document.getElementById("multicolor3");
-    var element4 = document.getElementById("multicolor4");
-    var loginBox = document.getElementsByClassName("LoginBox"); //div glow
-    var footer = document.getElementById("footer");
+    let navbar = document.getElementsByClassName("navbar");
+    let colorPickerValue = document.getElementById("colorPicker").value;
+    let element1 = document.getElementById("multicolor1");
+    let element2 = document.getElementById("multicolor2");
+    let element3 = document.getElementById("multicolor3");
+    let element4 = document.getElementById("multicolor4");
+    let loginBox = document.getElementsByClassName("LoginBox"); //div glow
+    let footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor = colorPickerValue;
     element1.style.color = colorPickerValue;
@@ -35,16 +35,27 @@ function getDefaultColor() {
 }
 
 function login() {
-    var username = document.getElementById("username");
-    var password = document.getElementById("pass");
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("pass").value;
 
-    if ((username.value === localStorage.getItem("username") ||
-        username.value === localStorage.getItem("email")) && password.value === localStorage.getItem("pass")) {
-        alert("Logged-in com Sucesso! ");
-        localStorage.setItem("logged-in", "true");
-        window.event.returnValue = false; //Isto é necessário for some reason?? It's deprecated though
-        window.location.href = 'jogo.html';
+    let users = JSON.parse(localStorage.getItem("users"));
+    if (users == null) {
+        users = [];
     }
+
+    let userFound = users.find(user => {    //find retorna o primeiro elemento que satisfaz a condição
+        if ((user.username == username || user.email == user.username) && user.password == password) {
+            localStorage.setItem("logged-in", "true");
+            localStorage.setItem("username", username);
+            window.event.returnValue = false; //Isto é necessário for some reason?? It's deprecated though
+            window.location.href = 'jogo.html';
+            return true;
+        }
+    });
+    if (!userFound) {
+        alert("Username ou password incorretos!");
+    }
+   
 }
 
 

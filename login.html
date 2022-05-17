@@ -50,7 +50,7 @@ Grupo 46    PL21
                 </li>
                 <li id="login"><a  href="login.html">Login</a></li>
                 <li><div class="cp_wrapper">
-                    <input type='color' id="colorPicker" oninput="changeColour()" onchange="localStorage.setItem('color',this.value);;" value="getDefaultColor()" style="width:100%;"></div></li>
+                    <input type="color" id="colorPicker" oninput="changeColour()" onchange="localStorage.setItem('color',this.value);;" value="getDefaultColor()" style="width:100%;"></div></li>
             </div>
         </ul>
     </nav>
@@ -58,7 +58,7 @@ Grupo 46    PL21
     <div id="multicolor5" class="LoginBox">
         <p id="multicolor1" class="Title">Login</p>
         <form class="form1">
-            <input class="InputBox" id="username" type="text" placeholder="Username">
+            <input class="InputBox" id="username" type="text" placeholder="Username ou E-Mail">
             <br> <br>
             <input class="InputBox" id="pass" type="password" placeholder="Password">
             <br> <br><br>
@@ -94,15 +94,15 @@ Grupo 46    PL21
         </div>
     </footer>
 <script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
-    var color=localStorage.getItem('color');
+    let color=localStorage.getItem('color');
     
-    var colorPicker = document.getElementById("colorPicker");
-    var navbar= document.getElementsByClassName("navbar");
-    var element1= document.getElementById("multicolor1"); 
-    var element2= document.getElementById("multicolor2");
-    var element3= document.getElementById("multicolor3"); 
-     var element4= document.getElementById("multicolor4");  
-     var loginBox= document.getElementsByClassName("LoginBox"); //div glow
+    let colorPicker = document.getElementById("colorPicker");
+    let navbar= document.getElementsByClassName("navbar");
+    let element1= document.getElementById("multicolor1"); 
+    let element2= document.getElementById("multicolor2");
+    let element3= document.getElementById("multicolor3"); 
+     let element4= document.getElementById("multicolor4");  
+     let loginBox= document.getElementsByClassName("LoginBox"); //div glow
      navbar[0].style.backgroundColor=color;
      colorPicker.value=color;
      element1.style.color=color;

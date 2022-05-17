@@ -1,40 +1,40 @@
-var EASY_BOARD_HEIGHT = 9;
-var EASY_BOARD_WIDTH = 9;
-var EASY_BOARD_MINES = 10;
-var EASY_BOARD_DENISTY = '15.63%';
+let EASY_BOARD_HEIGHT = 9;
+let EASY_BOARD_WIDTH = 9;
+let EASY_BOARD_MINES = 10;
+let EASY_BOARD_DENISTY = '15.63%';
 
 
-var MEDIUM_BOARD_HEIGHT = 16;
-var MEDIUM_BOARD_WIDTH = 16;
-var MEDIUM_BOARD_MINES = 40;
-var MEDIUM_BOARD_DENISTY = '15.63%';
+let MEDIUM_BOARD_HEIGHT = 16;
+let MEDIUM_BOARD_WIDTH = 16;
+let MEDIUM_BOARD_MINES = 40;
+let MEDIUM_BOARD_DENISTY = '15.63%';
 
-var HARD_BOARD_HEIGHT = 30;
-var HARD_BOARD_WIDTH = 16;
-var HARD_BOARD_MINES = 99;
-var HARD_BOARD_DENISTY = '20.63%';
+let HARD_BOARD_HEIGHT = 30;
+let HARD_BOARD_WIDTH = 16;
+let HARD_BOARD_MINES = 99;
+let HARD_BOARD_DENISTY = '20.63%';
 
-var CUSTOM_BOARD_HEIGHT = 30;
-var CUSTOM_BOARD_WIDTH = 24;
-var CUSTOM_BOARD_MINES = 125;
-var CUSTOM_BOARD_DENISTY = '26.04%';
-var CUSTOM_BOARD_MINESMAX = CUSTOM_BOARD_HEIGHT * CUSTOM_BOARD_WIDTH - 1;
+let CUSTOM_BOARD_HEIGHT = 30;
+let CUSTOM_BOARD_WIDTH = 24;
+let CUSTOM_BOARD_MINES = 125;
+let CUSTOM_BOARD_DENISTY = '26.04%';
+let CUSTOM_BOARD_MINESMAX = CUSTOM_BOARD_HEIGHT * CUSTOM_BOARD_WIDTH - 1;
 
 window.onload = function () {
   
-    var slider1 = document.getElementById("slider1");
-    var slider2 = document.getElementById("slider2");
-    var slider3 = document.getElementById("slider3");
-    var lbl1 = document.getElementById("lbl1");
-    var lbl2 = document.getElementById("lbl2");
-    var lbl3 = document.getElementById("lbl3");
-    var dificultySelector = document.getElementById("select-css");
-    var mineDensity = document.getElementById("mineDensity");
+    let slider1 = document.getElementById("slider1");
+    let slider2 = document.getElementById("slider2");
+    let slider3 = document.getElementById("slider3");
+    let lbl1 = document.getElementById("lbl1");
+    let lbl2 = document.getElementById("lbl2");
+    let lbl3 = document.getElementById("lbl3");
+    let dificultySelector = document.getElementById("select-css");
+    let mineDensity = document.getElementById("mineDensity");
     dificultySelector.onchange = function(){ changeDificulty(dificultySelector.value);}
         
     if (localStorage.getItem("logged-in") === "true")
         document.getElementById("login").innerHTML=`<a onclick="logout()" href="index.html">Logout</a>`;
-    var colorPicker = document.getElementById("colorPicker");
+    let colorPicker = document.getElementById("colorPicker");
     if (localStorage.getItem("color") != null) {
         colorPicker.value = localStorage.getItem("color");
     }
@@ -148,14 +148,14 @@ function changeDificulty(dificulty){
 }
 
 function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
-    var navbar = document.getElementsByClassName("navbar");
-    var colorPickerValue = document.getElementById("colorPicker").value;
-    var element = document.getElementById("multicolor5");
-    var element2 = document.getElementById("multicolor6");
+    let navbar = document.getElementsByClassName("navbar");
+    let colorPickerValue = document.getElementById("colorPicker").value;
+    let element = document.getElementById("multicolor5");
+    let element2 = document.getElementById("multicolor6");
     //Mudar a cor de um elemento pseudo-elemento (n sei pk está lento mas até ficou fixe)
-    var css = 'input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-color:' + colorPickerValue + ';width: 30px;height: 30px;border-radius: 50%;border: 2px solid white;cursor: pointer;transition: .3s ease-in-out;}​';
-    var style = document.createElement('style');
-    var footer = document.getElementById("footer");
+    let css = 'input[type="range"]::-webkit-slider-thumb {-webkit-appearance: none;background-color:' + colorPickerValue + ';width: 30px;height: 30px;border-radius: 50%;border: 2px solid white;cursor: pointer;transition: .3s ease-in-out;}​';
+    let style = document.createElement('style');
+    let footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
     if (style.styleSheet) {
         style.styleSheet.cssText = css;

@@ -19,8 +19,9 @@ Grupo 46    PL21
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <script type="text/javascript" src="assets/js/MplayerChangeColour.js"> </script>
     <script type="module" src="assets/js/Mplayer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     
     <title>Individual</title>
 </head>
@@ -51,7 +52,7 @@ Grupo 46    PL21
                     <li id="login"><a href="login.html">Login</a></li>
                     <li>
                         <div class="cp_wrapper">
-                            <input type='color' id="colorPicker" oninput="changeColour()"
+                            <input type="color" id="colorPicker" oninput="changeColour(this.value)"
                                 onchange="localStorage.setItem('color',this.value);;" value="getDefaultColor()"
                                 style="width:100%;">
                         </div>
@@ -99,13 +100,9 @@ Grupo 46    PL21
                 </div>
             </div>
         </div>
-    </div>
-
- 
-        
-
-        <br>
-        <footer id="footer">
+   
+        <br><br><br><br><br><br>
+        <footer id="footer" >
             <div class="cadeiraInfo">
                 <p> ITW - 2020/2021 </p>
                 <p> Grupo 46 PL21 </p>
@@ -118,6 +115,11 @@ Grupo 46    PL21
 
             </div>
         </footer>
+    </div>
+
+ 
+        
+ 
         <!--- <audio alt="easy" href="assets/audio/05 - Logic and Trick.mp3" controls type="audio/mpeg"> </audio>
     <audio alt="medium" href="assets/audio/10 - Suspense.mp3" controls type="audio/mpeg"> </audio>
     <audio alt="hard" href="assets/audio/08 - Pressing Pursuit _ Cornered.mp3" controls type="audio/mpeg"> </audio> -->

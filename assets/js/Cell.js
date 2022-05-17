@@ -30,7 +30,8 @@
          * @returns {void}
         */
         reveal() {
-            if (this.board.firstClick) {
+            if(this.board.isPlaying) {
+                if (this.board.firstClick) {
                 this.board.firstClick = false;
                 //startTimer();
                 //Create bomb numbers
@@ -51,6 +52,8 @@
                 if(!this.board.gameOver)
                 this.gameOver();
             } else {
+                this.flagged=false;
+                this.marked=false;
                 let neighborMines = this.getNeighborMines();
                 if (neighborMines === 0) {
                     this.element.style.opacity = 0.6;
@@ -67,14 +70,14 @@
                 }
                 if(!this.board.gameOver)
                 this.checkWin();
-            }
+            }}
         }
         /**
          * Flags the cell and changes the mine counter if it is not revealed
          * @returns {void}
         */
         flag() {
-            if (!this.revealed) {
+            if (!this.revealed && this.board.isPlaying) {
                 this.flagged = !this.flagged;
                 this.board.minesLeft = this.flagged ? this.board.minesLeft + 1 : this.board.minesLeft - 1;
                 this.element.innerHTML = this.flagged ? "🚩" : "";
@@ -86,7 +89,7 @@
          * @returns {void}
         */
         mark() {
-            if (!this.revealed) {
+            if (!this.revealed && this.board.isPlaying) {
                 this.marked = !this.marked;
                 this.element.innerHTML = this.marked ? "<img src=\"https://www.thedome.org/wp-content/uploads/2019/06/300x300-Placeholder-Image.jpg\" width=\"25px\" height=\"25px\">" : "";
             }
@@ -128,12 +131,11 @@
                 }
             }
             return neighbors;
-        }
+        }   
         checkWin() {
             let cells = this.board.grid.reduce((a, b) => a.concat(b));
-            let revealedCells = cells.filter(cell => cell.revealed);
-            let flaggedCells = cells.filter(cell => cell.flagged);
-            if (revealedCells.length + flaggedCells.length === this.board.width * this.board.height) {
+            let notRevealedCells = cells.filter(cell => !cell.revealed);
+            if (notRevealedCells.length === parseInt(this.board.mines)) {
                 this.gameWin();
             }
         }
@@ -146,6 +148,7 @@
             this.element.innerHTML = "";
             this.element.style.opacity = 1;
         }
+    
 
     }
 
@@ -166,13 +169,3 @@ function randomInts(quantity, max, blacklist = []) {
     return Array.from(set);
 }
     
-
-function gameWon(){
-    this.board.gameOver = true;
-    this.board.gameWon = true;
-    for (let height = 0; height < this.board.height; height++) {
-        for (let width = 0; width < this.board.width; width++) {
-            this.board.grid[height][width].reveal();
-        }
-    }
-}

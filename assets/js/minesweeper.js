@@ -14,7 +14,7 @@ import Cell from './Cell.js';
   
    
 
-/* Constantes / Variaveis  ------------------------------------------------- */
+/* Constantes / letiaveis  ------------------------------------------------- */
 
 
 let cronometro;
@@ -25,7 +25,7 @@ let timerStarted;
 /* ------------------------------------------------------------------------- 
     Object that represents the board --------------------------------------
 */
-var board = {
+let board = {
     grid: [],
     mines: 0,
     width: 0,
@@ -44,7 +44,7 @@ window.onload = BuildBoard;
 */
 
 function BuildBoard() {
-    var gridContainer = document.getElementsByClassName('grid-container')[0];
+    let gridContainer = document.getElementsByClassName('grid-container')[0];
     let boardWidth = localStorage.getItem("Width");
     let boardHeight = localStorage.getItem("Height");
     let mines = localStorage.getItem("Mines");
@@ -113,19 +113,19 @@ function BuildBoard() {
 function changeColour() { //Tem que tar dentro da função para mudar tudo em tempo real
     if (localStorage.getItem('color') != null) 
         colorPicker.value = localStorage.getItem('color');
-    var navbar = document.getElementsByClassName("navbar");
-    var colorPickerValue = document.getElementById("colorPicker").value;
-    var gridContainer = document.getElementsByClassName("grid-container");
-    var allGridItems = document.getElementsByClassName("grid-item");
+    let navbar = document.getElementsByClassName("navbar");
+    let colorPickerValue = document.getElementById("colorPicker").value;
+    let gridContainer = document.getElementsByClassName("grid-container");
+    let allGridItems = document.getElementsByClassName("grid-item");
     navbar[0].style.backgroundColor = colorPickerValue;
     //Change all grid items border color
-    for (var i = 0; i < allGridItems.length; i++) {
+    for (let i = 0; i < allGridItems.length; i++) {
         allGridItems[i].style.borderColor = colorPickerValue;
     }
-    var darkerColor = mudarBrightness(colorPickerValue, -55);
+    let darkerColor = mudarBrightness(colorPickerValue, -55);
     gridContainer[0].style.backgroundColor = darkerColor
-    var css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
-    var style = document.createElement('style');
+    let css = '.grid-item:hover{ background-color:' + darkerColor; +'; color: black;}';
+    let style = document.createElement('style');
 
     if (style.styleSheet) {
         style.styleSheet.cssText = css;
