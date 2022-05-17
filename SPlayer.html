@@ -20,14 +20,10 @@ Grupo 46    PL21
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="text/javascript" src="assets/js/logout.js"></script>
-     
+    <script type="text/javascript" src="assets/js/SplayerChangeColour.js"></script>
     <script type="module" src="assets/js/Splayer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-    <script src="assets/js/constants.js"></script>
-
-
    
-
     <title>Individual</title>
 </head>
 
@@ -55,7 +51,7 @@ Grupo 46    PL21
                     </li>
   <li id="login"><a href="login.html">Login</a></li>                    <li>
                         <div class="cp_wrapper">
-                            <input type='color' id="colorPicker" oninput="changeColour()" onchange="localStorage.setItem('color',this.value);;"
+                            <input type="color" id="colorPicker" oninput="changeColour(this.value)" onchange="localStorage.setItem('color',this.value);"
                                 value="getDefaultColor()" style="width:100%;">
                         </div>
                     </li>
@@ -83,7 +79,7 @@ Grupo 46    PL21
 
         </div>
     </div>
-    
+    <br><br><br><br><br>
     <footer  id="footer">
         <div class="cadeiraInfo">
             <p> ITW - 2020/2021 </p>
