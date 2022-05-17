@@ -38,7 +38,6 @@ let board = {
     gameWon: false,
     firstClick: true,
     isPlaying: true,
-    startTimestamp: Date.now()/1000, //timestamp em segundos
     //cntMines : document.getElementById("minesLeft")
     //tempo: document.getElementById("tempo")
 }
@@ -109,6 +108,7 @@ function BuildBoard() {
 
                 }
                 if (board.firstClick === true) {
+                    board.startTimestamp = new Date.now();
                     cronometro = setInterval(timer,1000);
                 }
             });
@@ -183,7 +183,7 @@ function gameWon(){
     board.gameWon = true;
     board.gameOver = true;
     cronometro = clearInterval(cronometro);
-    alert(Date.now()/1000-board.startTimestamp);
+  
     window.confetti();
     setInterval(function(){
         confetti({

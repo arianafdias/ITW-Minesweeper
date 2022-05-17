@@ -18,8 +18,6 @@ let board1 = {
     firstClick: true,
     isPlaying:true, //para controlar quem está a jogar
     player1: true,
-    gridContainer : document.getElementById("gridContainer1"),
-    startTimestamp: Date.now()/1000, //timestamp em segundos
     //cntMines : document.getElementById("minesLeft1")
     //tempo: document.getElementById("tempo1")
 }
@@ -37,7 +35,6 @@ let board2 = {
     player1: false,
     gridContainer : document.getElementById("gridContainer2"),
     cntMines : document.getElementById("minesLeft2"),
-    startTimestamp: Date.now()/1000, //timestamp em segundos
    // tempo: document.getElementById("tempo2")
 }
 
