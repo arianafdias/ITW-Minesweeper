@@ -108,7 +108,7 @@ function BuildBoard() {
 
                 }
                 if (board.firstClick === true) {
-                    board.startTimestamp = new Date.now();
+             
                     cronometro = setInterval(timer,1000);
                 }
             });
