@@ -39,8 +39,8 @@ window.onload = function () {
         colorPicker.value = localStorage.getItem("color");
     }
     changeColour();
-    if(localStorage.getItem("Dificulty") != null){
-        dificulty=localStorage.getItem("Dificulty");
+    if(localStorage.getItem("Difficulty") != null){
+        dificulty=localStorage.getItem("Difficulty");
         changeDificulty(dificulty);
         dificultySelector.value = dificulty;
 
@@ -97,18 +97,18 @@ function changeDificulty(dificulty){
             localStorage.setItem("Height", slider1.value);
             localStorage.setItem("Width", slider1.value);
             localStorage.setItem("Mines", slider3.value);
-            localStorage.setItem("Dificulty", "Easy");
+            localStorage.setItem("Difficulty", "Easy");
             mineDensity.innerHTML = EASY_BOARD_DENISTY;
             break;
         case "Normal": //16x16 40 mines
-            slider1.value = lbl1.innerHTML = slider2.value = lbl2.innerHTML = MEDIUM_BOARD_HEIGHT;
+            slider1.value = lbl1.innerHTML =    slider2.value = lbl2.innerHTML = MEDIUM_BOARD_HEIGHT;
             slider3.value = lbl3.innerHTML = MEDIUM_BOARD_MINES;
             slider1.style.display = slider2.style.display = slider3.style.display = "none";
             mineDensity.innerHTML = MEDIUM_BOARD_DENISTY;
             localStorage.setItem("Height", slider1.value );
             localStorage.setItem("Width", slider1.value);
             localStorage.setItem("Mines", slider3.value);
-            localStorage.setItem("Dificulty", "Normal");
+            localStorage.setItem("Difficulty", "Normal");
             break;
         case "Hard": //30x16 99 mines
             slider1.value = lbl1.innerHTML =HARD_BOARD_HEIGHT;
@@ -119,7 +119,7 @@ function changeDificulty(dificulty){
             localStorage.setItem("Height", 30);
             localStorage.setItem("Width", 16);
             localStorage.setItem("Mines", 99);
-            localStorage.setItem("Dificulty", "Hard");
+            localStorage.setItem("Difficulty", "Hard");
             break;
         case "Custom":
             slider1.style.display =   slider2.style.display =   slider3.style.display = "block";
@@ -134,7 +134,7 @@ function changeDificulty(dificulty){
             localStorage.setItem("Height", 30);
             localStorage.setItem("Width", 24);
             localStorage.setItem("Mines", 125);
-            localStorage.setItem("Dificulty", "Custom");
+            localStorage.setItem("Difficulty", "Custom");
             break;
     } else{
         slider1.value = lbl1.innerHTML = localStorage.getItem("Height");
@@ -142,7 +142,7 @@ function changeDificulty(dificulty){
         slider3.value = lbl3.innerHTML = localStorage.getItem("Mines");
         slider3.max = CUSTOM_BOARD_MINESMAX;
         mineDensity.innerHTML = ((slider3.value * 100 / (slider1.value * slider2.value)).toFixed(2)).toString() + "%";
-        localStorage.setItem("Dificulty", "Custom");
+        localStorage.setItem("Difficulty", "Custom");
     }
 }
 }

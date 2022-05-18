@@ -189,16 +189,34 @@ function gameWon(){
             board.grid[height][width].reveal();
         }
     }
+    //Save Score
+    if (localStorage.getItem("Difficulty") != null && localStorage.getItem("Difficulty") != "Custom") {
+        let allScores = JSON.parse(localStorage.getItem("scoresIndividuais"));
 
-    let allScores = JSON.parse(localStorage.getItem("scores"));
-   
-    if(allScores==null) allScores=[];
-    let newScore = {
-        name: localStorage.getItem("username"),
-        time: document.getElementById("timer").innerText,
-        boardStats: board.height + "x" + board.width + "x" + board.mines,
+        if (allScores == null) allScores = [];
+        let timeInSeconds = document.getElementById("timer").innerText;
+        //Para o tempo ficar em MM:SS p.ex. 00:07 
+        let timeInMMSS = Math.floor(timeInSeconds / 60) + ":" + parseInt(timeInSeconds % 60).toLocaleString('en-US', {
+            minimumIntegerDigits: 2,
+            useGrouping: false
+        });
+        alert("You won!\nYour time: " + timeInMMSS);
+
+        let newScore = {
+            name: localStorage.getItem("username"),
+            difficulty: localStorage.getItem("Difficulty"),
+            time: timeInMMSS,
+            seconds: timeInSeconds,
+            boardStats: board.height + "x" + board.width + "x" + board.mines,
+        }
+        allScores.push(newScore);
+        localStorage.setItem("scoresIndividuais", JSON.stringify(allScores));
+        //Order by time
+        allScores.sort((a, b) => a.time < b.time ? -1 : 1);
+        //Save only top 10
+        allScores = allScores.slice(0, 10);
+        localStorage.setItem("top10Individual", JSON.stringify(allScores));
     }
-
     cronometro = clearInterval(cronometro);
     
     setInterval(function(){
@@ -216,7 +234,7 @@ function gameWon(){
     }, 500);
     clapSound.play();
     loadingPage=true; //para poder cancelar com o botão direito
-    delay(2500).then(() =>{ if(loadingPage==true) window.location.href = "scoreindivid.html";  })
+    delay(3000).then(() =>{ if(loadingPage==true) window.location.href = "scoreindivid.html";  })
    
     
 };

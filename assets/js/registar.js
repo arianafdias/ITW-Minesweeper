@@ -14,6 +14,8 @@ function createAcc(){
     let username = document.getElementById("username");
     let password = document.getElementById("pass");
     let passwordAgain = document.getElementById("passAgain");
+    let faixaEtaria = document.getElementById("faixaEtaria");
+    let genero = document.getElementById("genero");
     let email = document.getElementById("email");
 
     if (username.value == "" || password.value == "" || passwordAgain.value == "" || email.value == "") {
@@ -71,7 +73,9 @@ function createAcc(){
             let user = {
                 username: username.value,
                 password: password.value,
-                email: email.value
+                email: email.value,
+                faixaEtaria: faixaEtaria.value,
+                genero: genero.value,
             }
             //Get array of users from local storage
            

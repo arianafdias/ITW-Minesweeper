@@ -90,7 +90,7 @@ function buildBoard(board,otherBoard){
         board.grid[height] = [];
         for (let width = 0; width < board.width; width++) {
             let element = document.createElement('div'); //Função anónima para passar func com argumento se não a func executa enquanto a página carrega
-            let cell = new Cell(height, width, element, board , function() { gameOver(board) } ,function() { gameWon(board) });
+            let cell = new Cell(height, width, element, board , function() { gameOver(board,otherBoard) } ,function() { gameWon(board,otherBoard) });
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
             cell.element.addEventListener('click', (e) => {
@@ -126,11 +126,14 @@ function buildBoard(board,otherBoard){
 }
 
 let loadingPage=false;
-function gameOver(board){
+function gameOver(board,otherBoard){
    
     explosionSound.play();
     board.gameOver = true;
     board.gameWon = false;
+    otherBoard.gameOver=true;
+    otherBoard.gameWon=true;
+    otherBoard.grid[0][0].gameWin(); //Avisa ao player que o outro já ganhou
     for (let height = 0; height < board.height; height++) {
         for (let width = 0; width < board.width; width++) {
             board.grid[height][width].reveal();
@@ -141,7 +144,7 @@ function gameOver(board){
     delay(2500).then(() =>{if(loadingPage==true) window.location.href = "score.html"})
 }
 
-function gameWon(board){
+function gameWon(board,otherBoard){
     board.gameWon = true;
     board.gameOver = true;
     window.confetti();
@@ -160,6 +163,34 @@ function gameWon(board){
         window.confetti();
     }, 500);
     clapSound.play();
+
+    if (localStorage.getItem("Difficulty") != null && localStorage.getItem("Difficulty") != "Custom") {
+        let allScores = JSON.parse(localStorage.getItem("scoresIndividuais"));
+
+        if (allScores == null) allScores = [];
+        let timeInSeconds = document.getElementById("timer").innerText;
+        //Para o tempo ficar em MM:SS p.ex. 00:07 
+        let timeInMMSS = Math.floor(timeInSeconds / 60) + ":" + parseInt(timeInSeconds % 60).toLocaleString('en-US', {
+            minimumIntegerDigits: 2,
+            useGrouping: false
+        });
+        alert("You won!\nYour time: " + timeInMMSS);
+
+        let newScore = {
+            name: localStorage.getItem("username"),
+            difficulty: localStorage.getItem("Difficulty"),
+            time: timeInMMSS,
+            seconds: timeInSeconds,
+            boardStats: board.height + "x" + board.width + "x" + board.mines,
+        }
+        allScores.push(newScore);
+        localStorage.setItem("scoresIndividuais", JSON.stringify(allScores));
+        //Order by time
+        allScores.sort((a, b) => a.time < b.time ? -1 : 1);
+        //Save only top 10
+        allScores = allScores.slice(0, 10);
+        localStorage.setItem("top10Individual", JSON.stringify(allScores));
+    }
 
     loadingPage=true; //para poder cancelar com o botão de restart se o pusermos
     delay(3000).then(() =>{ if(loadingPage==true) window.location.href = "score.html";  })
