@@ -54,6 +54,7 @@ window.onload = function () {
     
     BuildBoard();
     changeColour();
+    checkKey();
     
 
 }
@@ -250,4 +251,56 @@ function calcScore(){
 function addScore(){
     //meter o tempo no localstorage
     localStorage.setItem("Time",newTempo.value)
+}
+
+
+
+
+/* ---- segundo dispositivo ----    */
+
+function checkKey(e) {
+    if ((e.keyCode > 40 || e.keyCode < 36) && e.keyCode !== 32){
+        return;
+    }
+    e.preventDefault();
+
+    e = e || window.event;
+
+    let active_element = document.activeElement;
+    let position = active_element.dataset.cell;
+    let line = active_element.dataset.line;
+    let column = active_element.dataset.column;
+
+    if (position === undefined){
+        document.getElementById("0-1").focus()
+    }
+
+    if (e.keyCode === '38'){
+        let add = Number(line) - 1;
+        let el = document.getElementById(add + '-'+column);
+
+        if(el != null){
+            el.focus()
+        }
+    } else if (e.keyCode === '40') {
+        let add = Number(line) + 1;
+        let el = document.getElementById(add + '-' + column);
+
+        if (el != null) {
+            el.focus()
+        }
+    } else if (e.keyCode === '37'){
+        let add = Number(column) - 1;
+        let el = document.getElementById(line + '-'+add);
+
+        if(el != null){
+            el.focus()
+        }
+    } else if (e.keyCode === '39'){
+        let add = Number(column) + 1;
+        let el = document.getElementById(line + '-'+add);
+
+        if(el != null){
+            el.focus()
+        }
 }
