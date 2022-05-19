@@ -106,6 +106,8 @@ function BuildBoard() {
                 //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
                 if (e.detail === 1) {
                     clickTimer = setTimeout(() => {
+                        //Win the game
+                        cell.gameWin();
                         cell.reveal();
                         let minesToShow = board.mines - board.minesLeft;
                         cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
@@ -207,7 +209,7 @@ function gameWon(){
     let score = null;
 
     //Save Score
-    /*
+  
     if (localStorage.getItem("Difficulty") != null && localStorage.getItem("Difficulty") != "Custom") {
         let allScores = JSON.parse(localStorage.getItem("scoresIndividuais"));
 
@@ -230,12 +232,7 @@ function gameWon(){
         allScores.push(newScore);
         console.log(allScores);
         localStorage.setItem("scoresIndividuais", JSON.stringify(allScores));
-        //Order by time
-        allScores.sort((a, b) => a.time < b.time ? -1 : 1);
-        //Save only top 10
-        allScores = allScores.slice(0, 10);
-        localStorage.setItem("top10Individual", JSON.stringify(allScores));
-    }*/
+    }
 
 
     cronometro = clearInterval(cronometro);
