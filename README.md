@@ -5,11 +5,7 @@ MAIN:
 
 o que falta:
 
-
- - Criar nova página com stats:
-     --Número de minas abertas; Tempo Jogado; Número de jogos ganhos (SP e MP); Casas com bandeira e marcadas; 
-
-
+- pagina estatisticas criada, falta por la informação
 
 
 EXTRAS:

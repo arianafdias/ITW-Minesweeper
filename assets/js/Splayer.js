@@ -54,7 +54,7 @@ window.onload = function () {
     
     BuildBoard();
     changeColour();
-    checkKey();
+    document.onkeydown = checkKey;
     
 
 }
@@ -89,7 +89,7 @@ function BuildBoard() {
 
     //timer
     timerStarted = false;
-
+    let count = 1
     //Create 2D array of cells
     for (let height = 0; height < board.height; height++) {
         board.grid[height] = [];
@@ -98,6 +98,10 @@ function BuildBoard() {
             let cell = new Cell(height, width, element, board , gameOver , gameWon);
             cell.element.className = 'grid-item';
             cell.element.id = height + '-' + width;
+            cell.element.setAttribute('tabindex',count);
+            cell.element.dataset.line = height;
+            cell.element.dataset.column = width;
+            count++;
             cell.element.addEventListener('click', (e) => {
                 //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
                 if (e.detail === 1) {
@@ -123,10 +127,7 @@ function BuildBoard() {
             board.grid[height][width] = cell;
         }
         //Dar cor ao tabuleiro
-
-
     }
-    
     changeColour();
     
 }
@@ -180,8 +181,18 @@ function resetBoard(){
     board.firstClick=true;
  
     
-}
+}/*
+const allScores = 'allScores';
+let scores = [];
+function Score(username, difficulty,time,seconds,boardStats){
+    this.username=username;
+    this.difficulty = difficulty;
+    this.tempo = time;
+    this.segundos = seconds;
+    this.stats = boardStats;
 
+}
+*/
 
 function gameWon(){
     board.gameWon = true;
@@ -192,7 +203,11 @@ function gameWon(){
             board.grid[height][width].reveal();
         }
     }
+
+    let score = null;
+
     //Save Score
+    /*
     if (localStorage.getItem("Difficulty") != null && localStorage.getItem("Difficulty") != "Custom") {
         let allScores = JSON.parse(localStorage.getItem("scoresIndividuais"));
 
@@ -220,7 +235,9 @@ function gameWon(){
         //Save only top 10
         allScores = allScores.slice(0, 10);
         localStorage.setItem("top10Individual", JSON.stringify(allScores));
-    }
+    }*/
+
+
     cronometro = clearInterval(cronometro);
     
     setInterval(function(){
@@ -263,48 +280,72 @@ function addScore(){
 /* ---- segundo dispositivo ----    */
 
 function checkKey(e) {
+    console.log(e.keyCode)
     if ((e.keyCode > 40 || e.keyCode < 36) && e.keyCode !== 32){
         return;
     }
     e.preventDefault();
 
-    e = e || window.event;
+    e = e||window.event;
 
     let active_element = document.activeElement;
-    let position = active_element.dataset.cell;
+    //let position = active_element.dataset.cell;
+
     let line = active_element.dataset.line;
+    console.log(line)
     let column = active_element.dataset.column;
 
-    if (position === undefined){
-        document.getElementById("0-1").focus()
-    }
 
-    if (e.keyCode === '38'){
+    if (e.keyCode == '38'){
+        console.log('up')
         let add = Number(line) - 1;
         let el = document.getElementById(add + '-'+column);
-
         if(el != null){
             el.focus()
         }
-    } else if (e.keyCode === '40') {
+    }
+    else if (e.keyCode == '40') {
         let add = Number(line) + 1;
         let el = document.getElementById(add + '-' + column);
 
         if (el != null) {
             el.focus()
         }
-    } else if (e.keyCode === '37'){
+    }
+    else if (e.keyCode == '37'){
         let add = Number(column) - 1;
         let el = document.getElementById(line + '-'+add);
 
         if(el != null){
             el.focus()
         }
-    } else if (e.keyCode === '39'){
+    }
+    else if (e.keyCode == '39'){
         let add = Number(column) + 1;
         let el = document.getElementById(line + '-'+add);
 
         if(el != null){
             el.focus()
         }
-}}
+
+    }
+
+    else if (e.keyCode == '70'){
+        let cntMines = document.getElementById("minesLeft");
+        let el =  document.getElementById(line+'-'+column)
+        if (el.flagged === true){
+            el.question();
+        }else{
+            cell.flag();
+            let minesToShow = board.mines - board.minesLeft;
+            cntMines.innerText = minesToShow.toString();
+        }
+    }
+    if (e.keyCode =='32'){
+        let cntMines = document.getElementById("minesLeft");
+        let cell = document.getElementById(line+'-'+column)
+        cell.reveal();
+        let minesToShow = board.mines - board.minesLeft;
+        cntMines.innerText = minesToShow.toString();
+    }
+}
