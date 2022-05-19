@@ -64,7 +64,6 @@ window.onload = function () {
         let line = active_element.dataset.line;
         let column = active_element.dataset.column;
         switch(e.code){
-
             case "ArrowUp":
                  add = Number(line) - 1;
                  el = document.getElementById(add + '-'+column);
@@ -241,18 +240,7 @@ function resetBoard(){
     board.firstClick=true;
  
     
-}/*
-const allScores = 'allScores';
-let scores = [];
-function Score(username, difficulty,time,seconds,boardStats){
-    this.username=username;
-    this.difficulty = difficulty;
-    this.tempo = time;
-    this.segundos = seconds;
-    this.stats = boardStats;
-
 }
-*/
 
 function gameWon(){
     board.gameWon = true;
@@ -329,81 +317,3 @@ function addScore(){
     localStorage.setItem("Time",newTempo.value)
 }
 
-
-
-
-/* ---- segundo dispositivo ----    */
-
-function checkKey(e) {
-    console.log(e.keyCode);
-    if ((e.keyCode > 40 || e.keyCode < 36) && e.keyCode !== 32){
-        return;
-    }
-    e.preventDefault();
-
-    e = e||window.event;
-
-    let active_element = document.activeElement;
-    //let position = active_element.dataset.cell;
-
-    let line = active_element.dataset.line;
-    let column = active_element.dataset.column;
-
-
-    if (e.keyCode == '38'){
-        let add = Number(line) - 1;
-        let el = document.getElementById(add + '-'+column);
-        if(el != null){
-            el.focus()
-        }
-    }
-    else if (e.keyCode == '40') {
-        let add = Number(line) + 1;
-        let el = document.getElementById(add + '-' + column);
-
-        if (el != null) {
-            el.focus()
-        }
-    }
-    else if (e.keyCode == '37'){
-        let add = Number(column) - 1;
-        let el = document.getElementById(line + '-'+add);
-
-        if(el != null){
-            el.focus()
-        }
-    }
-    else if (e.keyCode == '39'){
-        let add = Number(column) + 1;
-        let el = document.getElementById(line + '-'+add);
-
-        if(el != null){
-            el.focus()
-        }
-
-    }
-
-
-        // let el = board.grid[parseInt(line)][parseInt(column)];
-        //
-        // let cntMines = document.getElementById("minesLeft");
-        // if (el.flagged === true) {
-        //     el.question();
-        // } else {
-        //     el.flag();
-        //     let minesToShow = board.mines - board.minesLeft;
-        //     cntMines.innerText = minesToShow.toString();
-        // }
-
-    if (e.keyCode == '32') {
-
-            let cntMines = document.getElementById("minesLeft");
-            let el = board.grid[parseInt(line)][parseInt(column)];
-            el.reveal();
-            let minesToShow = board.mines - board.minesLeft;
-            cntMines.innerText = minesToShow.toString();
-    }
-    if (e.keyCode == '70'){
-        console.log('holo')
-    }
-}
