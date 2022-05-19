@@ -167,6 +167,7 @@ function timer() {
     let novo_tempo = tempo_antigo + 1;
     let newTempo = novo_tempo.toString();
     document.getElementById("timer").innerHTML = newTempo;
+    
 }
 
 
@@ -186,5 +187,12 @@ function gameWon(){
     window.location.href = "scoreindivid.html";    
 };
 
+function calcScore(){
 
+    // nº minas encontradas * - (newTempo - tempoantigo)?
+}
 
+function addScore(){
+    //meter o tempo no localstorage
+    localStorage.setItem("Time",newTempo.value)
+}
