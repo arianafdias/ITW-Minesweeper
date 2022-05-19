@@ -187,12 +187,3 @@ function gameWon(){
     window.location.href = "scoreindivid.html";    
 };
 
-function calcScore(){
-
-    // nº minas encontradas * - (newTempo - tempoantigo)?
-}
-
-function addScore(){
-    //meter o tempo no localstorage
-    localStorage.setItem("Time",newTempo.value)
-}
