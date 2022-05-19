@@ -105,10 +105,8 @@ function BuildBoard() {
                         let minesToShow = board.mines - board.minesLeft;
                         cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
                     }, 200)
-
                 }
                 if (board.firstClick === true) {
-                
                     cronometro = setInterval(timer,1000);
                 }
             });
@@ -205,11 +203,12 @@ function gameWon(){
         let newScore = {
             name: localStorage.getItem("username"),
             difficulty: localStorage.getItem("Difficulty"),
-            time: timeInMMSS,
-            seconds: timeInSeconds,
+            time: timeInMMSS.toString(),
+            seconds: timeInSeconds.toString(),
             boardStats: board.height + "x" + board.width + "x" + board.mines,
         }
         allScores.push(newScore);
+        console.log(allScores);
         localStorage.setItem("scoresIndividuais", JSON.stringify(allScores));
         //Order by time
         allScores.sort((a, b) => a.time < b.time ? -1 : 1);

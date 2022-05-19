@@ -17,9 +17,9 @@ let element1= document.getElementById("multicolor1"); //A palavra "regras"
 let element2= document.getElementById("multicolor2"); //O botão para jogar
 let footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
-navbar[0].style.backgroundColor=colorPickerValue;
-element1.style.backgroundColor=colorPickerValue;
-element2.style.borderColor=colorPickerValue;
+    navbar[0].style.backgroundColor=colorPickerValue;
+    element1.style.backgroundColor=colorPickerValue;
+    element2.style.borderColor=colorPickerValue;
 }   
 
 //user array position (tem todos os dados dos jogos que os jogadores fizeram no localstorage)

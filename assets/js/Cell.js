@@ -22,6 +22,7 @@
             this.revealed = false;
             this.flagged = false;
             this.marked = false;
+            this.questioned = false;
             this.gameOver = gameOver; // Estes 2 campos dão mais jeito estarem aqui
             this.gameWin = gameWin;   //
         }
@@ -72,6 +73,11 @@
                 this.checkWin();
             }}
         }
+        question() {
+            if (!this.revealed && this.board.isPlaying) {
+                this.questioned = !this.questioned;
+                this.element.innerHTML = this.questioned ? "?" : "";
+        }}
         /**
          * Flags the cell and changes the mine counter if it is not revealed
          * @returns {void}
@@ -84,14 +90,14 @@
                 this.checkWin();
             }
         }
-        /** //TODO - Implementar Imagem da Flag
-         * Marks the cell if it is not revealed
+        /**
+         * Marks the cell '?' if it is not revealed
          * @returns {void}
         */
         mark() {
             if (!this.revealed && this.board.isPlaying) {
                 this.marked = !this.marked;
-                this.element.innerHTML = this.marked ? "<img src=\"https://www.thedome.org/wp-content/uploads/2019/06/300x300-Placeholder-Image.jpg\" width=\"25px\" height=\"25px\">" : "";
+                this.element.innerHTML = this.marked ? "?" : "";
             }
         }
         /**
@@ -144,6 +150,7 @@
             this.revealed = false;
             this.flagged = false;
             this.marked = false;
+            this.question = false;
             this.minesLeft = this.board.mines;
             this.element.innerHTML = "";
             this.element.style.opacity = 1;
