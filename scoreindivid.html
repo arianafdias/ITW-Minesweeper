@@ -15,21 +15,22 @@ Grupo 46    PL21
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/fontStyles.css">
     <link rel="stylesheet" type="text/css" href="./css/scoreboard.css">
+    <link rel="stylesheet" type="text/css" href="./css/jogo.css">
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    
     <script type="text/javascript" src="assets/js/logout.js"></script>
     <script type="text/javascript" src="assets/js/scoreIndividual.js"></script>
+
 
     <title>Scoreboard Individual</title>
 </head>
 
 <body>
    
-<div class="container">
+<div class="container" >
   <!--NAVBAR-->
   <nav class="navbar">
     <ul class="nav-links">
@@ -57,13 +58,31 @@ Grupo 46    PL21
         </div>
     </ul>
 </nav>
-<!--FIM NAVBAR-->
+<!--FIM NAVBAR-->  
+<br> <br>     
 
 <h1>Scoreboard</h1>
-    <div>
+<br>
+<div class="container" style="width: 10%;">
+
+    <select id="select-css" class="custom-select" onchange="loadScoreTable(this.value)">
+        <option value="Fácil">Fácil</option>
+        <option value="Normal">Normal</option>
+        <option value="Difícil">Difícil</option>
+    </select>
+    <span class="focus"></span>
+</div>
+<br> 
+    <div id="tableContainer" style="width: 70%;">
         <div id="multicolor2">
             <table id="scoreboard" >
-
+                <thead id="tableHeaders">
+                    <tr>
+                      <th>Jogador</th>
+                      <th>Tempo</th>
+                    </tr>
+                  </thead>
+                  <tbody id="testBody"></tbody>
             </table>
         </div>
     </div>
@@ -82,18 +101,7 @@ Grupo 46    PL21
 
         </div>
     </footer>
-<script type="module"> /*Isto é para carregar só no fim (tem que ser)*/          
-    let color=localStorage.getItem('color');
 
-    let colorPicker = document.getElementById("colorPicker");
-    let navbar= document.getElementsByClassName("navbar");
-    let element1= document.getElementById("multicolor1"); //A palavra "regras"
-    let element2= document.getElementById("multicolor2"); //O botão para jogar
-     navbar[0].style.backgroundColor=color;
-     colorPicker.value=color;
-     element1.style.backgroundColor=color;
-     element2.style.borderColor=color;
-      </script>
 </body>
 
 </html>

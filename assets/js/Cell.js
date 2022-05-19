@@ -32,6 +32,12 @@
         */
         reveal() {
             if(this.board.isPlaying) {
+                //Add 1 to the number of cells revealed statistic 
+                if( localStorage.getItem(this.board.owner+"cellsRevealed")!=null){
+                    localStorage.setItem(this.board.owner+"cellsRevealed",parseInt(localStorage.getItem(this.board.owner+"cellsRevealed"))+1);
+                } else 
+                    localStorage.setItem(this.board.owner+"cellsRevealed",1);
+                
                 if (this.board.firstClick) {
                 this.board.firstClick = false;
                 //startTimer();
@@ -50,6 +56,10 @@
             this.revealed = true;
             if (this.isMine) {
                 this.element.innerHTML = "💣";
+                if(localStorage.getItem(this.board.owner+"minesOpened")!=null){
+                    localStorage.setItem(this.board.owner+"minesOpened",parseInt(localStorage.getItem(this.board.owner+"mines"))+1);
+                } else
+                    localStorage.setItem(this.board.owner+"minesOpened",1);
                 if(!this.board.gameOver)
                 this.gameOver();
             } else {
@@ -85,11 +95,26 @@
         flag() {
             if (!this.revealed && this.board.isPlaying) {
                 this.flagged = !this.flagged;
+                if(this.flagged) {
+                    this.element.innerHTML = "🚩";
+                    if(localStorage.getItem(this.board.owner+"flags")!=null)
+                        localStorage.setItem(this.board.owner+"flags",parseInt(localStorage.getItem(this.board.owner+"flags"))+1);
+                     else
+                        localStorage.setItem(this.board.owner+"flags",1);
+                    
+                    if ( localStorage.getItem(this.board.owner+"minesFlagged")!=null) 
+                        localStorage.setItem(this.board.owner+"minesFlagged",parseInt(localStorage.getItem(this.board.owner+"minesFlagged"))+1);
+                    else 
+                        localStorage.setItem(this.board.owner+"minesFlagged",1);
+                }                    
+                    }
+                else 
+                    this.element.innerHTML = "";
+
                 this.board.minesLeft = this.flagged ? this.board.minesLeft + 1 : this.board.minesLeft - 1;
                 this.element.innerHTML = this.flagged ? "🚩" : "";
-                this.checkWin();
             }
-        }
+        
         /**
          * Marks the cell '?' if it is not revealed
          * @returns {void}
@@ -142,6 +167,11 @@
             let cells = this.board.grid.reduce((a, b) => a.concat(b));
             let notRevealedCells = cells.filter(cell => !cell.revealed);
             if (notRevealedCells.length === parseInt(this.board.mines)) {
+                if(localStorage.getItem(this.board.owner+"gamesWon")!=null)
+                    localStorage.setItem(this.board.owner+"gamesWon",parseInt(localStorage.getItem(this.board.owner+"gamesWon"))+1);
+                else 
+                    localStorage.setItem(this.board.owner+"gamesWon",1);
+
                 this.gameWin();
             }
         }

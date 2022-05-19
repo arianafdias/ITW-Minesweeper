@@ -9,7 +9,7 @@ Grupo 46    PL21
 
 
 /* STYLING DA TABELA*/
-table.scoreboard {
+table#scoreboard {
     margin: auto;
     display: inline-block;
     border-radius: 25px;

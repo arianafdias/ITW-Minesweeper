@@ -90,14 +90,14 @@ window.onload = function () {
 
 function changeDificulty(dificulty){
     switch (dificulty) {
-        case "Easy": //9x9 10 mines
+        case "Fácil": //9x9 10 mines
             slider1.value = lbl1.innerHTML = slider2.value = lbl2.innerHTML = EASY_BOARD_HEIGHT;
             slider3.value = lbl3.innerHTML = EASY_BOARD_MINES;
             slider1.style.display = slider2.style.display  = slider3.style.display = "none";
-            localStorage.setItem("Height", slider1.value);
-            localStorage.setItem("Width", slider1.value);
-            localStorage.setItem("Mines", slider3.value);
-            localStorage.setItem("Difficulty", "Easy");
+            localStorage.setItem("Height", EASY_BOARD_HEIGHT);
+            localStorage.setItem("Width", EASY_BOARD_WIDTH);
+            localStorage.setItem("Mines", EASY_BOARD_MINES);
+            localStorage.setItem("Difficulty", "Fácil");
             mineDensity.innerHTML = EASY_BOARD_DENISTY;
             break;
         case "Normal": //16x16 40 mines
@@ -105,21 +105,21 @@ function changeDificulty(dificulty){
             slider3.value = lbl3.innerHTML = MEDIUM_BOARD_MINES;
             slider1.style.display = slider2.style.display = slider3.style.display = "none";
             mineDensity.innerHTML = MEDIUM_BOARD_DENISTY;
-            localStorage.setItem("Height", slider1.value );
-            localStorage.setItem("Width", slider1.value);
-            localStorage.setItem("Mines", slider3.value);
+            localStorage.setItem("Height", MEDIUM_BOARD_HEIGHT );
+            localStorage.setItem("Width", MEDIUM_BOARD_WIDTH);
+            localStorage.setItem("Mines", MEDIUM_BOARD_MINES);
             localStorage.setItem("Difficulty", "Normal");
             break;
-        case "Hard": //30x16 99 mines
+        case "Difícil": //30x16 99 mines
             slider1.value = lbl1.innerHTML =HARD_BOARD_HEIGHT;
             slider2.value = lbl2.innerHTML = HARD_BOARD_WIDTH;
             slider3.value =  lbl3.innerHTML = HARD_BOARD_MINES;
             slider1.style.display =  slider2.style.display =  slider3.style.display = "none";
             mineDensity.innerHTML = HARD_BOARD_DENISTY;
-            localStorage.setItem("Height", 30);
-            localStorage.setItem("Width", 16);
-            localStorage.setItem("Mines", 99);
-            localStorage.setItem("Difficulty", "Hard");
+            localStorage.setItem("Height", HARD_BOARD_HEIGHT);
+            localStorage.setItem("Width", HARD_BOARD_WIDTH);
+            localStorage.setItem("Mines", HARD_BOARD_MINES);
+            localStorage.setItem("Difficulty", "Difícil");
             break;
         case "Custom":
             slider1.style.display =   slider2.style.display =   slider3.style.display = "block";
@@ -131,9 +131,9 @@ function changeDificulty(dificulty){
             slider3.value = CUSTOM_BOARD_MINES //26.04% mine density
             lbl3.innerHTML = CUSTOM_BOARD_MINES;
             mineDensity.innerHTML = CUSTOM_BOARD_DENISTY
-            localStorage.setItem("Height", 30);
-            localStorage.setItem("Width", 24);
-            localStorage.setItem("Mines", 125);
+            localStorage.setItem("Height", CUSTOM_BOARD_HEIGHT);
+            localStorage.setItem("Width", CUSTOM_BOARD_WIDTH);
+            localStorage.setItem("Mines", CUSTOM_BOARD_MINESMAX);
             localStorage.setItem("Difficulty", "Custom");
             break;
     } else{
