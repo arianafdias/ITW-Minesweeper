@@ -197,3 +197,14 @@ function gameWon(board,otherBoard){
    
     
 };
+
+
+function calcScore(){
+
+    // nº minas encontradas * - (newTempo - tempoantigo)?
+}
+
+function addScore(){
+    //meter o tempo no localstorage
+    localStorage.setItem("Time",newTempo.value)
+}

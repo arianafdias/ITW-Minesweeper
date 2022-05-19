@@ -167,6 +167,7 @@ function timer() {
     let novo_tempo = tempo_antigo + 1;
     let newTempo = novo_tempo.toString();
     document.getElementById("timer").innerHTML = newTempo;
+    
 }
 
 
@@ -185,6 +186,4 @@ function gameWon(){
     //addscore()
     window.location.href = "scoreindivid.html";    
 };
-
-
 
