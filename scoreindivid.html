@@ -65,11 +65,10 @@ Grupo 46    PL21
 <br>
 <div class="container" style="width: 10%;">
 
-    <select id="select-css" class="custom-select">
-        <option value="Easy">Fácil</option>
+    <select id="select-css" class="custom-select" onchange="loadScoreTable(this.value)">
+        <option value="Fácil">Fácil</option>
         <option value="Normal">Normal</option>
-        <option value="Hard">Difícil</option>
-        <option value="Custom">Custom</option>
+        <option value="Difícil">Difícil</option>
     </select>
     <span class="focus"></span>
 </div>

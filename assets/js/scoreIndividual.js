@@ -5,7 +5,17 @@ window.onload = function () {
     if (localStorage.getItem('color') != null) {
         colorPicker.value = localStorage.getItem('color');
     }
-    loadScoreTable();
+
+    let selector = document.getElementById("select-css");
+    
+    if(localStorage.getItem("Difficulty") != null && localStorage.getItem("Difficulty")!="Custom")
+       {
+       selector.value = localStorage.getItem("Difficulty");
+            loadScoreTable(localStorage.getItem("Difficulty"));
+    
+    }
+    else 
+     loadScoreTable("Fácil");
     changeColour();
 
 }
@@ -23,19 +33,22 @@ let footer = document.getElementById("footer");
 }   
 
 function loadScoreTable(filter=null) {
+    
     let table = document.getElementById("scoreboard");
-    let tHead = document.getElementById("tableHeaders");
-    var orderArrayHeader = ["S.No", "Date" ];
-    for (var i=0; i<orderArrayHeader.length; i++) {
-        tHead.appendChild(document.createElement("th")).
-        appendChild(document.createTextNode(orderArrayHeader[i]));
+    //Apagar o que tava lá caso alguém tenha feito um filtro
+    var rowCount = table.rows.length;
+    for (let i = 1; i < rowCount; i++) {
+        table.deleteRow(1);
     }
-    table.appendChild(tHead);
     //Get scoresIndividuais from local storage and sort them by time (ascending)
     let scoresIndividuais = JSON.parse(localStorage.getItem("scoresIndividuais"));
     //Sort por tempo por default como diz no enunciado
-    if(filter===null)
-        scoresIndividuais.sort(function(a, b){return a.seconds - b.seconds});
+    if(filter!==null)
+    scoresIndividuais = scoresIndividuais.filter(score=>score.difficulty==filter);
+
+    scoresIndividuais.sort(function(a, b){return a.seconds - b.seconds});
+   
+
     //Populate table with top 10 scores
     for (var i = 0; i < scoresIndividuais.length&&i<10; i++) {
         let row = table.insertRow(i+1);
@@ -45,6 +58,4 @@ function loadScoreTable(filter=null) {
         cell2.innerHTML = scoresIndividuais[i].time;
     }
 
-
- 
 }

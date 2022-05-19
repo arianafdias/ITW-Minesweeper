@@ -34,6 +34,7 @@ let board = {
     width: 0,
     height: 0,
     minesLeft: 0,
+    owner : localStorage.getItem("username"), // Por causa do multiplayer a class precisa disto
     gameOver: false,
     gameWon: false,
     firstClick: true,
@@ -106,8 +107,7 @@ function BuildBoard() {
                 //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
                 if (e.detail === 1) {
                     clickTimer = setTimeout(() => {
-                        //Win the game
-                        cell.gameWin();
+                        //cell.gameWin(); //Para testar os scores
                         cell.reveal();
                         let minesToShow = board.mines - board.minesLeft;
                         cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
