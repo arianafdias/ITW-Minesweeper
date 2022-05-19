@@ -54,7 +54,65 @@ window.onload = function () {
     
     BuildBoard();
     changeColour();
-    document.onkeydown = checkKey;
+    window.addEventListener("keydown", function(e){
+        console.log(e.code);
+        let active_element = document.activeElement;
+        //let position = active_element.dataset.cell;
+        let add;
+        let el;
+        let line = active_element.dataset.line;
+        let column = active_element.dataset.column;
+        switch(e.code){
+
+            case "ArrowUp":
+                 add = Number(line) - 1;
+                 el = document.getElementById(add + '-'+column);
+                if(el != null){
+                    el.focus()
+                }
+                break;
+            case "ArrowDown":
+                 add = Number(line) + 1;
+                 el = document.getElementById(add + '-' + column);
+
+                if (el != null) {
+                    el.focus()
+                }
+                break;
+            case "ArrowLeft":
+                add = Number(column) - 1;
+                el = document.getElementById(line + '-'+add);
+
+                if(el != null){
+                    el.focus()
+                }
+                break;
+            case "ArrowRight":
+                add = Number(column) + 1;
+                el = document.getElementById(line + '-'+add);
+
+                if(el != null){
+                    el.focus()
+                }
+                break;
+            case "Space":
+                let cntMines = document.getElementById("minesLeft");
+                el = board.grid[parseInt(line)][parseInt(column)];
+                el.reveal();
+                let minesToShow = board.mines - board.minesLeft;
+                cntMines.innerText = minesToShow.toString();
+                break;
+            case "KeyF":
+                el = board.grid[parseInt(line)][parseInt(column)];
+                if (el.flagged === true) {
+                    el.question();
+                } else {
+                    el.flag();
+                }
+                break;
+        }
+    });
+
     
 
 }
@@ -280,7 +338,7 @@ function addScore(){
 /* ---- segundo dispositivo ----    */
 
 function checkKey(e) {
-    console.log(e.keyCode)
+    console.log(e.keyCode);
     if ((e.keyCode > 40 || e.keyCode < 36) && e.keyCode !== 32){
         return;
     }
@@ -292,12 +350,10 @@ function checkKey(e) {
     //let position = active_element.dataset.cell;
 
     let line = active_element.dataset.line;
-    console.log(line)
     let column = active_element.dataset.column;
 
 
     if (e.keyCode == '38'){
-        console.log('up')
         let add = Number(line) - 1;
         let el = document.getElementById(add + '-'+column);
         if(el != null){
@@ -330,22 +386,27 @@ function checkKey(e) {
 
     }
 
-    else if (e.keyCode == '70'){
-        let cntMines = document.getElementById("minesLeft");
-        let el =  document.getElementById(line+'-'+column)
-        if (el.flagged === true){
-            el.question();
-        }else{
-            cell.flag();
+
+        // let el = board.grid[parseInt(line)][parseInt(column)];
+        //
+        // let cntMines = document.getElementById("minesLeft");
+        // if (el.flagged === true) {
+        //     el.question();
+        // } else {
+        //     el.flag();
+        //     let minesToShow = board.mines - board.minesLeft;
+        //     cntMines.innerText = minesToShow.toString();
+        // }
+
+    if (e.keyCode == '32') {
+
+            let cntMines = document.getElementById("minesLeft");
+            let el = board.grid[parseInt(line)][parseInt(column)];
+            el.reveal();
             let minesToShow = board.mines - board.minesLeft;
             cntMines.innerText = minesToShow.toString();
-        }
     }
-    if (e.keyCode =='32'){
-        let cntMines = document.getElementById("minesLeft");
-        let cell = document.getElementById(line+'-'+column)
-        cell.reveal();
-        let minesToShow = board.mines - board.minesLeft;
-        cntMines.innerText = minesToShow.toString();
+    if (e.keyCode == '70'){
+        console.log('holo')
     }
 }
