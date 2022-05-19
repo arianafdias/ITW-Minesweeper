@@ -111,10 +111,14 @@ function BuildBoard() {
                     cronometro = setInterval(timer,1000);
                 }
             });
-            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag();
-                let minesToShow = board.mines - board.minesLeft;
-                cntMines.innerText = minesToShow.toString();}); //Atualiza o contador de minas });
-            cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
+            cell.element.addEventListener('contextmenu', (e) => { e.preventDefault();
+                if (cell.flagged === true){
+                    cell.question();
+                }else{
+                    cell.flag();
+                    let minesToShow = board.mines - board.minesLeft;
+                    cntMines.innerText = minesToShow.toString();
+                }}); //Atualiza o contador de minas });
             gridContainer.appendChild(element);
             board.grid[height][width] = cell;
         }
@@ -303,4 +307,4 @@ function checkKey(e) {
         if(el != null){
             el.focus()
         }
-}
+}}

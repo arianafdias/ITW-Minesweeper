@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="./css/navBar.css">
+    <link rel="stylesheet" type="text/css" href="./css/jogo.css">
+    <link rel="stylesheet" type="text/css" href="./css/colorPicker.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/fontStyles.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/logout.js"></script>
+    <script type="text/javascript" src="assets/js/jogo.js"></script>
+    <title>Estatísticas</title>
+</head>
+
+<body>
+
+<div class="container">
+    <!--NAVBAR-->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <!-- Para o móvel -->
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <!--Items-->
+            <div class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="info.html">Info</a></li>
+                <!--  <li><a href="jogo.html">Jogo</a></li>-->
+                <li><a href="jogo.html">Jogo</a></li>
+                <li class="services">
+                    <!-- DROPDOWN EXEMPLO -->
+                    <p> Score</p>
+                    <ul class="dropdown">
+                        <li><a href="./score.html">Score Geral</a></li>
+                        <li id="mustLogin"><a href="./scoreindivid.html">Score Individual</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="estatisticas.html">Estatísticas</a></li>
+                <li id="login"><a href="login.html">Login</a></li>                    <li>
+                <div class="cp_wrapper">
+                    <input type="color" id="colorPicker" oninput="changeColour()" onchange="localStorage.setItem('color',this.value);;"
+                           value="getDefaultColor()" style="width:100%;">
+                </div>
+            </li>
+            </div>
+        </ul>
+    </nav>
+    <!--FIM NAVBAR-->
+
+
+
+
+
+
+
+</div>
+<!-- Só neste ficheiro é que é diferente por isso tá in-line -->
+<footer  id="footer"  >
+    <div class="cadeiraInfo">
+        <p> ITW - 2020/2021 </p>
+        <p> Grupo 46    PL21 </p>
+        <p> feito com HTML5, CSS, JavaScript</p>
+    </div>
+    <div class="alunosInfo">
+        <p> 53687  Ariana Dias </p>
+        <p> 56931  Diogo Forte </p>
+        <p> 58628  Miguel Miguel </p>
+
+    </div>
+</footer>
+</body>
+
+</html>
