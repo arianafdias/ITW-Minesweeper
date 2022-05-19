@@ -24,9 +24,10 @@ element2.style.borderColor=colorPickerValue;
 
 //user array position (tem todos os dados dos jogos que os jogadores fizeram no localstorage)
 let gamedata = {
-    playername : none,
-    playertime : none,
-    playerscore : none
+    playername : localStorage.getItem("Name"),
+    playerdiff :localStorage.getItem("Difficulty"),
+    playertime : localStorage.getItem("Time"),
+    playerscore : localStorage.getItem("Score")
 }
 
 
@@ -38,7 +39,7 @@ function scoretable(){
     newtabela.setAttribute("id", "scoreboard");
     let tabline = document.createElement("tr"); 
     tabline.appendChild(linhaTabela);
-    tabline.innerHTML = "<th>Jogador</th>" + "<th>Pontos</th>"+"<th>Tempo</th>";
+    tabline.innerHTML = "<th>Jogador</th>"+"<th>Dificuldade</th>" +"<th>Tempo</th>" + "<th>Pontos</th>";
     newtabela.append(tabline);
 
 
@@ -46,9 +47,10 @@ function scoretable(){
     for (let scoreline in gamedata){
         while(numdata < 10){
         tabline = document.createElement("tr");
-        tabline.innerHTML = "<td>" + //gamedata.playername + "</td>" +
-                                "<td>" + //gamedata.playertime + "</td>" +
-                                "<td>" + //gamedata.playerscore + "</td>";
+        tabline.innerHTML = "<td>" + gamedata.playername + "</td>" +
+                             "<td>" + gamedata.playerdiff + "</td>" +
+                                "<td>" + gamedata.playertime + "</td>" +
+                                "<td>" + gamedata.playerscore + "</td>";
         newtabela.appendChild(tabline);   
         }    
     numdata++;   
