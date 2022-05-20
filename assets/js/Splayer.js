@@ -243,6 +243,7 @@ function resetBoard(){
 }
 
 function gameWon(){
+    console.log('scoree');
     board.gameWon = true;
     board.gameOver = true;
 
@@ -255,8 +256,9 @@ function gameWon(){
     let score = null;
 
     //Save Score
-  
+
     if (localStorage.getItem("Difficulty") != null && localStorage.getItem("Difficulty") != "Custom") {
+        console.log('scoree')
         let allScores = JSON.parse(localStorage.getItem("scoresIndividuais"));
 
         if (allScores == null) allScores = [];

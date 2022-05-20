@@ -71,9 +71,12 @@ flex-direction: row;
 
 .jogadores{
     bottom: 0;
-    display: inline;
+    display: flex;
     text-align: center;
 }
+
+
+
 
 @media only screen and (max-width: 920px){
     .painelJogo{

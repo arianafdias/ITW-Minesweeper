@@ -107,7 +107,7 @@ function buildBoard(board,otherBoard){
                             let minesToShow = board.mines - board.minesLeft;
                             //cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
                         },200)
-                    }
+                    };
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag();
                 let minesToShow = board.mines - board.minesLeft;
@@ -136,7 +136,6 @@ function gameOver(board,otherBoard){
             board.grid[height][width].reveal();
         }
     }
-    cronometro = clearInterval(cronometro);
     loadingPage=true;  //para poder cancelar com o botão de restart se o pusermos
     delay(2500).then(() =>{if(loadingPage==true) window.location.href = "score.html"})
 }
@@ -189,6 +188,7 @@ function gameWon(board,otherBoard){
    
     
 };
+
 
 
 function calcScore(){
