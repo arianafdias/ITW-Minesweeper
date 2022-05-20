@@ -33,10 +33,10 @@
         reveal() {
             if(this.board.isPlaying) {
                 //Add 1 to the number of cells revealed statistic 
-                if( localStorage.getItem(this.board.owner+"cellsRevealed")!=null){
-                    localStorage.setItem(this.board.owner+"cellsRevealed",parseInt(localStorage.getItem(this.board.owner+"cellsRevealed"))+1);
+                if( localStorage.getItem(this.board.owner+"cellsRevealed"+localStorage.getItem("Difficulty"))!=null){
+                    localStorage.setItem(this.board.owner+"cellsRevealed"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"cellsRevealed"+localStorage.getItem("Difficulty")))+1);
                 } else 
-                    localStorage.setItem(this.board.owner+"cellsRevealed",1);
+                    localStorage.setItem(this.board.owner+"cellsRevealed"+localStorage.getItem("Difficulty"),1);
                 
                 if (this.board.firstClick) {
                 this.board.firstClick = false;
@@ -56,10 +56,10 @@
             this.revealed = true;
             if (this.isMine) {
                 this.element.innerHTML = "💣";
-                if(localStorage.getItem(this.board.owner+"minesOpened")!=null){
-                    localStorage.setItem(this.board.owner+"minesOpened",parseInt(localStorage.getItem(this.board.owner+"mines"))+1);
+                if(localStorage.getItem(this.board.owner+"minesOpened"+localStorage.getItem("Difficulty"))!=null){
+                    localStorage.setItem(this.board.owner+"minesOpened"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"mines"))+1);
                 } else
-                    localStorage.setItem(this.board.owner+"minesOpened",1);
+                    localStorage.setItem(this.board.owner+"minesOpened"+localStorage.getItem("Difficulty"),1);
                 if(!this.board.gameOver)
                 this.gameOver();
             } else {
@@ -97,15 +97,15 @@
                 this.flagged = !this.flagged;
                 if(this.flagged) {
                     this.element.innerHTML = "🚩";
-                    if(localStorage.getItem(this.board.owner+"flags")!=null)
-                        localStorage.setItem(this.board.owner+"flags",parseInt(localStorage.getItem(this.board.owner+"flags"))+1);
+                    if(localStorage.getItem(this.board.owner+"flags"+localStorage.getItem("Difficulty"))!=null)
+                        localStorage.setItem(this.board.owner+"flags"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"flags"))+1);
                      else
-                        localStorage.setItem(this.board.owner+"flags",1);
+                        localStorage.setItem(this.board.owner+"flags"+localStorage.getItem("Difficulty"),1);
                     
-                    if ( localStorage.getItem(this.board.owner+"minesFlagged")!=null) 
-                        localStorage.setItem(this.board.owner+"minesFlagged",parseInt(localStorage.getItem(this.board.owner+"minesFlagged"))+1);
+                    if ( localStorage.getItem(this.board.owner+"minesFlagged"+localStorage.getItem("Difficulty"))!=null) 
+                        localStorage.setItem(this.board.owner+"minesFlagged"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"minesFlagged"))+1);
                     else 
-                        localStorage.setItem(this.board.owner+"minesFlagged",1);
+                        localStorage.setItem(this.board.owner+"minesFlagged"+localStorage.getItem("Difficulty"),1);
                 }                    
                     }
                 else 
@@ -167,10 +167,10 @@
             let cells = this.board.grid.reduce((a, b) => a.concat(b));
             let notRevealedCells = cells.filter(cell => !cell.revealed);
             if (notRevealedCells.length === parseInt(this.board.mines)) {
-                if(localStorage.getItem(this.board.owner+"gamesWon")!=null)
-                    localStorage.setItem(this.board.owner+"gamesWon",parseInt(localStorage.getItem(this.board.owner+"gamesWon"))+1);
+                if(localStorage.getItem(this.board.owner+"gamesWon"+localStorage.getItem("Difficulty"))!=null)
+                    localStorage.setItem(this.board.owner+"gamesWon"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"gamesWon"))+1);
                 else 
-                    localStorage.setItem(this.board.owner+"gamesWon",1);
+                    localStorage.setItem(this.board.owner+"gamesWon"+localStorage.getItem("Difficulty"),1);
 
                 this.gameWin();
             }

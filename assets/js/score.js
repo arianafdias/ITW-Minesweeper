@@ -6,7 +6,7 @@ window.onload = function () {
         colorPicker.value = localStorage.getItem('color');
     }
     changeColour();
-    scoretable();
+    loadScoreTable();
 
 
 }
@@ -18,7 +18,7 @@ function changeColour() { //Tem que tar dentro da função para mudar tudo em te
     let footer = document.getElementById("footer");
     footer.style.backgroundColor = colorPickerValue;
     navbar[0].style.backgroundColor=colorPickerValue;
-    element1.style.backgroundColor=colorPickerValue;
+   // element1.style.backgroundColor=colorPickerValue;
     element2.style.borderColor=colorPickerValue;
     }   
     function setCookies(){
@@ -37,28 +37,30 @@ let gamedata = {
 
 
 
-function scoretable(){
-    let deftabela = document.getElementById("scoreboard");
-    let newtabela = document.createElement("table")
-    newtabela.setAttribute("id", "scoreboard");
-    let tabline = document.createElement("tr"); 
-    tabline.appendChild(linhaTabela);
-    tabline.innerHTML = "<th>Jogador</th>"+"<th>Dificuldade</th>" +"<th>Tempo</th>" + "<th>Pontos</th>";
-    newtabela.append(tabline);
+function loadScoreTable(filter=null) {
+    
+    let table = document.getElementById("scoreboard");
+    //Apagar o que tava lá caso alguém tenha feito um filtro
+    var rowCount = table.rows.length;
+    for (let i = 1; i < rowCount; i++) {
+        table.deleteRow(1);
+    }
+    //Get scoresIndividuais from local storage and sort them by time (ascending)
+    let scoresIndividuais = JSON.parse(localStorage.getItem("scoresMultiplayer"));
+    //Sort por tempo por default como diz no enunciado
+    if(filter!==null)
+    scoresIndividuais = scoresIndividuais.filter(score=>score.difficulty==filter);
 
+    scoresIndividuais.sort(function(a, b){return a.seconds - b.seconds});
+   
 
-    let numdata = 0;
-    for (let scoreline in gamedata){
-        while(numdata < 10){
-        tabline = document.createElement("tr");
-        tabline.innerHTML = "<td>" + gamedata.playername + "</td>" +
-                             "<td>" + gamedata.playerdiff + "</td>" +
-                                "<td>" + gamedata.playertime + "</td>" +
-                                "<td>" + gamedata.playerscore + "</td>";
-        newtabela.appendChild(tabline);   
-        }    
-    numdata++;   
-    }   
-    deftabela.parentNode.replaceChild(newtabela, deftabela);
+    //Populate table with top 10 scores
+    for (var i = 0; i < scoresIndividuais.length&&i<10; i++) {
+        let row = table.insertRow(i+1);
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        cell1.innerHTML = scoresIndividuais[i].name;
+        cell2.innerHTML = scoresIndividuais[i].time;
+    }
 
 }

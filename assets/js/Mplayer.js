@@ -98,13 +98,14 @@ function buildBoard(board,otherBoard){
                 if (board.isPlaying && !cell.revealed)
                     if (e.detail === 1) {
                         clickTimer = setTimeout(() => {
+                            cell.gameWin();
                             cell.reveal();
                             board.isPlaying = false;
                             otherBoard.isPlaying = true;
                             board.gridContainer.style.opacity = 0.25;
                             otherBoard.gridContainer.style.opacity = 1;
                             let minesToShow = board.mines - board.minesLeft;
-                            cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
+                            //cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
                         },200)
                     }
             });
@@ -112,10 +113,6 @@ function buildBoard(board,otherBoard){
                 let minesToShow = board.mines - board.minesLeft;
                 cntMines.innerText = minesToShow.toString();}); //Atualiza o contador de minas });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
-           /* cell.element.style.fontSize="xx-small";
-            cell.element.style.width="3em";
-            cell.element.style.height="3em";
-            cell.element.style.padding="0.5em";*/
             board.gridContainer.appendChild(element);
             board.grid[height][width] = cell;
         }
@@ -165,10 +162,10 @@ function gameWon(board,otherBoard){
     clapSound.play();
 
     if (localStorage.getItem("Difficulty") != null && localStorage.getItem("Difficulty") != "Custom") {
-        let allScores = JSON.parse(localStorage.getItem("scoresIndividuais"));
+        let allScores = JSON.parse(localStorage.getItem("scoresMultiplayer"));
 
         if (allScores == null) allScores = [];
-        let timeInSeconds = document.getElementById("timer").innerText;
+        let timeInSeconds = 25;
         //Para o tempo ficar em MM:SS p.ex. 00:07 
         let timeInMMSS = Math.floor(timeInSeconds / 60) + ":" + parseInt(timeInSeconds % 60).toLocaleString('en-US', {
             minimumIntegerDigits: 2,
@@ -184,12 +181,7 @@ function gameWon(board,otherBoard){
             boardStats: board.height + "x" + board.width + "x" + board.mines,
         }
         allScores.push(newScore);
-        localStorage.setItem("scoresIndividuais", JSON.stringify(allScores));
-        //Order by time
-        allScores.sort((a, b) => a.time < b.time ? -1 : 1);
-        //Save only top 10
-        allScores = allScores.slice(0, 10);
-        localStorage.setItem("top10Individual", JSON.stringify(allScores));
+        localStorage.setItem("scoresMultiplayer", JSON.stringify(allScores));
     }
 
     loadingPage=true; //para poder cancelar com o botão de restart se o pusermos
