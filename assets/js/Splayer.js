@@ -56,10 +56,10 @@ window.onload = function () {
     
     BuildBoard();
     changeColour();
+    console.log(board.firstClick)
     window.addEventListener("keydown", function(e){
-        console.log(e.code);
+        //console.log(e.code);
         let active_element = document.activeElement;
-        //let position = active_element.dataset.cell;
         let add;
         let el;
         let line = active_element.dataset.line;
@@ -162,15 +162,15 @@ function BuildBoard() {
             cell.element.dataset.column = width;
             count++;
             cell.element.addEventListener('click', (e) => {
-            
-                        cell.reveal();
-                        let minesToShow = board.mines - board.minesLeft;
-                        cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
-                  
-                
+
+                console.log(board.firstClick)
                 if (board.firstClick === true) {
+                    console.log('here')
                     cronometro = setInterval(timer,1000);
                 }
+                cell.reveal();
+                let minesToShow = board.mines - board.minesLeft;
+                cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault();
                 
