@@ -39,6 +39,7 @@ let board = {
     gameWon: false,
     firstClick: true,
     isPlaying: true,
+    gameFinished: false,
     //cntMines : document.getElementById("minesLeft")
     //tempo: document.getElementById("tempo")
 }
@@ -161,27 +162,24 @@ function BuildBoard() {
             cell.element.dataset.column = width;
             count++;
             cell.element.addEventListener('click', (e) => {
-                //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
-                if (e.detail === 1) {
-                    clickTimer = setTimeout(() => {
-                        //cell.gameWin(); //Para testar os scores
+            
                         cell.reveal();
                         let minesToShow = board.mines - board.minesLeft;
                         cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
-                    }, 200)
-                }
+                  
+                
                 if (board.firstClick === true) {
                     cronometro = setInterval(timer,1000);
                 }
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault();
-                if (cell.flagged === true){
-                    cell.question();
-                }else{
+                
                     cell.flag();
+                
+                   
                     let minesToShow = board.mines - board.minesLeft;
                     cntMines.innerText = minesToShow.toString();
-                }}); //Atualiza o contador de minas });
+                }); //Atualiza o contador de minas });
             gridContainer.appendChild(element);
             board.grid[height][width] = cell;
         }
@@ -246,7 +244,7 @@ function gameWon(){
     console.log('scoree');
     board.gameWon = true;
     board.gameOver = true;
-
+   
     for (let height = 0; height < board.height; height++) {
         for (let width = 0; width < board.width; width++) {
             board.grid[height][width].reveal();

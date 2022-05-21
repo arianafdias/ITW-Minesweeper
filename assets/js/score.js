@@ -51,7 +51,7 @@ function loadScoreTable(filter=null) {
     if(filter!==null)
     scoresIndividuais = scoresIndividuais.filter(score=>score.difficulty==filter);
 
-    scoresIndividuais.sort(function(a, b){return a.seconds - b.seconds});
+    scoresIndividuais.sort(function(a, b){return a.nPlays - b.nPlays});
    
 
     //Populate table with top 10 scores
@@ -60,7 +60,7 @@ function loadScoreTable(filter=null) {
         let cell1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
         cell1.innerHTML = scoresIndividuais[i].name;
-        cell2.innerHTML = scoresIndividuais[i].time;
+        cell2.innerHTML = scoresIndividuais[i].nPlays;
     }
 
 }

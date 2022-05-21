@@ -11,24 +11,30 @@ window.onload = function () {
         if(localStorage.getItem("Difficulty") != null && localStorage.getItem("Difficulty")!="Custom")
            {
            selector.value = localStorage.getItem("Difficulty");
-                loadScoreTable(localStorage.getItem(selector.value));
+           loadStats(selector.value);
         
         }
         else 
-         loadScoreTable("Fácil");
+            loadStats("Fácil");
     
 
     changeColour();
     //Load video
  
 }
+//para devolver 0 se n existir
+function isNaN(x) {
+    if(x!==x) return 0; //hmm resulta wow
+    else return x;
+ };
+ isNaN(NaN);//true
 function loadStats(difficulty){
-   
+    let username = localStorage.getItem("username");
     if(difficulty == "Custom" || difficulty==null || difficulty == undefined) difficulty="Fácil";
-
-    let minesRevealed = localStorage.getItem(difficulty+"_minesOpened");
-
-       
+   
+    document.getElementById("minesOpened").innerHTML=isNaN(localStorage.getItem(username+"minesOpened"+difficulty));
+    document.getElementById("minesFlagged").innerHTML=isNaN(localStorage.getItem(username+"minesFlagged"+difficulty));
+    document.getElementById("cellsRevealed").innerHTML=isNaN(localStorage.getItem(username+"cellsRevealed"+difficulty));
 }
 
 

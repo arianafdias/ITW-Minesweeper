@@ -33,11 +33,12 @@
         reveal() {
             if(this.board.isPlaying) {
                 //Add 1 to the number of cells revealed statistic 
+                if(this.board.gameOver!==true){ //Não por nas stats se o jogo já acabou!
                 if( localStorage.getItem(this.board.owner+"cellsRevealed"+localStorage.getItem("Difficulty"))!=null){
                     localStorage.setItem(this.board.owner+"cellsRevealed"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"cellsRevealed"+localStorage.getItem("Difficulty")))+1);
                 } else 
                     localStorage.setItem(this.board.owner+"cellsRevealed"+localStorage.getItem("Difficulty"),1);
-                
+            }
                 if (this.board.firstClick) {
                 this.board.firstClick = false;
                 //startTimer();
@@ -56,10 +57,12 @@
             this.revealed = true;
             if (this.isMine) {
                 this.element.innerHTML = "💣";
+                if(this.board.gameOver!==true){
                 if(localStorage.getItem(this.board.owner+"minesOpened"+localStorage.getItem("Difficulty"))!=null){
-                    localStorage.setItem(this.board.owner+"minesOpened"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"mines"))+1);
+                    localStorage.setItem(this.board.owner+"minesOpened"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"minesOpened"+localStorage.getItem("Difficulty")))+1);
                 } else
                     localStorage.setItem(this.board.owner+"minesOpened"+localStorage.getItem("Difficulty"),1);
+            }
                 if(!this.board.gameOver)
                 this.gameOver();
             } else {
@@ -83,19 +86,20 @@
                 this.checkWin();
             }}
         }
-        question() {
-            if (!this.revealed && this.board.isPlaying) {
-                this.questioned = !this.questioned;
-                this.element.innerHTML = this.questioned ? "?" : "";
-        }}
+
         /**
          * Flags the cell and changes the mine counter if it is not revealed
          * @returns {void}
         */
         flag() {
             if (!this.revealed && this.board.isPlaying) {
+                if (this.marked) { this.mark(); return; }
+
                 this.flagged = !this.flagged;
+               
+               
                 if(this.flagged) {
+              
                     this.element.innerHTML = "🚩";
                     if(localStorage.getItem(this.board.owner+"flags"+localStorage.getItem("Difficulty"))!=null)
                         localStorage.setItem(this.board.owner+"flags"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"flags"))+1);
@@ -103,17 +107,20 @@
                         localStorage.setItem(this.board.owner+"flags"+localStorage.getItem("Difficulty"),1);
                     
                     if ( localStorage.getItem(this.board.owner+"minesFlagged"+localStorage.getItem("Difficulty"))!=null) 
-                        localStorage.setItem(this.board.owner+"minesFlagged"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"minesFlagged"))+1);
+                        localStorage.setItem(this.board.owner+"minesFlagged"+localStorage.getItem("Difficulty"),parseInt(localStorage.getItem(this.board.owner+"minesFlagged"+localStorage.getItem("Difficulty")))+1);
                     else 
                         localStorage.setItem(this.board.owner+"minesFlagged"+localStorage.getItem("Difficulty"),1);
                 }                    
-                    }
+                    
                 else 
-                    this.element.innerHTML = "";
-
+                { 
+                    this.mark();  
+                }
                 this.board.minesLeft = this.flagged ? this.board.minesLeft + 1 : this.board.minesLeft - 1;
-                this.element.innerHTML = this.flagged ? "🚩" : "";
+
+               
             }
+        }
         
         /**
          * Marks the cell '?' if it is not revealed

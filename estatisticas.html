@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./css/colorPicker.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/fontStyles.css">
+    <link rel="stylesheet" type="text/css" href="./css/stats.css">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,7 +59,6 @@
     <!--FIM NAVBAR-->
     <br> <br>
     <div class="container" style="width: 10%;">
-
         <select id="select-css" class="custom-select" onchange="loadStats(this.value)">
             <option value="Fácil">Fácil</option>
             <option value="Normal">Normal</option>
@@ -66,11 +66,13 @@
         </select>
         <span class="focus"></span>
     </div>
+   
     <br> <br>
     <!--List of stats:-->
-    <p id="minesOpened"> Minas descobertas:</p>
-    <p id="minesFlagged"> Minas marcadas com bandeira:</p>
-    <p id="cellsRevealed"> Casas reveladas:</p>
+    <p class="stats">Minas descobertas:<span id="minesOpened"></span>0</p>
+    <p class="stats">Minas marcadas com bandeira:<span id="minesFlagged"></span>0</p>
+    <p class="stats">Casas reveladas:<span id="cellsRevealed"></span>0</p>
+
 
     
 

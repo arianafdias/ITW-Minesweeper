@@ -19,8 +19,8 @@ function delay(time) {
     gridContainer : document.getElementById("gridContainer1"),
     isPlaying:true, //para controlar quem está a jogar
     player1: true,
-    //cntMines : document.getElementById("minesLeft1")
-    //tempo: document.getElementById("tempo1")
+    cntMines : document.getElementById("minasPlayer1"),
+    nJogadas: document.getElementById("jogadasPlayer1"),
 }
 
 let board2 = {
@@ -35,8 +35,8 @@ let board2 = {
     isPlaying:false,
     player1: false,
     gridContainer : document.getElementById("gridContainer2"),
-    cntMines : document.getElementById("minesLeft2"),
-   // tempo: document.getElementById("tempo2")
+    cntMines : document.getElementById("minasPlayer2"),
+    nJogadas: document.getElementById("jogadasPlayer2"),
 }
 
 let clickTimer;
@@ -85,7 +85,7 @@ function BuildBoards(){
 }
 
 function buildBoard(board,otherBoard){
- 
+    board.cntMines.innerHTML=board.mines;
     for (let height = 0; height < board.height; height++) {
         board.grid[height] = [];
         for (let width = 0; width < board.width; width++) {
@@ -96,22 +96,19 @@ function buildBoard(board,otherBoard){
             cell.element.addEventListener('click', (e) => {
                 //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
                 if (board.isPlaying && !cell.revealed)
-                    if (e.detail === 1) {
-                        clickTimer = setTimeout(() => {
-                            cell.gameWin();
+                          { 
+                            cell.gameWin(); //Para testar o scoreboard
                             cell.reveal();
                             board.isPlaying = false;
                             otherBoard.isPlaying = true;
                             board.gridContainer.style.opacity = 0.25;
                             otherBoard.gridContainer.style.opacity = 1;
-                            let minesToShow = board.mines - board.minesLeft;
-                            //cntMines.innerText = minesToShow.toString(); //Atualiza o contador de minas
-                        },200)
-                    };
+                            board.nJogadas.innerHTML = parseInt(board.nJogadas.innerHTML) + 1;}
+                       
             });
             cell.element.addEventListener('contextmenu', (e) => { e.preventDefault(); cell.flag();
-                let minesToShow = board.mines - board.minesLeft;
-                cntMines.innerText = minesToShow.toString();}); //Atualiza o contador de minas });
+                board.cntMines.innerHTML = board.mines - board.minesLeft;
+                }); //Atualiza o contador de minas });
             cell.element.addEventListener('dblclick', () => { clearTimeout(clickTimer); cell.mark() });
             board.gridContainer.appendChild(element);
             board.grid[height][width] = cell;
@@ -140,7 +137,7 @@ function gameOver(board,otherBoard){
     delay(2500).then(() =>{if(loadingPage==true) window.location.href = "score.html"})
 }
 
-function gameWon(board,otherBoard){
+function gameWon(board){
     board.gameWon = true;
     board.gameOver = true;
     window.confetti();
@@ -164,19 +161,14 @@ function gameWon(board,otherBoard){
         let allScores = JSON.parse(localStorage.getItem("scoresMultiplayer"));
 
         if (allScores == null) allScores = [];
-        let timeInSeconds = 25;
+        
         //Para o tempo ficar em MM:SS p.ex. 00:07 
-        let timeInMMSS = Math.floor(timeInSeconds / 60) + ":" + parseInt(timeInSeconds % 60).toLocaleString('en-US', {
-            minimumIntegerDigits: 2,
-            useGrouping: false
-        });
-        alert("You won!\nYour time: " + timeInMMSS);
+        
 
         let newScore = {
             name: localStorage.getItem("username"),
             difficulty: localStorage.getItem("Difficulty"),
-            time: timeInMMSS,
-            seconds: timeInSeconds,
+            nPlays: board.nJogadas.innerHTML,
             boardStats: board.height + "x" + board.width + "x" + board.mines,
         }
         allScores.push(newScore);
