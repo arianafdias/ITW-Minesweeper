@@ -51,7 +51,7 @@ window.onload = function () {
    
     BuildBoards();
     changeColour();
-  
+ 
 }
 
 
@@ -97,7 +97,7 @@ function buildBoard(board,otherBoard){
                 //Se o botão esquerdo for clicado esperar um bocadinho para ver se o click é double click
                 if (board.isPlaying && !cell.revealed)
                           { 
-                            cell.gameWin(); //Para testar o scoreboard
+                            //cell.gameWin(); //Para testar o scoreboard
                             cell.reveal();
                             board.isPlaying = false;
                             otherBoard.isPlaying = true;
