@@ -1,3 +1,10 @@
+/* ITW - 2021/2022
+Grupo 46    PL21
+53687 - Ariana Dias
+56931 - Diogo Forte
+58628 - Miguel Miguel */
+
+
 /*
 
 Este ficheiro têm que existir porque o changeColour() não é reconhecido se tiver no ficheiro Splayer.js 

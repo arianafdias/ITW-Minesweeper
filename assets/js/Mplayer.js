@@ -1,5 +1,9 @@
 import Cell from './Cell.js';
-
+/* ITW - 2021/2022
+Grupo 46    PL21
+53687 - Ariana Dias
+56931 - Diogo Forte
+58628 - Miguel Miguel */
 let explosionSound  = new Audio('../assets/audio/explosion.mp3');
 let clapSound = new Audio('../assets/audio/clapclapclapclapclapclapclap.mp3');
 
