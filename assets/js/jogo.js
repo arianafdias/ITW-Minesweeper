@@ -1,3 +1,11 @@
+/* ITW - 2021/2022
+Grupo 46    PL21
+53687 - Ariana Dias
+56931 - Diogo Forte
+58628 - Miguel Miguel */
+
+
+
 let EASY_BOARD_HEIGHT = 9;
 let EASY_BOARD_WIDTH = 9;
 let EASY_BOARD_MINES = 10;
